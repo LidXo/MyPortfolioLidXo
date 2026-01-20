@@ -428,7 +428,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose }) => {
                   <div className="flex justify-between items-center mb-6">
                     <h3 className="text-xl font-bold text-primary">Gérer les Certifications & Attestations</h3>
                     <Button
-                      onClick={() => addCertification({ type: 'certification', name: 'Nouvelle', date: '2024', image: 'https://via.placeholder.com/150' })}
+                      onClick={() => addCertification({ type: 'certification', name: 'Nouvelle', date: '2024', image: '', link: '', pdfUri: '' })}
                       variant="outline"
                       className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                     >
@@ -446,6 +446,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose }) => {
                                 value={cert.type}
                                 onChange={(e) => updateCertification(cert.id, { type: e.target.value as 'certification' | 'attestation' })}
                                 className="bg-card border border-border rounded px-2 py-1 text-sm"
+                                aria-label="Type de certification"
                               >
                                 <option value="certification">Certification</option>
                                 <option value="attestation">Attestation</option>
@@ -465,11 +466,106 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose }) => {
                             />
                           </div>
                         </div>
+                        <div 
+                          className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:bg-secondary/50 transition-colors relative"
+                          onDragOver={(e) => e.preventDefault()}
+                          onDrop={(e) => {
+                            e.preventDefault();
+                            const file = e.dataTransfer.files[0];
+                            if (file) {
+                              if (file.size > 2 * 1024 * 1024) { // 2MB limit
+                                toast({
+                                   title: "Fichier trop volumineux",
+                                   description: "La taille maximale est de 2 Mo.",
+                                   variant: "destructive"
+                                });
+                                return;
+                              }
+
+                              const reader = new FileReader();
+                              reader.onload = (event) => {
+                                const result = event.target?.result as string;
+                                if (file.type.includes('image')) {
+                                  updateCertification(cert.id, { image: result });
+                                } else if (file.type.includes('pdf')) {
+                                  updateCertification(cert.id, { pdfUri: result, link: '' }); // Clear external link if PDF uploaded
+                                }
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        >
+                          <div className="flex flex-col items-center gap-2 cursor-pointer">
+                            <i className="ri-upload-cloud-2-line text-3xl text-primary/50" />
+                            <p className="text-sm font-medium text-muted-foreground">
+                              Glissez une Image ou un PDF ici
+                            </p>
+                            <p className="text-xs text-muted-foreground/50">
+                              (Max 2 Mo)
+                            </p>
+                            <label className="absolute inset-0 cursor-pointer">
+                              <input 
+                                type="file" 
+                                className="hidden" 
+                                accept="image/*,application/pdf"
+                                onChange={(e) => {
+                                  const file = e.target.files?.[0];
+                                  if (file) {
+                                    if (file.size > 2 * 1024 * 1024) {
+                                      toast({
+                                         title: "Fichier trop volumineux",
+                                         description: "La taille maximale est de 2 Mo.",
+                                         variant: "destructive"
+                                      });
+                                      return;
+                                    }
+                                    const reader = new FileReader();
+                                    reader.onload = (event) => {
+                                      const result = event.target?.result as string;
+                                      if (file.type.includes('image')) {
+                                        updateCertification(cert.id, { image: result });
+                                      } else if (file.type.includes('pdf')) {
+                                        updateCertification(cert.id, { pdfUri: result, link: '' });
+                                      }
+                                    };
+                                    reader.readAsDataURL(file);
+                                  }
+                                }}
+                              />
+                            </label>
+                          </div>
+                        </div>
+
+                        {/* Preview / Status */}
+                        {cert.pdfUri && (
+                          <div className="flex items-center gap-2 text-sm text-primary bg-primary/10 p-2 rounded">
+                            <i className="ri-file-pdf-line" />
+                            <span>PDF chargé</span>
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              className="h-6 w-6 p-0 ml-auto hover:bg-destructive/20 hover:text-destructive"
+                              onClick={() => updateCertification(cert.id, { pdfUri: undefined })}
+                            >
+                              <i className="ri-close-line" />
+                            </Button>
+                          </div>
+                        )}
+
                         <Input
                           value={cert.image}
                           onChange={(e) => updateCertification(cert.id, { image: e.target.value })}
                           className="bg-card border-border text-sm"
-                          placeholder="URL de l'image"
+                          placeholder="URL Image (ou laissé vide pour icône par défaut)"
+                          aria-label="URL de l'image de certification"
+                        />
+                         <Input
+                          value={cert.link || ''}
+                          onChange={(e) => updateCertification(cert.id, { link: e.target.value })}
+                          className="bg-card border-border text-sm disabled:opacity-50"
+                          placeholder="Lien externe (URL)"
+                          disabled={!!cert.pdfUri} 
+                          aria-label="Lien externe vers la certification"
                         />
                         <Button
                           variant="ghost"

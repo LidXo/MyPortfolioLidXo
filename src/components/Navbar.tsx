@@ -56,6 +56,14 @@ const Navbar: React.FC = () => {
     if (saved) changeTheme(saved);
   }, []);
 
+  const handleNavClick = (sectionId: string) => {
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setMobileOpen(false);
+  };
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 glass-nav ${scrolled ? 'py-2' : 'py-4'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -66,14 +74,14 @@ const Navbar: React.FC = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
-            <a
+            <div
               key={link.href}
-              href={link.href}
-              className="text-muted-foreground hover:text-primary font-medium transition-colors flex items-center gap-2"
+              onClick={() => handleNavClick(link.href)}
+              className="text-muted-foreground hover:text-primary font-medium transition-colors flex items-center gap-2 cursor-pointer"
             >
               <i className={link.icon} />
               {link.label}
-            </a>
+            </div>
           ))}
 
           {/* Color Picker */}
@@ -110,29 +118,31 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu */}
       {mobileOpen && (
         <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute top-full left-0 w-full glass-nav py-4"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          className="md:hidden absolute top-full left-0 w-full glass-nav border-t border-white/5 bg-black/95 backdrop-blur-xl py-6 shadow-2xl"
         >
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-6">
             {navLinks.map((link) => (
-              <a
+              <div
                 key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-muted-foreground hover:text-primary font-medium transition-colors flex items-center gap-2"
+                onClick={() => handleNavClick(link.href)}
+                className="text-foreground/80 hover:text-primary font-medium text-lg transition-colors flex items-center gap-3 cursor-pointer w-full justify-center py-2 active:scale-95 duration-200"
               >
-                <i className={link.icon} />
+                <i className={`${link.icon} text-xl`} />
                 {link.label}
-              </a>
+              </div>
             ))}
-            <div className="flex gap-2 mt-2">
+            <div className="w-16 h-px bg-white/10 my-2" />
+            <div className="flex gap-4">
               {themeColors.map((color) => (
                 <button
                   key={color}
                   onClick={() => changeTheme(color)}
-                  className="w-6 h-6 rounded-full border border-border hover:scale-110 transition-transform"
+                  className="w-8 h-8 rounded-full border border-white/20 hover:scale-110 transition-transform shadow-[0_0_10px_rgba(0,0,0,0.5)]"
                   style={{ backgroundColor: color }}
+                  aria-label={`Changer le thème en ${color}`}
                 />
               ))}
             </div>
