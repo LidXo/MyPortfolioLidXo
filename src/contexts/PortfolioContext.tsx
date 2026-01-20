@@ -126,8 +126,8 @@ const defaultData: PortfolioData = {
     { id: 3, type: "attestation", name: "Google Data Analytics", date: "2021", image: "https://images.credly.com/images/32f225eb-4581-42ab-8e0d-036128678083/logo.png", link: "" },
   ],
   contact: {
-    email: "contact@lidao.dev",
-    location: "Paris, France",
+    email: "lidxo.dev@gmail.com",
+    location: "Lomé, Togo",
     status: "Open to Work",
     socials: {
       linkedin: "#",
