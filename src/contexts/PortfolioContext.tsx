@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
 
 // Types
 export interface HeroData {
@@ -83,14 +83,14 @@ const defaultData: PortfolioData = {
     title: "Code. Données. Intelligence.",
     subtitle: "Étudiant en Informatique IA & BigData. Je conçois des expériences web immersives et des solutions intelligentes.",
     available: "Disponible pour des projets",
-    yearsExp: "3+",
+    yearsExp: "5+",
     cvLink: "#",
   },
   about: {
     text: "Je suis un passionné d'informatique, spécialisé en IA et Big Data. Mon objectif est de créer des solutions innovantes qui allient performance technique et design futuriste. Toujours en quête de nouveaux défis.",
     stats: [
-      { label: "Années d'Expérience", value: "3+" },
-      { label: "Projets Réalisés", value: "15+" },
+      { label: "Années d'Expérience", value: "5+" },
+      { label: "Projets Réalisés", value: "5+" },
       { label: "Certifications", value: "5" },
       { label: "Passion", value: "∞" },
     ],
@@ -141,190 +141,13 @@ const defaultData: PortfolioData = {
 
 interface PortfolioContextType {
   data: PortfolioData;
-  updateHero: (hero: HeroData) => void;
-  updateAbout: (about: AboutData) => void;
-  updateContact: (contact: ContactData) => void;
-  
-  // Journey
-  addJourney: (item: Omit<JourneyItem, 'id'>) => void;
-  updateJourney: (id: number, item: Partial<JourneyItem>) => void;
-  deleteJourney: (id: number) => void;
-  
-  // Projects
-  addProject: (item: Omit<ProjectItem, 'id'>) => void;
-  updateProject: (id: number, item: Partial<ProjectItem>) => void;
-  deleteProject: (id: number) => void;
-  
-  // Skills
-  addSkill: (item: Omit<SkillItem, 'id'>) => void;
-  updateSkill: (id: number, item: Partial<SkillItem>) => void;
-  deleteSkill: (id: number) => void;
-  
-  // Interests
-  addInterest: (item: Omit<InterestItem, 'id'>) => void;
-  updateInterest: (id: number, item: Partial<InterestItem>) => void;
-  deleteInterest: (id: number) => void;
-  
-  // Certifications
-  addCertification: (item: Omit<CertificationItem, 'id'>) => void;
-  updateCertification: (id: number, item: Partial<CertificationItem>) => void;
-  deleteCertification: (id: number) => void;
-  
-  // Admin
-  isAdmin: boolean;
-  setIsAdmin: (value: boolean) => void;
 }
 
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined);
 
 export const PortfolioProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [data, setData] = useState<PortfolioData>(() => {
-    const saved = localStorage.getItem('portfolioData_v2');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        return { ...defaultData, ...parsed };
-      } catch {
-        return defaultData;
-      }
-    }
-    return defaultData;
-  });
-  
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem('portfolioData_v2', JSON.stringify(data));
-  }, [data]);
-
-  const updateHero = (hero: HeroData) => setData(prev => ({ ...prev, hero }));
-  const updateAbout = (about: AboutData) => setData(prev => ({ ...prev, about }));
-  const updateContact = (contact: ContactData) => setData(prev => ({ ...prev, contact }));
-
-  // Journey CRUD
-  const addJourney = (item: Omit<JourneyItem, 'id'>) => {
-    setData(prev => ({
-      ...prev,
-      journey: [...prev.journey, { ...item, id: Date.now() }],
-    }));
-  };
-  const updateJourney = (id: number, item: Partial<JourneyItem>) => {
-    setData(prev => ({
-      ...prev,
-      journey: prev.journey.map(j => j.id === id ? { ...j, ...item } : j),
-    }));
-  };
-  const deleteJourney = (id: number) => {
-    setData(prev => ({
-      ...prev,
-      journey: prev.journey.filter(j => j.id !== id),
-    }));
-  };
-
-  // Projects CRUD
-  const addProject = (item: Omit<ProjectItem, 'id'>) => {
-    setData(prev => ({
-      ...prev,
-      projects: [...prev.projects, { ...item, id: Date.now() }],
-    }));
-  };
-  const updateProject = (id: number, item: Partial<ProjectItem>) => {
-    setData(prev => ({
-      ...prev,
-      projects: prev.projects.map(p => p.id === id ? { ...p, ...item } : p),
-    }));
-  };
-  const deleteProject = (id: number) => {
-    setData(prev => ({
-      ...prev,
-      projects: prev.projects.filter(p => p.id !== id),
-    }));
-  };
-
-  // Skills CRUD
-  const addSkill = (item: Omit<SkillItem, 'id'>) => {
-    setData(prev => ({
-      ...prev,
-      skills: [...prev.skills, { ...item, id: Date.now() }],
-    }));
-  };
-  const updateSkill = (id: number, item: Partial<SkillItem>) => {
-    setData(prev => ({
-      ...prev,
-      skills: prev.skills.map(s => s.id === id ? { ...s, ...item } : s),
-    }));
-  };
-  const deleteSkill = (id: number) => {
-    setData(prev => ({
-      ...prev,
-      skills: prev.skills.filter(s => s.id !== id),
-    }));
-  };
-
-  // Interests CRUD
-  const addInterest = (item: Omit<InterestItem, 'id'>) => {
-    setData(prev => ({
-      ...prev,
-      interests: [...prev.interests, { ...item, id: Date.now() }],
-    }));
-  };
-  const updateInterest = (id: number, item: Partial<InterestItem>) => {
-    setData(prev => ({
-      ...prev,
-      interests: prev.interests.map(i => i.id === id ? { ...i, ...item } : i),
-    }));
-  };
-  const deleteInterest = (id: number) => {
-    setData(prev => ({
-      ...prev,
-      interests: prev.interests.filter(i => i.id !== id),
-    }));
-  };
-
-  // Certifications CRUD
-  const addCertification = (item: Omit<CertificationItem, 'id'>) => {
-    setData(prev => ({
-      ...prev,
-      certifications: [...prev.certifications, { ...item, id: Date.now() }],
-    }));
-  };
-  const updateCertification = (id: number, item: Partial<CertificationItem>) => {
-    setData(prev => ({
-      ...prev,
-      certifications: prev.certifications.map(c => c.id === id ? { ...c, ...item } : c),
-    }));
-  };
-  const deleteCertification = (id: number) => {
-    setData(prev => ({
-      ...prev,
-      certifications: prev.certifications.filter(c => c.id !== id),
-    }));
-  };
-
   return (
-    <PortfolioContext.Provider value={{
-      data,
-      updateHero,
-      updateAbout,
-      updateContact,
-      addJourney,
-      updateJourney,
-      deleteJourney,
-      addProject,
-      updateProject,
-      deleteProject,
-      addSkill,
-      updateSkill,
-      deleteSkill,
-      addInterest,
-      updateInterest,
-      deleteInterest,
-      addCertification,
-      updateCertification,
-      deleteCertification,
-      isAdmin,
-      setIsAdmin,
-    }}>
+    <PortfolioContext.Provider value={{ data: defaultData }}>
       {children}
     </PortfolioContext.Provider>
   );
