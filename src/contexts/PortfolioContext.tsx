@@ -44,6 +44,13 @@ export interface InterestItem {
   icon: string;
 }
 
+export interface TechnologyItem {
+  id: number;
+  name: string;
+  category: string;
+  icon: string;
+}
+
 export interface CertificationItem {
   id: number;
   type: 'certification' | 'attestation';
@@ -73,6 +80,7 @@ export interface PortfolioData {
   journey: JourneyItem[];
   projects: ProjectItem[];
   skills: SkillItem[];
+  technologies: TechnologyItem[];
   interests: InterestItem[];
   certifications: CertificationItem[];
   contact: ContactData;
@@ -84,7 +92,7 @@ const defaultData: PortfolioData = {
     subtitle: "Étudiant en Data Engineering. Je conçois des expériences web immersives et des solutions intelligentes.",
     available: "Disponible pour des projets",
     yearsExp: "1+",
-    cvLink: "#",
+    cvLink: "CV Lidao.pdf",
   },
   about: {
     text: "Je suis un passionné d'informatique, spécialisé en IA et Big Data. Mon objectif est de créer des solutions innovantes qui allient performance technique et design futuriste. Toujours en quête de nouveaux défis.",
@@ -119,6 +127,20 @@ const defaultData: PortfolioData = {
     { id: 6, name: "Node.js", icon: "ri-nodejs-line", level: 2 },
     { id: 7, name: "Java", icon: "ri-java-line", level: 60 },
     { id: 8, name: "C++", icon: "ri-c-plus-plus-line", level: 30 },
+  ],
+  technologies: [
+    { id: 1, name: "Python", category: "Langage principal", icon: "ri-code-s-slash-line" },
+    { id: 2, name: "PyTorch", category: "Deep Learning", icon: "ri-brain-line" },
+    { id: 3, name: "TensorFlow", category: "Framework ML", icon: "ri-flow-chart" },
+    { id: 4, name: "SQL / NoSQL", category: "Bases de données", icon: "ri-database-2-line" },
+    { id: 5, name: "Git", category: "Versionning", icon: "ri-git-branch-line" },
+    { id: 6, name: "Pandas / NumPy", category: "Data Science", icon: "ri-bar-chart-box-line" },
+    { id: 7, name: "Docker", category: "Conteneurisation", icon: "ri-server-line" },
+    { id: 8, name: "Jupyter", category: "Environnement", icon: "ri-terminal-box-line" },
+    { id: 9, name: "Google Colab", category: "Cloud Computing", icon: "ri-cloud-line" },
+    { id: 10, name: "OpenCV", category: "Vision", icon: "ri-eye-line" },
+    { id: 11, name: "NLTK / SpaCy", category: "NLP", icon: "ri-translate-2" },
+    { id: 12, name: "Matplotlib", category: "Visualisation", icon: "ri-pie-chart-line" },
   ],
   interests: [
     { id: 1, name: "Gaming", icon: "ri-gamepad-line" },
