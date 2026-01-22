@@ -109,9 +109,27 @@ const defaultData: PortfolioData = {
     ],
   },
   journey: [
-    { id: 1, year: "2025", title: "Master IA & BigData", desc: "Spécialisation en Deep Learning et traitement de données massives.", icon: "ri-graduation-cap-fill" },
-    { id: 2, year: "2024", title: "Stage Développeur Fullstack", desc: "Création d'applications web réactives et gestion de bases de données.", icon: "ri-code-box-fill" },
-    { id: 3, year: "2023", title: "Licence Informatique", desc: "Acquisition des bases solides en algorithmique et développement logiciel.", icon: "ri-book-2-fill" },
+    { 
+      id: 1, 
+      year: "2025", 
+      title: "Master IA & Big Data", 
+      desc: "Spécialisation en Data Engineering et Architectures Distribuées. Focus sur le traitement de données massives, le Cloud Computing et les pipelines ML.", 
+      icon: "ri-graduation-cap-fill" 
+    },
+    { 
+      id: 2, 
+      year: "2024", 
+      title: "Stage & Projets Techniques", 
+      desc: "Développement de solutions data-driven. Conception de bases de données, APIs et interfaces réactives. Premières mises en production.", 
+      icon: "ri-code-box-fill" 
+    },
+    { 
+      id: 3, 
+      year: "2023", 
+      title: "Licence Informatique", 
+      desc: "Acquisition des fondements théoriques : Algorithmique complexe, Structures de données, Systèmes d'exploitation et Réseaux.", 
+      icon: "ri-book-2-fill" 
+    },
   ],
   projects: [
     { id: 1, title: "Neural Network Viz", desc: "Visualisateur de réseaux de neurones en temps réel.", tags: "Python, TensorFlow, React", img: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=1000", link: "#" },
@@ -125,85 +143,122 @@ const defaultData: PortfolioData = {
   ],
   skills: [
     {
-      id: "data-engineering",
-      title: "Ingénierie des données",
+      id: "fundamentals",
+      title: "Fondamentaux Data Engineering",
+      icon: "ri-server-fill",
+      skills: [
+        "Compréhension approfondie des architectures data modernes",
+        "Conception de pipelines de données robustes, scalables et maintenables",
+        "Maîtrise des flux batch et streaming",
+        "Gestion du cycle de vie de la donnée",
+        "Garantir la qualité, la cohérence et la fiabilité des données",
+        "Gestion de la volumétrie (Big Data)"
+      ]
+    },
+    {
+      id: "architecture",
+      title: "Architecture & Platforms",
+      icon: "ri-building-2-fill",
+      skills: [
+        "Conception d’architectures Data Warehouse & Data Lake",
+        "Séparation compute / storage",
+        "Architectures orientées événements",
+        "Data Mesh (principes, gouvernance)",
+        "Optimisation des coûts et des performances"
+      ]
+    },
+    {
+      id: "pipelines",
+      title: "Pipelines & Orchestration",
+      icon: "ri-flow-chart",
+      skills: [
+        "Ingestion de données multi-sources (API, fichiers, bases)",
+        "Transformation de données (ETL / ELT)",
+        "Orchestration de workflows data",
+        "Gestion des dépendances et des erreurs",
+        "Automatisation complète des pipelines"
+      ]
+    },
+    {
+      id: "processing",
+      title: "Traitement des données",
+      icon: "ri-cpu-line",
+      skills: [
+        "Nettoyage et normalisation des données",
+        "Agrégation et enrichissement",
+        "Partitionnement et indexation",
+        "Optimisation des requêtes analytiques",
+        "Traitement distribué"
+      ]
+    },
+    {
+      id: "databases",
+      title: "Bases de données",
       icon: "ri-database-2-fill",
       skills: [
-        "Conception et implémentation de pipelines de données (ETL / ELT)",
-        "Collecte, transformation et validation de données hétérogènes",
-        "Nettoyage, normalisation et structuration de données brutes",
-        "Gestion de flux de données batch et quasi temps réel",
-        "Optimisation des performances de traitement de données"
+        "Modélisation relationnelle avancée",
+        "Modélisation analytique (Star / Snowflake schema)",
+        "Gestion OLTP et OLAP",
+        "Stockage distribué",
+        "Gestion de métadonnées"
       ]
     },
     {
-      id: "data-modeling",
-      title: "Modélisation & gestion",
-      icon: "ri-node-tree",
+      id: "sql-analytics",
+      title: "SQL & Analytics",
+      icon: "ri-code-box-line",
       skills: [
-        "Modélisation de bases de données relationnelles",
-        "Conception de schémas analytiques (étoile, flocon)",
-        "Gestion de données structurées et semi-structurées",
-        "Optimisation de requêtes SQL",
-        "Gestion de la qualité et de l’intégrité des données"
+        "SQL avancé (CTE, window functions)",
+        "Data transformations analytiques",
+        "Construction de tables analytiques pour la BI",
+        "Validation de modèles de données",
+        "Documentation des datasets"
       ]
     },
     {
-      id: "automation",
-      title: "Automatisation & systèmes",
-      icon: "ri-settings-4-fill",
+      id: "streaming",
+      title: "Streaming & Temps réel",
+      icon: "ri-pulse-line",
       skills: [
-        "Automatisation de workflows de données",
-        "Écriture de scripts de traitement en Python",
-        "Gestion des dépendances et environnements",
-        "Surveillance et fiabilité des pipelines",
-        "Gestion des erreurs et reprise sur incident"
+        "Conception de pipelines temps réel",
+        "Traitement de flux continus",
+        "Gestion de la latence et throughput",
+        "Event-driven architectures"
       ]
     },
     {
-      id: "analytics",
-      title: "Data Analytics & ML",
-      icon: "ri-bar-chart-groupped-fill",
+      id: "cloud-devops",
+      title: "Cloud & DevOps Data",
+      icon: "ri-cloud-windy-fill",
       skills: [
-        "Préparation de datasets pour l’analyse et le ML",
-        "Feature engineering",
-        "Exploration et validation statistique des données",
-        "Collaboration avec Data Scientists et Analystes"
+        "Déploiement Cloud (AWS, GCP, Azure)",
+        "Infrastructure as Code (IaC)",
+        "CI/CD pour pipelines data",
+        "Monitoring et observabilité",
+        "Sécurité des données (IAM, chiffrement)"
       ]
     },
     {
-      id: "software-engineering",
-      title: "Ingénierie logicielle Data",
-      icon: "ri-code-s-slash-fill",
+      id: "governance",
+      title: "Qualité & Gouvernance",
+      icon: "ri-shield-check-fill",
       skills: [
-        "Programmation orientée objet",
-        "Versionnement du code et bonnes pratiques Git",
-        "Structuration de projets data",
-        "Documentation technique claire",
-        "Tests basiques de pipelines et scripts"
+        "Data Quality checks",
+        "Data validation automatisée",
+        "Lineage et traçabilité",
+        "Gouvernance et conformité (RGPD)",
+        "Gestion des accès et permissions"
       ]
     },
     {
-      id: "security",
-      title: "Sécurité & Gouvernance",
-      icon: "ri-shield-keyhole-fill",
-      skills: [
-        "Gestion des accès aux données",
-        "Sensibilisation à la confidentialité des données",
-        "Séparation environnements (dev / test / prod)",
-        "Principes de gouvernance des données"
-      ]
-    },
-    {
-      id: "soft-skills",
-      title: "Compétences Transversales",
+      id: "methodology",
+      title: "Collaboration",
       icon: "ri-team-fill",
       skills: [
-        "Raisonnement analytique et logique",
-        "Capacité à traiter de gros volumes de données",
-        "Rigueur et fiabilité",
-        "Autonomie technique",
-        "Capacité d’apprentissage rapide"
+        "Travail en environnement Agile",
+        "Collaboration avec Data Scientists",
+        "Documentation technique claire",
+        "Versionning et revues de code"
       ]
     }
   ],
@@ -212,63 +267,90 @@ const defaultData: PortfolioData = {
       id: "languages",
       title: "Langages",
       items: [
-        { name: "Python", icon: "ri-code-s-slash-line", usage: "Scripting, ETL, Analyse de données, APIs" },
-        { name: "SQL", icon: "ri-database-2-line", usage: "Interrogation, Transformations complexes, Analytics" },
-        { name: "Java", icon: "ri-java-line", usage: "Traitement de données, Backend" },
-        { name: "Bash / Shell", icon: "ri-terminal-line", usage: "Automatisation système, Scripts" }
+        { name: "Python", icon: "ri-code-s-slash-line", usage: "Scripting, ETL, Analyse" },
+        { name: "SQL", icon: "ri-database-2-line", usage: "Querying, Transformations" },
+        { name: "Bash / Shell", icon: "ri-terminal-box-line", usage: "Automatisation système" },
+        { name: "Java / Scala", icon: "ri-java-line", usage: "Performance, Big Data" }
       ]
     },
     {
-      id: "frameworks",
-      title: "Data Engineering",
+      id: "databases-relational",
+      title: "Bases sQL",
       items: [
-        { name: "Apache Spark", icon: "ri-fire-fill", usage: "Traitement distribué Big Data" },
-        { name: "Apache Airflow", icon: "ri-flow-chart", usage: "Orchestration de pipelines" },
-        { name: "Apache Kafka", icon: "ri-arrow-left-right-line", usage: "Streaming de données temps réel" }
+        { name: "PostgreSQL", icon: "ri-database-line", usage: "SGBD Avancé" },
+        { name: "MySQL", icon: "ri-database-2-line", usage: "SGBD Web" },
+        { name: "Oracle", icon: "ri-server-line", usage: "Entreprise" }
       ]
     },
     {
-      id: "databases",
-      title: "Bases de données",
+      id: "databases-nosql",
+      title: "NoSQL",
       items: [
-        { name: "PostgreSQL", icon: "ri-server-line", usage: "SGBD Relationnel, Data Warehousing" },
-        { name: "MongoDB", icon: "ri-leaf-line", usage: "Stockage NoSQL documents" },
-        { name: "SQLite", icon: "ri-database-line", usage: "Base légère, environnements de dev" }
+        { name: "MongoDB", icon: "ri-leaf-line", usage: "Documents" },
+        { name: "Redis", icon: "ri-stack-line", usage: "Caching, In-memory" },
+        { name: "Cassandra", icon: "ri-table-alt-line", usage: "Wide-column store" }
       ]
     },
     {
-      id: "processing",
-      title: "Traitement & Analyse",
+      id: "bi-analytics",
+      title: "Analytics & BI",
       items: [
-        { name: "Pandas / NumPy", icon: "ri-table-line", usage: "Manipulation de données, Calcul numérique" },
-        { name: "Jupyter", icon: "ri-book-read-line", usage: "Prototypage, Exploration, Storytelling" },
-        { name: "Google Colab", icon: "ri-google-fill", usage: "Environnement Cloud Data Science" }
+        { name: "BigQuery", icon: "ri-google-fill", usage: "Data Warehouse Serverless" },
+        { name: "Snowflake", icon: "ri-snowy-line", usage: "Cloud Data Platform" },
+        { name: "Power BI", icon: "ri-bar-chart-fill", usage: "Business Intelligence" }
+      ]
+    },
+    {
+      id: "bigdata",
+      title: "Big Data",
+      items: [
+        { name: "Apache Spark", icon: "ri-fire-fill", usage: "Processing in-memory" },
+        { name: "Hadoop", icon: "ri-hard-drive-2-line", usage: "Stockage distribué" },
+        { name: "Apache Flink", icon: "ri-flow-chart", usage: "Stateful computations" }
+      ]
+    },
+    {
+      id: "orchestration",
+      title: "Orchestration",
+      items: [
+        { name: "Airflow", icon: "ri-windy-line", usage: "Workflows as Code" },
+        { name: "dbt", icon: "ri-hammer-line", usage: "Transformations Analytics" },
+        { name: "Dagster", icon: "ri-node-tree", usage: "Data Orchestrator" }
+      ]
+    },
+    {
+      id: "streaming",
+      title: "Streaming",
+      items: [
+        { name: "Kafka", icon: "ri-arrow-left-right-line", usage: "Event Streaming" },
+        { name: "RabbitMQ", icon: "ri-mail-send-line", usage: "Message Broker" }
       ]
     },
     {
       id: "cloud",
-      title: "Cloud & Big Data",
+      title: "Cloud Platforms",
       items: [
-        { name: "GCP BigQuery", icon: "ri-cloud-fill", usage: "Data Warehouse, Analytics massive" },
-        { name: "Cloud Storage", icon: "ri-hard-drive-line", usage: "Stockage d'objets, Data Lake" }
+        { name: "GCP", icon: "ri-google-fill", usage: "BigQuery, GCS, Dataflow" },
+        { name: "AWS", icon: "ri-amazon-fill", usage: "S3, Glue, Redshift, EMR" },
+        { name: "Azure", icon: "ri-microsoft-fill", usage: "Data Factory, Synapse" }
       ]
     },
     {
       id: "devops",
-      title: "DevOps & Outils",
+      title: "DevOps",
       items: [
-        { name: "Git / GitHub", icon: "ri-github-fill", usage: "Versionning, CI/CD, Collaboration" },
-        { name: "Docker", icon: "ri-docker-line", usage: "Conteneurisation, Environnements isolés" },
-        { name: "Linux", icon: "ri-ubuntu-line", usage: "Administration système, Serveurs" }
+        { name: "Docker", icon: "ri-docker-line", usage: "Conteneurisation" },
+        { name: "Kubernetes", icon: "ri-ship-line", usage: "Orchestration conteneurs" },
+        { name: "Terraform", icon: "ri-cloud-line", usage: "Infrastructure as Code" }
       ]
     },
     {
-      id: "ml",
-      title: "Ouverture ML",
+      id: "quality",
+      title: "Monitoring",
       items: [
-        { name: "TensorFlow", icon: "ri-brain-line", usage: "Création de modèles Deep Learning" },
-        { name: "PyTorch", icon: "ri-fire-line", usage: "Recherche et développement ML" },
-        { name: "Scikit-Learn", icon: "ri-mind-map", usage: "Algorithmes ML classiques" }
+        { name: "Grafana", icon: "ri-dashboard-line", usage: "Visualisation metrics" },
+        { name: "Prometheus", icon: "ri-pulse-line", usage: "Monitoring system" },
+        { name: "Great Expectations", icon: "ri-check-double-line", usage: "Data Quality" }
       ]
     }
   ],

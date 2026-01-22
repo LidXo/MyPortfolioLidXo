@@ -20,24 +20,25 @@ const TechnologiesSection: React.FC = () => {
             Technologies <span className="text-primary">Maîtrisées</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Stack technique utilisée dans mes projets académiques et personnels.
+            Stack technique utilisée en environnements de production et académiques.
           </p>
         </motion.div>
         
-        <div className="space-y-12">
+        <div className="space-y-16">
           {technologies.map((category, catIndex) => (
             <div key={category.id}>
-              <motion.h3 
+              <motion.div 
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-2xl font-bold mb-6 flex items-center gap-3"
+                className="flex items-center gap-4 mb-8"
               >
-                <span className="w-1 h-8 bg-primary rounded-full"></span>
-                {category.title}
-              </motion.h3>
+                <div className="h-px bg-border flex-1 max-w-[50px]"></div>
+                <h3 className="text-2xl font-bold text-foreground/90">{category.title}</h3>
+                <div className="h-px bg-border flex-1 opacity-50"></div>
+              </motion.div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {category.items.map((tech, index) => (
                   <motion.div
                     key={index}
@@ -45,15 +46,15 @@ const TechnologiesSection: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}
-                    whileHover={{ y: -5 }}
-                    className="glass-card p-4 rounded-xl flex items-start gap-4 hover:border-primary/50 transition-colors group"
+                    whileHover={{ y: -5, borderColor: "hsl(var(--primary) / 0.5)" }}
+                    className="glass-card p-4 rounded-xl border border-border/40 flex items-start gap-4 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/5 hover:bg-card/50"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                      <i className={`${tech.icon} text-xl text-primary`} />
+                    <div className="w-10 h-10 rounded-lg bg-background flex items-center justify-center shrink-0 border border-border/50 group-hover:border-primary/50 group-hover:text-primary transition-colors">
+                      <i className={`${tech.icon} text-xl`} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-base leading-tight mb-1">{tech.name}</h4>
-                      <p className="text-xs text-muted-foreground leading-relaxed">{tech.usage}</p>
+                      <h4 className="font-bold text-base leading-tight mb-1.5 group-hover:text-primary transition-colors">{tech.name}</h4>
+                      <p className="text-xs text-muted-foreground leading-relaxed font-medium">{tech.usage}</p>
                     </div>
                   </motion.div>
                 ))}
