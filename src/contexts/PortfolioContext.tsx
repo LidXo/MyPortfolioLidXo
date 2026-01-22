@@ -97,7 +97,7 @@ const defaultData: PortfolioData = {
     subtitle: "Étudiant en Data Engineering. Je conçois des expériences web immersives et des solutions intelligentes.",
     available: "Disponible pour des projets",
     yearsExp: "1+",
-    cvLink: "CV Lidao.pdf",
+    cvLink: "Capture d'écran 2026-01-22 205627.png",
   },
   about: {
     text: "Je suis un passionné d'informatique, spécialisé en IA et Big Data. Mon objectif est de créer des solutions innovantes qui allient performance technique et design futuriste. Toujours en quête de nouveaux défis.",
@@ -359,7 +359,7 @@ const defaultData: PortfolioData = {
     { id: 2, name: "Voyage", icon: "ri-plane-line" },
     { id: 3, name: "Musique", icon: "ri-headphone-line" },
     { id: 4, name: "Lecture", icon: "ri-book-open-line" },
-    { id: 5, name: "Sport", icon: "ri-sports-line" },
+    { id: 5, name: "Sport", icon: "ri-sport-line" },
   ],
   certifications: [
     { id: 1, type: "certification", name: "AWS Cloud Practitioner", date: "2023", image: "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Cloud-Practitioner_badge.634f8a21af2e0e956ed8905a72366146ba22b74c.png", link: "https://aws.amazon.com/certification/" },
@@ -370,7 +370,7 @@ const defaultData: PortfolioData = {
   contact: {
     email: "lidxo.dev@gmail.com",
     location: "Lomé, Togo",
-    status: "",
+    status: "Open to work",
     socials: {
       linkedin: "https://www.linkedin.com/in/lidao-a-401799328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       github: "https://github.com/LidXo",
