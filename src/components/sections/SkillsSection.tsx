@@ -7,70 +7,62 @@ const SkillsSection: React.FC = () => {
   const { data } = usePortfolio();
   const { skills } = data;
 
-  const radius = 64;
-  const circumference = 2 * Math.PI * radius;
-
   return (
-    <section id="skills" className="py-24 relative">
+    <section id="skills" className="py-24 relative bg-muted/30">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold mb-16 text-center"
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           className="text-center mb-16"
         >
-          Mes <span className="text-primary">Compétences</span>
-        </motion.h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Compétences <span className="text-primary">Opérationnelles</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            Capacités techniques appliquées à des problématiques data réelles.
+          </p>
+        </motion.div>
         
-        <div className="flex flex-wrap justify-center gap-8 md:gap-12">
-          {skills.map((skill, index) => {
-            const offset = circumference - (skill.level / 100) * circumference;
-            
-            return (
-              <motion.div
-                key={skill.id}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="flex flex-col items-center gap-4 group"
-              >
-                <div className="skill-circle">
-                  <svg viewBox="0 0 140 140">
-                    <circle 
-                      className="skill-circle-bg" 
-                      cx="70" 
-                      cy="70" 
-                      r={radius} 
-                    />
-                    <motion.circle 
-                      className="skill-circle-progress" 
-                      cx="70" 
-                      cy="70" 
-                      r={radius}
-                      initial={{ strokeDashoffset: circumference }}
-                      whileInView={{ strokeDashoffset: offset }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.5, ease: "easeOut" }}
-                      style={{ 
-                        strokeDasharray: circumference,
-                      }}
-                    />
-                  </svg>
-                  <div className="skill-circle-content">
-                    <i className={`${skill.icon} text-3xl mb-1 text-foreground group-hover:text-primary transition-colors`} />
-                    <span className="font-bold text-xl text-primary">{skill.level}</span>
-                    <span className="text-xs text-muted-foreground">%</span>
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {skills.map((category, index) => (
+            <motion.div
+              key={category.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-card p-8 rounded-xl border border-border/50 hover:border-primary/50 transition-colors shadow-sm hover:shadow-md"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                  <i className={`${category.icon} text-2xl`} />
                 </div>
-                <span className="font-medium text-muted-foreground tracking-wide group-hover:text-foreground transition-colors">
-                  {skill.name}
-                </span>
-              </motion.div>
-            );
-          })}
+                <h3 className="font-bold text-xl">{category.title}</h3>
+              </div>
+              
+              <ul className="space-y-3">
+                {category.skills.map((skill, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <i className="ri-checkbox-circle-fill text-primary mt-1 shrink-0" />
+                    <span>{skill}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <p className="text-muted-foreground italic border-l-4 border-primary pl-4 inline-block text-left max-w-2xl">
+            « Compétences acquises à travers des projets data concrets, des expérimentations techniques et des cas d’usage réels. »
+          </p>
+        </motion.div>
       </div>
     </section>
   );

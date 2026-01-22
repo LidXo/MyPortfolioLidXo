@@ -31,11 +31,11 @@ export interface ProjectItem {
   link: string;
 }
 
-export interface SkillItem {
-  id: number;
-  name: string;
+export interface SkillCategory {
+  id: string;
+  title: string;
   icon: string;
-  level: number;
+  skills: string[];
 }
 
 export interface InterestItem {
@@ -44,11 +44,16 @@ export interface InterestItem {
   icon: string;
 }
 
-export interface TechnologyItem {
-  id: number;
+export interface TechItem {
   name: string;
-  category: string;
   icon: string;
+  usage: string;
+}
+
+export interface TechCategory {
+  id: string;
+  title: string;
+  items: TechItem[];
 }
 
 export interface CertificationItem {
@@ -79,8 +84,8 @@ export interface PortfolioData {
   about: AboutData;
   journey: JourneyItem[];
   projects: ProjectItem[];
-  skills: SkillItem[];
-  technologies: TechnologyItem[];
+  skills: SkillCategory[];
+  technologies: TechCategory[];
   interests: InterestItem[];
   certifications: CertificationItem[];
   contact: ContactData;
@@ -119,28 +124,153 @@ const defaultData: PortfolioData = {
     { id: 8, title: "ChatBot NLP", desc: "Assistant conversationnel basé sur le traitement du langage naturel.", tags: "Python, BERT, FastAPI", img: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80&w=1000", link: "#" },
   ],
   skills: [
-    { id: 1, name: "HTML", icon: "ri-html5-fill", level: 95 },
-    { id: 2, name: "CSS", icon: "ri-css3-fill", level: 40 },
-    { id: 3, name: "JavaScript", icon: "ri-javascript-fill", level: 85 },
-    { id: 4, name: "Python", icon: "ri-code-s-slash-line", level: 80 },
-    { id: 5, name: "React", icon: "ri-reactjs-line", level: 5 },
-    { id: 6, name: "Node.js", icon: "ri-nodejs-line", level: 2 },
-    { id: 7, name: "Java", icon: "ri-java-line", level: 60 },
-    { id: 8, name: "C++", icon: "ri-c-plus-plus-line", level: 30 },
+    {
+      id: "data-engineering",
+      title: "Ingénierie des données",
+      icon: "ri-database-2-fill",
+      skills: [
+        "Conception et implémentation de pipelines de données (ETL / ELT)",
+        "Collecte, transformation et validation de données hétérogènes",
+        "Nettoyage, normalisation et structuration de données brutes",
+        "Gestion de flux de données batch et quasi temps réel",
+        "Optimisation des performances de traitement de données"
+      ]
+    },
+    {
+      id: "data-modeling",
+      title: "Modélisation & gestion",
+      icon: "ri-node-tree",
+      skills: [
+        "Modélisation de bases de données relationnelles",
+        "Conception de schémas analytiques (étoile, flocon)",
+        "Gestion de données structurées et semi-structurées",
+        "Optimisation de requêtes SQL",
+        "Gestion de la qualité et de l’intégrité des données"
+      ]
+    },
+    {
+      id: "automation",
+      title: "Automatisation & systèmes",
+      icon: "ri-settings-4-fill",
+      skills: [
+        "Automatisation de workflows de données",
+        "Écriture de scripts de traitement en Python",
+        "Gestion des dépendances et environnements",
+        "Surveillance et fiabilité des pipelines",
+        "Gestion des erreurs et reprise sur incident"
+      ]
+    },
+    {
+      id: "analytics",
+      title: "Data Analytics & ML",
+      icon: "ri-bar-chart-groupped-fill",
+      skills: [
+        "Préparation de datasets pour l’analyse et le ML",
+        "Feature engineering",
+        "Exploration et validation statistique des données",
+        "Collaboration avec Data Scientists et Analystes"
+      ]
+    },
+    {
+      id: "software-engineering",
+      title: "Ingénierie logicielle Data",
+      icon: "ri-code-s-slash-fill",
+      skills: [
+        "Programmation orientée objet",
+        "Versionnement du code et bonnes pratiques Git",
+        "Structuration de projets data",
+        "Documentation technique claire",
+        "Tests basiques de pipelines et scripts"
+      ]
+    },
+    {
+      id: "security",
+      title: "Sécurité & Gouvernance",
+      icon: "ri-shield-keyhole-fill",
+      skills: [
+        "Gestion des accès aux données",
+        "Sensibilisation à la confidentialité des données",
+        "Séparation environnements (dev / test / prod)",
+        "Principes de gouvernance des données"
+      ]
+    },
+    {
+      id: "soft-skills",
+      title: "Compétences Transversales",
+      icon: "ri-team-fill",
+      skills: [
+        "Raisonnement analytique et logique",
+        "Capacité à traiter de gros volumes de données",
+        "Rigueur et fiabilité",
+        "Autonomie technique",
+        "Capacité d’apprentissage rapide"
+      ]
+    }
   ],
   technologies: [
-    { id: 1, name: "Python", category: "Langage principal", icon: "ri-code-s-slash-line" },
-    { id: 2, name: "PyTorch", category: "Deep Learning", icon: "ri-brain-line" },
-    { id: 3, name: "TensorFlow", category: "Framework ML", icon: "ri-flow-chart" },
-    { id: 4, name: "SQL / NoSQL", category: "Bases de données", icon: "ri-database-2-line" },
-    { id: 5, name: "Git", category: "Versionning", icon: "ri-git-branch-line" },
-    { id: 6, name: "Pandas / NumPy", category: "Data Science", icon: "ri-bar-chart-box-line" },
-    { id: 7, name: "Docker", category: "Conteneurisation", icon: "ri-server-line" },
-    { id: 8, name: "Jupyter", category: "Environnement", icon: "ri-terminal-box-line" },
-    { id: 9, name: "Google Colab", category: "Cloud Computing", icon: "ri-cloud-line" },
-    { id: 10, name: "OpenCV", category: "Vision", icon: "ri-eye-line" },
-    { id: 11, name: "NLTK / SpaCy", category: "NLP", icon: "ri-translate-2" },
-    { id: 12, name: "Matplotlib", category: "Visualisation", icon: "ri-pie-chart-line" },
+    {
+      id: "languages",
+      title: "Langages",
+      items: [
+        { name: "Python", icon: "ri-code-s-slash-line", usage: "Scripting, ETL, Analyse de données, APIs" },
+        { name: "SQL", icon: "ri-database-2-line", usage: "Interrogation, Transformations complexes, Analytics" },
+        { name: "Java", icon: "ri-java-line", usage: "Traitement de données, Backend" },
+        { name: "Bash / Shell", icon: "ri-terminal-line", usage: "Automatisation système, Scripts" }
+      ]
+    },
+    {
+      id: "frameworks",
+      title: "Data Engineering",
+      items: [
+        { name: "Apache Spark", icon: "ri-fire-fill", usage: "Traitement distribué Big Data" },
+        { name: "Apache Airflow", icon: "ri-flow-chart", usage: "Orchestration de pipelines" },
+        { name: "Apache Kafka", icon: "ri-arrow-left-right-line", usage: "Streaming de données temps réel" }
+      ]
+    },
+    {
+      id: "databases",
+      title: "Bases de données",
+      items: [
+        { name: "PostgreSQL", icon: "ri-server-line", usage: "SGBD Relationnel, Data Warehousing" },
+        { name: "MongoDB", icon: "ri-leaf-line", usage: "Stockage NoSQL documents" },
+        { name: "SQLite", icon: "ri-database-line", usage: "Base légère, environnements de dev" }
+      ]
+    },
+    {
+      id: "processing",
+      title: "Traitement & Analyse",
+      items: [
+        { name: "Pandas / NumPy", icon: "ri-table-line", usage: "Manipulation de données, Calcul numérique" },
+        { name: "Jupyter", icon: "ri-book-read-line", usage: "Prototypage, Exploration, Storytelling" },
+        { name: "Google Colab", icon: "ri-google-fill", usage: "Environnement Cloud Data Science" }
+      ]
+    },
+    {
+      id: "cloud",
+      title: "Cloud & Big Data",
+      items: [
+        { name: "GCP BigQuery", icon: "ri-cloud-fill", usage: "Data Warehouse, Analytics massive" },
+        { name: "Cloud Storage", icon: "ri-hard-drive-line", usage: "Stockage d'objets, Data Lake" }
+      ]
+    },
+    {
+      id: "devops",
+      title: "DevOps & Outils",
+      items: [
+        { name: "Git / GitHub", icon: "ri-github-fill", usage: "Versionning, CI/CD, Collaboration" },
+        { name: "Docker", icon: "ri-docker-line", usage: "Conteneurisation, Environnements isolés" },
+        { name: "Linux", icon: "ri-ubuntu-line", usage: "Administration système, Serveurs" }
+      ]
+    },
+    {
+      id: "ml",
+      title: "Ouverture ML",
+      items: [
+        { name: "TensorFlow", icon: "ri-brain-line", usage: "Création de modèles Deep Learning" },
+        { name: "PyTorch", icon: "ri-fire-line", usage: "Recherche et développement ML" },
+        { name: "Scikit-Learn", icon: "ri-mind-map", usage: "Algorithmes ML classiques" }
+      ]
+    }
   ],
   interests: [
     { id: 1, name: "Gaming", icon: "ri-gamepad-line" },
