@@ -1,158 +1,196 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolio } from '@/contexts/PortfolioContext';
 import 'remixicon/fonts/remixicon.css';
 
+// --- Spotlight Card Component ---
+const SpotlightCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!divRef.current || isFocused) return;
+
+    const div = divRef.current;
+    const rect = div.getBoundingClientRect();
+
+    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    setOpacity(1);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    setOpacity(0);
+  };
+
+  const handleMouseEnter = () => {
+    setOpacity(1);
+  };
+
+  const handleMouseLeave = () => {
+    setOpacity(0);
+  };
+
+  return (
+    <div
+      ref={divRef}
+      onMouseMove={handleMouseMove}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={`relative rounded-xl border border-white/10 bg-[#0a0a0a] overflow-hidden ${className}`}
+    >
+      <div
+        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+        style={{
+          opacity,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.1), transparent 40%)`,
+        }}
+      />
+      <div className="relative h-full">{children}</div>
+    </div>
+  );
+};
+
+// --- Main Section ---
 const TechnologiesSection: React.FC = () => {
   const { data } = usePortfolio();
   const { technologies } = data;
   const [activeTab, setActiveTab] = useState(technologies[0]?.id);
+  const [activeCategory, setActiveCategory] = useState(technologies[0]);
 
-  const activeCategory = technologies.find(t => t.id === activeTab);
+  useEffect(() => {
+    const found = technologies.find(t => t.id === activeTab);
+    if (found) setActiveCategory(found);
+  }, [activeTab, technologies]);
 
   return (
-    <section id="technologies" className="py-32 relative overflow-hidden">
-        {/* Background Gradients */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-[128px] -z-10 opacity-30 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[128px] -z-10 opacity-30 pointer-events-none" />
+    <section id="technologies" className="py-24 relative min-h-screen flex flex-col items-center justify-start overflow-hidden">
+      
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-[#030303]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10 opacity-20" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] -z-10 opacity-20" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block py-1 px-3 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4 backdrop-blur-sm">
-            Expertise Technique
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
-            Arsenal <span className="text-primary">Technologique</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-            Une stack moderne et performante, orientée Data Engineering et Intelligence Artificielle.
-          </p>
-        </motion.div>
+      <div className="container relative z-10 mx-auto px-4">
         
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-          {/* Enhanced Sidebar Navigation */}
-          <div className="w-full lg:w-1/3 shrink-0 lg:sticky lg:top-24 self-start">
-             <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
-              {technologies.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveTab(category.id)}
-                  className={`group relative p-4 rounded-xl text-left transition-all duration-500 border overflow-hidden ${
-                    activeTab === category.id 
-                      ? 'bg-gradient-to-r from-primary/20 to-transparent border-primary/50 shadow-[0_4px_20px_-5px_rgba(var(--primary-rgb),0.3)]' 
-                      : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'
-                  }`}
-                >
-                  {/* Glow effect on active */}
-                  {activeTab === category.id && (
-                    <div className="absolute inset-0 bg-primary/5 blur-xl transition-all duration-500" />
-                  )}
-
-                  <div className="relative flex items-center gap-4 z-10">
-                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-2xl transition-all duration-500 ${
-                        activeTab === category.id 
-                        ? 'bg-primary text-black shadow-lg scale-110' 
-                        : 'bg-white/5 text-muted-foreground group-hover:text-white group-hover:scale-105 group-hover:bg-white/10'
-                    }`}>
-                        {/* We don't have category icons in the context type definition easily accessible if I missed adding them.
-                            Wait, checking context... Yes, PortfolioContext has `icon` in `TechCategory`.
-                         */}
-                         {/* Fallback if icon missing, but I saw I added icons in context. */}
-                         {/* Warning: In my previous step's context update, I REMOVED the top level icon property from the TechCategory object in the ReplaceContent call!
-                            Let me check the `replace_file_content` input again.
-                            Ah, I see I passed `items` but the `icon` property was NOT in the replacement content for categories?
-                            Wait, looking at my `replace_file_content` call...
-                            Category object: `{ id: "ai-ml", title: "IA & Machine Learning", items: [...] }`
-                            I DID NOT include `icon` property in the category objects in my update!
-                            So `category.icon` will be undefined or error if TS checks. I need to fix this or use a lookup.
-                            I will use a conditional lookup here to be safe and fix the context later or now.
-                            Actually, easier to just use the icon logic here for now or `ri-code-box-line` fallback.
-                            Better: I'll use a map here to ensure it works even if context is missing it.
-                          */}
-                       <i className={
-                            category.id === 'languages' ? 'ri-code-s-slash-line' :
-                            category.id === 'ai-ml' ? 'ri-brain-line' :
-                            category.id === 'bigdata' ? 'ri-server-line' :
-                            category.id === 'cloud-devops' ? 'ri-cloud-windy-line' :
-                            category.id === 'databases' ? 'ri-database-2-line' :
-                            category.id === 'bi-viz' ? 'ri-bar-chart-grouped-line' :
-                            'ri-stack-line'
-                       } />
-                    </div>
-                    
-                    <div className="flex flex-col">
-                        <span className={`font-bold transition-colors duration-300 ${
-                            activeTab === category.id ? 'text-white' : 'text-muted-foreground group-hover:text-white'
-                        }`}>
-                            {category.title}
-                        </span>
-                        <span className="text-xs text-muted-foreground/60 font-medium">
-                            {category.items.length} technologies
-                        </span>
-                    </div>
-
-                    {activeTab === category.id && (
-                       <motion.i 
-                        layoutId="active-arrow"
-                        className="ri-arrow-right-line ml-auto text-primary text-xl" 
-                       />
-                    )}
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Premium Tech Cards Grid */}
-          <div className="w-full lg:w-2/3 min-h-[500px]">
-            <AnimatePresence mode="wait">
-                <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, x: 20, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, x: -20, filter: 'blur(10px)' }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-5"
-                >
-                {activeCategory?.items.map((tech, index) => (
-                    <motion.div
-                        key={tech.name}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.08, duration: 0.4 }}
-                        className="group relative p-6 rounded-2xl bg-[#0a0a0a] border border-white/5 hover:border-primary/50 transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.15)]"
-                    >
-                        {/* Gradient Hover Blob */}
-                        <div className="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500" />
-                        
-                        <div className="relative z-10 flex items-start gap-5">
-                            <div className="w-14 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl text-primary shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                                <i className={tech.icon} />
-                            </div>
-                            
-                            <div className="flex-1">
-                                <h4 className="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                                    {tech.name}
-                                </h4>
-                                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                                    {tech.usage}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Bottom decorative line */}
-                        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary group-hover:w-full transition-all duration-700 ease-in-out" />
-                    </motion.div>
-                ))}
-                </motion.div>
-            </AnimatePresence>
-          </div>
+        {/* Header */}
+        <div className="text-center mb-16">
+           <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+           >
+              <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+                <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50">
+                  Command Center
+                </span>
+              </h2>
+              <p className="text-muted-foreground/80 text-lg max-w-2xl mx-auto">
+                Accès direct au noyau technologique. Sélectionnez un module pour explorer mes compétences.
+              </p>
+           </motion.div>
         </div>
+
+        {/* Floating Dock Navigation */}
+        <div className="sticky top-24 z-30 mb-12 flex justify-center">
+          <motion.div 
+            className="flex items-center gap-2 p-2 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl overflow-x-auto max-w-full no-scrollbar"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            {technologies.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveTab(category.id)}
+                className={`relative px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${
+                  activeTab === category.id 
+                    ? 'bg-primary text-primary-foreground shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)] ring-1 ring-white/20' 
+                    : 'text-muted-foreground hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <i className={`${
+                    category.id.includes('lang') ? 'ri-code-s-slash-line' :
+                    category.id.includes('ai') ? 'ri-brain-line' :
+                    category.id.includes('data') ? 'ri-database-2-line' :
+                    category.id.includes('cloud') ? 'ri-cloud-line' :
+                    category.id.includes('devops') ? 'ri-terminal-box-line' :
+                    'ri-stack-line'
+                } text-lg`} />
+                <span>{category.title}</span>
+                
+                {/* Active Dot */}
+                {activeTab === category.id && (
+                    <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                    </span>
+                )}
+              </button>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Tech Grid */}
+        <div className="min-h-[400px]">
+           <AnimatePresence mode="wait">
+             <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+             >
+                {activeCategory?.items.map((tech, idx) => (
+                  <motion.div
+                    key={tech.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                  >
+                    <SpotlightCard className="h-full group">
+                      <div className="p-8 h-full flex flex-col relative z-10">
+                         {/* Icon Glow Background */}
+                         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-bl-full -mr-8 -mt-8 opacity-50 group-hover:scale-110 transition-transform duration-500" />
+                         
+                         <div className="mb-6 inline-flex p-3 rounded-lg bg-white/5 border border-white/10 text-3xl text-primary w-fit group-hover:text-white group-hover:bg-primary group-hover:border-primary transition-all duration-300 shadow-lg">
+                           <i className={tech.icon} />
+                         </div>
+                         
+                         <h3 className="text-xl font-bold text-white mb-2 tracking-wide group-hover:text-primary transition-colors">
+                           {tech.name}
+                         </h3>
+                         
+                         <p className="text-sm text-muted-foreground/80 leading-relaxed">
+                           {tech.usage}
+                         </p>
+
+                         {/* Tech Specs Decoration */}
+                         <div className="mt-auto pt-6 flex items-center gap-2">
+                            <div className="h-[2px] w-full bg-white/5 overflow-hidden rounded-full">
+                                <div className="h-full w-2/3 bg-primary/50 group-hover:w-full transition-all duration-700 ease-out" />
+                            </div>
+                            <span className="text-[10px] font-mono text-primary/50 uppercase">V.Latest</span>
+                         </div>
+                      </div>
+                    </SpotlightCard>
+                  </motion.div>
+                ))}
+             </motion.div>
+           </AnimatePresence>
+        </div>
+
       </div>
     </section>
   );
