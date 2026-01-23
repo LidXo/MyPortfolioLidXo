@@ -1,132 +1,156 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolio } from '@/contexts/PortfolioContext';
 import 'remixicon/fonts/remixicon.css';
 
 const TechnologiesSection: React.FC = () => {
   const { data } = usePortfolio();
   const { technologies } = data;
-  const [activeTab, setActiveTab] = React.useState(technologies[0]?.id);
+  const [activeTab, setActiveTab] = useState(technologies[0]?.id);
 
   const activeCategory = technologies.find(t => t.id === activeTab);
 
   return (
-    <section id="technologies" className="py-24 relative min-h-screen flex flex-col justify-center">
-      <div className="max-w-7xl mx-auto px-6 w-full">
+    <section id="technologies" className="py-32 relative overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-[128px] -z-10 opacity-30 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[128px] -z-10 opacity-30 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Technologies <span className="text-primary">Maîtrisées</span>
+          <span className="inline-block py-1 px-3 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4 backdrop-blur-sm">
+            Expertise Technique
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+            Arsenal <span className="text-primary">Technologique</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Explorez ma stack technique par catégorie.
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+            Une stack moderne et performante, orientée Data Engineering et Intelligence Artificielle.
           </p>
         </motion.div>
         
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
-          {/* Category Navigation - Sidebar/Top on mobile */}
-          <div className="w-full lg:w-1/3 shrink-0">
-             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-3">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          {/* Enhanced Sidebar Navigation */}
+          <div className="w-full lg:w-1/3 shrink-0 lg:sticky lg:top-24 self-start">
+             <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
               {technologies.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setActiveTab(category.id)}
-                  className={`relative p-4 rounded-xl text-left transition-all duration-300 border flex items-center gap-4 group ${
+                  className={`group relative p-4 rounded-xl text-left transition-all duration-500 border overflow-hidden ${
                     activeTab === category.id 
-                      ? 'bg-primary/10 border-primary shadow-[0_0_20px_rgba(var(--primary-rgb),0.1)]' 
-                      : 'bg-card/50 border-border/50 hover:bg-card hover:border-primary/50'
+                      ? 'bg-gradient-to-r from-primary/20 to-transparent border-primary/50 shadow-[0_4px_20px_-5px_rgba(var(--primary-rgb),0.3)]' 
+                      : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'
                   }`}
                 >
-                  {/* Active Indicator Line (Left) */}
+                  {/* Glow effect on active */}
                   {activeTab === category.id && (
-                    <motion.div
-                      layoutId="active-indicator"
-                      className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                    />
+                    <div className="absolute inset-0 bg-primary/5 blur-xl transition-all duration-500" />
                   )}
 
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
-                      activeTab === category.id 
-                      ? 'bg-primary text-primary-foreground' 
-                      : 'bg-muted text-muted-foreground group-hover:text-primary'
-                  }`}>
-                    {/* Use the first icon from the category items as a representative icon if category doesn't have one, 
-                        or map titles to icons. Since new context doesn't have explicit cat icons, we infer or use generic. 
-                        Actually context HAS icons from previous update, let's use default icons based on ID if needed, 
-                        BUT wait, the user provided context update has title but maybe not top-level icon in the NEW structure?
-                        Let's check the context again. 
-                        Ah, the new structure has `items`. It does NOT seem to have a top-level `icon` field in the interface `TechCategory`.
-                        Wait, let me double check the interface in step 16 & 47.
-                        Interface `TechCategory`: { id, title, items }. NO ICON.
-                        I will use a generic icon map or just the first item's icon. 
-                        Let's use a mapping for consistent category icons.
-                     */}
-                     {/* Temporary fix: hardcoded icons based on ID or generic. */}
-                     <i className={`text-xl ${
-                        category.id.includes('lang') ? 'ri-code-s-slash-line' :
-                        category.id.includes('data') ? 'ri-database-2-line' :
-                        category.id.includes('cloud') ? 'ri-cloud-line' :
-                        category.id.includes('devops') ? 'ri-terminal-box-line' :
-                        category.id.includes('ml') ? 'ri-brain-line' :
-                        'ri-stack-line'
-                     }`} />
+                  <div className="relative flex items-center gap-4 z-10">
+                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-2xl transition-all duration-500 ${
+                        activeTab === category.id 
+                        ? 'bg-primary text-black shadow-lg scale-110' 
+                        : 'bg-white/5 text-muted-foreground group-hover:text-white group-hover:scale-105 group-hover:bg-white/10'
+                    }`}>
+                        {/* We don't have category icons in the context type definition easily accessible if I missed adding them.
+                            Wait, checking context... Yes, PortfolioContext has `icon` in `TechCategory`.
+                         */}
+                         {/* Fallback if icon missing, but I saw I added icons in context. */}
+                         {/* Warning: In my previous step's context update, I REMOVED the top level icon property from the TechCategory object in the ReplaceContent call!
+                            Let me check the `replace_file_content` input again.
+                            Ah, I see I passed `items` but the `icon` property was NOT in the replacement content for categories?
+                            Wait, looking at my `replace_file_content` call...
+                            Category object: `{ id: "ai-ml", title: "IA & Machine Learning", items: [...] }`
+                            I DID NOT include `icon` property in the category objects in my update!
+                            So `category.icon` will be undefined or error if TS checks. I need to fix this or use a lookup.
+                            I will use a conditional lookup here to be safe and fix the context later or now.
+                            Actually, easier to just use the icon logic here for now or `ri-code-box-line` fallback.
+                            Better: I'll use a map here to ensure it works even if context is missing it.
+                          */}
+                       <i className={
+                            category.id === 'languages' ? 'ri-code-s-slash-line' :
+                            category.id === 'ai-ml' ? 'ri-brain-line' :
+                            category.id === 'bigdata' ? 'ri-server-line' :
+                            category.id === 'cloud-devops' ? 'ri-cloud-windy-line' :
+                            category.id === 'databases' ? 'ri-database-2-line' :
+                            category.id === 'bi-viz' ? 'ri-bar-chart-grouped-line' :
+                            'ri-stack-line'
+                       } />
+                    </div>
+                    
+                    <div className="flex flex-col">
+                        <span className={`font-bold transition-colors duration-300 ${
+                            activeTab === category.id ? 'text-white' : 'text-muted-foreground group-hover:text-white'
+                        }`}>
+                            {category.title}
+                        </span>
+                        <span className="text-xs text-muted-foreground/60 font-medium">
+                            {category.items.length} technologies
+                        </span>
+                    </div>
+
+                    {activeTab === category.id && (
+                       <motion.i 
+                        layoutId="active-arrow"
+                        className="ri-arrow-right-line ml-auto text-primary text-xl" 
+                       />
+                    )}
                   </div>
-                  
-                  <span className={`font-bold transition-colors ${
-                    activeTab === category.id ? 'text-foreground' : 'text-muted-foreground group-hover:text-foreground'
-                  }`}>
-                    {category.title}
-                  </span>
-                  
-                  {activeTab === category.id && (
-                     <i className="ri-arrow-right-s-line ml-auto text-primary animate-pulse" />
-                  )}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Content Area */}
-          <div className="w-full lg:w-2/3 min-h-[400px]">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
-            >
-               {activeCategory?.items.map((tech, index) => (
-                 <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="glass-card p-5 rounded-xl border border-border/50 bg-card/30 hover:bg-card/50 active:scale-[0.98] transition-all duration-300 group hover:border-primary/50"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:border-primary/50 transition-all duration-300">
-                        <i className={`${tech.icon} text-2xl text-primary`} />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">
-                          {tech.name}
-                        </h4>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {tech.usage}
-                        </p>
-                      </div>
-                    </div>
-                 </motion.div>
-               ))}
-            </motion.div>
+          {/* Premium Tech Cards Grid */}
+          <div className="w-full lg:w-2/3 min-h-[500px]">
+            <AnimatePresence mode="wait">
+                <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 20, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, x: -20, filter: 'blur(10px)' }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-5"
+                >
+                {activeCategory?.items.map((tech, index) => (
+                    <motion.div
+                        key={tech.name}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.08, duration: 0.4 }}
+                        className="group relative p-6 rounded-2xl bg-[#0a0a0a] border border-white/5 hover:border-primary/50 transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.15)]"
+                    >
+                        {/* Gradient Hover Blob */}
+                        <div className="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500" />
+                        
+                        <div className="relative z-10 flex items-start gap-5">
+                            <div className="w-14 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl text-primary shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                                <i className={tech.icon} />
+                            </div>
+                            
+                            <div className="flex-1">
+                                <h4 className="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                                    {tech.name}
+                                </h4>
+                                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                                    {tech.usage}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Bottom decorative line */}
+                        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary group-hover:w-full transition-all duration-700 ease-in-out" />
+                    </motion.div>
+                ))}
+                </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

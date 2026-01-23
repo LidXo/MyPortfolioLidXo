@@ -265,92 +265,63 @@ const defaultData: PortfolioData = {
   technologies: [
     {
       id: "languages",
-      title: "Langages",
+      title: "Langages & Scripting",
       items: [
-        { name: "Python", icon: "ri-code-s-slash-line", usage: "Scripting, ETL, Analyse" },
-        { name: "SQL", icon: "ri-database-2-line", usage: "Querying, Transformations" },
-        { name: "Bash / Shell", icon: "ri-terminal-box-line", usage: "Automatisation système" },
-        { name: "Java / Scala", icon: "ri-java-line", usage: "Performance, Big Data" }
+        { name: "Python", icon: "ri-code-s-slash-line", usage: "Data Science, Scripts, Backend" },
+        { name: "SQL", icon: "ri-database-2-line", usage: "Analyses & Requêtes complexes" },
+        { name: "Java / Scala", icon: "ri-java-line", usage: "Big Data Processing (Spark)" },
+        { name: "Bash / Shell", icon: "ri-terminal-box-line", usage: "Automatisation & Système" }
       ]
     },
     {
-      id: "databases-relational",
-      title: "Bases sQL",
+      id: "ai-ml",
+      title: "IA & Machine Learning",
       items: [
-        { name: "PostgreSQL", icon: "ri-database-line", usage: "SGBD Avancé" },
-        { name: "MySQL", icon: "ri-database-2-line", usage: "SGBD Web" },
-        { name: "Oracle", icon: "ri-server-line", usage: "Entreprise" }
-      ]
-    },
-    {
-      id: "databases-nosql",
-      title: "NoSQL",
-      items: [
-        { name: "MongoDB", icon: "ri-leaf-line", usage: "Documents" },
-        { name: "Redis", icon: "ri-stack-line", usage: "Caching, In-memory" },
-        { name: "Cassandra", icon: "ri-table-alt-line", usage: "Wide-column store" }
-      ]
-    },
-    {
-      id: "bi-analytics",
-      title: "Analytics & BI",
-      items: [
-        { name: "BigQuery", icon: "ri-google-fill", usage: "Data Warehouse Serverless" },
-        { name: "Snowflake", icon: "ri-snowy-line", usage: "Cloud Data Platform" },
-        { name: "Power BI", icon: "ri-bar-chart-fill", usage: "Business Intelligence" }
+        { name: "PyTorch", icon: "ri-brain-fill", usage: "Deep Learning & Research" },
+        { name: "TensorFlow", icon: "ri-brain-line", usage: "Production ML Models" },
+        { name: "Scikit-learn", icon: "ri-flask-line", usage: "Machine Learning Classique" },
+        { name: "Hugging Face", icon: "ri-chat-smile-2-line", usage: "NLP & Transformers" },
+        { name: "OpenCV", icon: "ri-camera-lens-line", usage: "Computer Vision" }
       ]
     },
     {
       id: "bigdata",
-      title: "Big Data",
+      title: "Ecosystème Big Data",
       items: [
-        { name: "Apache Spark", icon: "ri-fire-fill", usage: "Processing in-memory" },
-        { name: "Hadoop", icon: "ri-hard-drive-2-line", usage: "Stockage distribué" },
-        { name: "Apache Flink", icon: "ri-flow-chart", usage: "Stateful computations" }
+        { name: "Apache Spark", icon: "ri-fire-fill", usage: "Traitement distribué In-Memory" },
+        { name: "Hadoop / HDFS", icon: "ri-hard-drive-2-line", usage: "Stockage distribué" },
+        { name: "Kafka", icon: "ri-arrow-left-right-line", usage: "Streaming de données" },
+        { name: "Hive", icon: "ri-database-fill", usage: "Data Warehouse sur Hadoop" }
       ]
     },
     {
-      id: "orchestration",
-      title: "Orchestration",
+      id: "cloud-devops",
+      title: "Cloud & DevOps",
       items: [
-        { name: "Airflow", icon: "ri-windy-line", usage: "Workflows as Code" },
-        { name: "dbt", icon: "ri-hammer-line", usage: "Transformations Analytics" },
-        { name: "Dagster", icon: "ri-node-tree", usage: "Data Orchestrator" }
-      ]
-    },
-    {
-      id: "streaming",
-      title: "Streaming",
-      items: [
-        { name: "Kafka", icon: "ri-arrow-left-right-line", usage: "Event Streaming" },
-        { name: "RabbitMQ", icon: "ri-mail-send-line", usage: "Message Broker" }
-      ]
-    },
-    {
-      id: "cloud",
-      title: "Cloud Platforms",
-      items: [
-        { name: "GCP", icon: "ri-google-fill", usage: "BigQuery, GCS, Dataflow" },
-        { name: "AWS", icon: "ri-amazon-fill", usage: "S3, Glue, Redshift, EMR" },
-        { name: "Azure", icon: "ri-microsoft-fill", usage: "Data Factory, Synapse" }
-      ]
-    },
-    {
-      id: "devops",
-      title: "DevOps",
-      items: [
+        { name: "AWS / GCP", icon: "ri-cloud-fill", usage: "Services Cloud & Infrastructure" },
         { name: "Docker", icon: "ri-docker-line", usage: "Conteneurisation" },
-        { name: "Kubernetes", icon: "ri-ship-line", usage: "Orchestration conteneurs" },
-        { name: "Terraform", icon: "ri-cloud-line", usage: "Infrastructure as Code" }
+        { name: "Kubernetes", icon: "ri-ship-line", usage: "Orchestration" },
+        { name: "Git / GitLab CI", icon: "ri-git-merge-line", usage: "Versionning & CI/CD" },
+        { name: "Terraform", icon: "ri-server-line", usage: "Infrastructure as Code" }
       ]
     },
     {
-      id: "quality",
-      title: "Monitoring",
+      id: "databases",
+      title: "Bases de Données",
       items: [
-        { name: "Grafana", icon: "ri-dashboard-line", usage: "Visualisation metrics" },
-        { name: "Prometheus", icon: "ri-pulse-line", usage: "Monitoring system" },
-        { name: "Great Expectations", icon: "ri-check-double-line", usage: "Data Quality" }
+        { name: "PostgreSQL", icon: "ri-database-line", usage: "Relationnel Avancé" },
+        { name: "MongoDB", icon: "ri-leaf-line", usage: "NoSQL Document" },
+        { name: "Elasticsearch", icon: "ri-search-eye-line", usage: "Moteur de recherche" },
+        { name: "Redis", icon: "ri-stack-line", usage: "Cache & Performance" }
+      ]
+    },
+    {
+      id: "bi-viz",
+      title: "BI & Visualisation",
+      items: [
+        { name: "Power BI", icon: "ri-bar-chart-fill", usage: "Dashboards Business" },
+        { name: "Tableau", icon: "ri-bar-chart-box-fill", usage: "Visualisation de données" },
+        { name: "Grafana", icon: "ri-dashboard-line", usage: "Monitoring Temps-réel" }
       ]
     }
   ],
