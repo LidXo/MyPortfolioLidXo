@@ -6,7 +6,7 @@ const navLinks = [
   { href: '#home', icon: 'ri-home-line', label: 'Accueil' },
   { href: '#about', icon: 'ri-user-line', label: 'À propos' },
   { href: '#journey', icon: 'ri-map-pin-line', label: 'Parcours' },
-  { href: '#skills', icon: 'ri-tools-line', label: 'Compétences' },
+  { href: '#technologies', icon: 'ri-tools-line', label: 'Technologies' },
   { href: '#projects', icon: 'ri-folder-line', label: 'Projets' },
   { href: '#contact', icon: 'ri-mail-send-line', label: 'Contact' },
 ];

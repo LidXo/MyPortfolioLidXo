@@ -92,7 +92,7 @@ const TechnologiesSection: React.FC = () => {
            >
               <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50">
-                  Command Center
+                  Outils & Technologies
                 </span>
               </h2>
               <p className="text-muted-foreground/80 text-lg max-w-2xl mx-auto">

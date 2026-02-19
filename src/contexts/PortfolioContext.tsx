@@ -61,7 +61,7 @@ export interface CertificationItem {
   type: 'certification' | 'attestation';
   name: string;
   date: string;
-  image: string;
+  image?: string;
   link?: string;
   pdfUri?: string;
 }
@@ -94,17 +94,17 @@ export interface PortfolioData {
 const defaultData: PortfolioData = {
   hero: {
     title: "Code. Données. Intelligence.",
-    subtitle: "Étudiant en Data Engineering. Je conçois des expériences web immersives et des solutions intelligentes.",
-    available: "Disponible pour des projets",
-    yearsExp: "1+",
-    cvLink: "Capture d'écran 2026-01-22 205627.png",
+    subtitle: "Étudiant en 2eme Année IA & BigData.",
+    available: "",
+    yearsExp: "0",
+    cvLink: "/cv_lidao.pdf",
   },
   about: {
-    text: "Je suis un passionné d'informatique, spécialisé en IA et Big Data. Mon objectif est de créer des solutions innovantes qui allient performance technique et design futuriste. Toujours en quête de nouveaux défis.",
+    text: "Étudiant en informatique spécialisé en IA et Big Data,  passionné par les données et le développement, je suis actuellement en phase d’apprentissage avancé pour devenir Data Engineer. Je m’intéresse à l’exploration de nouvelles technologies et à la réalisation de projets concrets qui renforcent mes compétences techniques et analytiques.",
     stats: [
-      { label: "Années d'Expérience", value: "1+" },
-      { label: "Projets Réalisés", value: "5+" },
-      { label: "Certifications", value: "15" },
+      { label: "Années d'Expérience", value: "0" },
+      { label: "Projets Réalisés", value: "En cours" },
+      { label: "Certifications", value: "En cours" },
       { label: "Passion", value: "∞" },
     ],
   },
@@ -112,238 +112,75 @@ const defaultData: PortfolioData = {
     { 
       id: 1, 
       year: "2025", 
-      title: "Master IA & Big Data", 
-      desc: "Spécialisation en Data Engineering et Architectures Distribuées. Focus sur le traitement de données massives, le Cloud Computing et les pipelines ML.", 
+      title: "Licence 2 En cours", 
+      desc: "Spécialité : IA & Big Data", 
       icon: "ri-graduation-cap-fill" 
     },
     { 
       id: 2, 
-      year: "2024", 
-      title: "Stage & Projets Techniques", 
-      desc: "Développement de solutions data-driven. Conception de bases de données, APIs et interfaces réactives. Premières mises en production.", 
-      icon: "ri-code-box-fill" 
-    },
-    { 
-      id: 3, 
       year: "2023", 
-      title: "Licence Informatique", 
-      desc: "Acquisition des fondements théoriques : Algorithmique complexe, Structures de données, Systèmes d'exploitation et Réseaux.", 
+      title: "Baccalauréat 2", 
+      desc: "Mention Assez-Bien", 
       icon: "ri-book-2-fill" 
     },
   ],
   projects: [
-    { id: 1, title: "Neural Network Viz", desc: "Visualisateur de réseaux de neurones en temps réel.", tags: "Python, TensorFlow, React", img: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=1000", link: "#" },
-    { id: 2, title: "E-Commerce AI", desc: "Plateforme de vente avec recommandation intelligente.", tags: "Node.js, MongoDB, AI", img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1000", link: "#" },
-    { id: 3, title: "Data Pipeline", desc: "Système ETL automatisé pour le traitement de données massives.", tags: "Python, Spark, AWS", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000", link: "#" },
-    { id: 4, title: "ChatBot NLP", desc: "Assistant conversationnel basé sur le traitement du langage naturel.", tags: "Python, BERT, FastAPI", img: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80&w=1000", link: "#" },
-    { id: 5, title: "Neural Network Viz", desc: "Visualisateur de réseaux de neurones en temps réel.", tags: "Python, TensorFlow, React", img: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=1000", link: "#" },
-    { id: 6, title: "E-Commerce AI", desc: "Plateforme de vente avec recommandation intelligente.", tags: "Node.js, MongoDB, AI", img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1000", link: "#" },
-    { id: 7, title: "Data Pipeline", desc: "Système ETL automatisé pour le traitement de données massives.", tags: "Python, Spark, AWS", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000", link: "#" },
-    { id: 8, title: "ChatBot NLP", desc: "Assistant conversationnel basé sur le traitement du langage naturel.", tags: "Python, BERT, FastAPI", img: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80&w=1000", link: "#" },
-  ],
-  skills: [
-    {
-      id: "fundamentals",
-      title: "Fondamentaux Data Engineering",
-      icon: "ri-server-fill",
-      skills: [
-        "Compréhension approfondie des architectures data modernes",
-        "Conception de pipelines de données robustes, scalables et maintenables",
-        "Maîtrise des flux batch et streaming",
-        "Gestion du cycle de vie de la donnée",
-        "Garantir la qualité, la cohérence et la fiabilité des données",
-        "Gestion de la volumétrie (Big Data)"
-      ]
-    },
-    {
-      id: "architecture",
-      title: "Architecture & Platforms",
-      icon: "ri-building-2-fill",
-      skills: [
-        "Conception d’architectures Data Warehouse & Data Lake",
-        "Séparation compute / storage",
-        "Architectures orientées événements",
-        "Data Mesh (principes, gouvernance)",
-        "Optimisation des coûts et des performances"
-      ]
-    },
-    {
-      id: "pipelines",
-      title: "Pipelines & Orchestration",
-      icon: "ri-flow-chart",
-      skills: [
-        "Ingestion de données multi-sources (API, fichiers, bases)",
-        "Transformation de données (ETL / ELT)",
-        "Orchestration de workflows data",
-        "Gestion des dépendances et des erreurs",
-        "Automatisation complète des pipelines"
-      ]
-    },
-    {
-      id: "processing",
-      title: "Traitement des données",
-      icon: "ri-cpu-line",
-      skills: [
-        "Nettoyage et normalisation des données",
-        "Agrégation et enrichissement",
-        "Partitionnement et indexation",
-        "Optimisation des requêtes analytiques",
-        "Traitement distribué"
-      ]
-    },
-    {
-      id: "databases",
-      title: "Bases de données",
-      icon: "ri-database-2-fill",
-      skills: [
-        "Modélisation relationnelle avancée",
-        "Modélisation analytique (Star / Snowflake schema)",
-        "Gestion OLTP et OLAP",
-        "Stockage distribué",
-        "Gestion de métadonnées"
-      ]
-    },
-    {
-      id: "sql-analytics",
-      title: "SQL & Analytics",
-      icon: "ri-code-box-line",
-      skills: [
-        "SQL avancé (CTE, window functions)",
-        "Data transformations analytiques",
-        "Construction de tables analytiques pour la BI",
-        "Validation de modèles de données",
-        "Documentation des datasets"
-      ]
-    },
-    {
-      id: "streaming",
-      title: "Streaming & Temps réel",
-      icon: "ri-pulse-line",
-      skills: [
-        "Conception de pipelines temps réel",
-        "Traitement de flux continus",
-        "Gestion de la latence et throughput",
-        "Event-driven architectures"
-      ]
-    },
-    {
-      id: "cloud-devops",
-      title: "Cloud & DevOps Data",
-      icon: "ri-cloud-windy-fill",
-      skills: [
-        "Déploiement Cloud (AWS, GCP, Azure)",
-        "Infrastructure as Code (IaC)",
-        "CI/CD pour pipelines data",
-        "Monitoring et observabilité",
-        "Sécurité des données (IAM, chiffrement)"
-      ]
-    },
-    {
-      id: "governance",
-      title: "Qualité & Gouvernance",
-      icon: "ri-shield-check-fill",
-      skills: [
-        "Data Quality checks",
-        "Data validation automatisée",
-        "Lineage et traçabilité",
-        "Gouvernance et conformité (RGPD)",
-        "Gestion des accès et permissions"
-      ]
-    },
-    {
-      id: "methodology",
-      title: "Collaboration",
-      icon: "ri-team-fill",
-      skills: [
-        "Travail en environnement Agile",
-        "Collaboration avec Data Scientists",
-        "Documentation technique claire",
-        "Versionning et revues de code"
-      ]
-    }
-  ],
+    { id: 1, title: "Système de Location de Cassette", desc: "Application Java de gestion d’un club de location de cassettes vidéo. Le système permet l’administration des abonnés, titres, catégories, cassettes et locations.", tags: "Java", img: "https://plus.unsplash.com/premium_photo-1729777215342-c1758de6dee5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bG9jYXRpb24lMjBkZSUyMGNhc3NldHRlfGVufDB8fDB8fHww", link: "https://github.com/LidXo/Syst-me-de-Gestion-de-Location-de-Cassettes" },
+    
+],
   technologies: [
     {
       id: "languages",
       title: "Langages & Scripting",
       items: [
-        { name: "Python", icon: "ri-code-s-slash-line", usage: "Data Science, Scripts, Backend" },
+        { name: "Python", icon: "ri-code-s-slash-line", usage: "Backend" },
         { name: "SQL", icon: "ri-database-2-line", usage: "Analyses & Requêtes complexes" },
-        { name: "Java / Scala", icon: "ri-java-line", usage: "Big Data Processing (Spark)" },
-        { name: "Bash / Shell", icon: "ri-terminal-box-line", usage: "Automatisation & Système" }
+        { name: "Java", icon: "ri-java-line", usage: "Données" },
+        { name: "C", icon: "ri-code-s-slash-fill", usage: "Bases" }
       ]
     },
-    {
-      id: "ai-ml",
-      title: "IA & Machine Learning",
-      items: [
-        { name: "PyTorch", icon: "ri-brain-fill", usage: "Deep Learning & Research" },
-        { name: "TensorFlow", icon: "ri-brain-line", usage: "Production ML Models" },
-        { name: "Scikit-learn", icon: "ri-flask-line", usage: "Machine Learning Classique" },
-        { name: "Hugging Face", icon: "ri-chat-smile-2-line", usage: "NLP & Transformers" },
-        { name: "OpenCV", icon: "ri-camera-lens-line", usage: "Computer Vision" }
-      ]
-    },
-    {
-      id: "bigdata",
-      title: "Ecosystème Big Data",
-      items: [
-        { name: "Apache Spark", icon: "ri-fire-fill", usage: "Traitement distribué In-Memory" },
-        { name: "Hadoop / HDFS", icon: "ri-hard-drive-2-line", usage: "Stockage distribué" },
-        { name: "Kafka", icon: "ri-arrow-left-right-line", usage: "Streaming de données" },
-        { name: "Hive", icon: "ri-database-fill", usage: "Data Warehouse sur Hadoop" }
-      ]
-    },
-    {
-      id: "cloud-devops",
-      title: "Cloud & DevOps",
-      items: [
-        { name: "AWS / GCP", icon: "ri-cloud-fill", usage: "Services Cloud & Infrastructure" },
-        { name: "Docker", icon: "ri-docker-line", usage: "Conteneurisation" },
-        { name: "Kubernetes", icon: "ri-ship-line", usage: "Orchestration" },
-        { name: "Git / GitLab CI", icon: "ri-git-merge-line", usage: "Versionning & CI/CD" },
-        { name: "Terraform", icon: "ri-server-line", usage: "Infrastructure as Code" }
-      ]
-    },
+    
     {
       id: "databases",
       title: "Bases de Données",
       items: [
         { name: "PostgreSQL", icon: "ri-database-line", usage: "Relationnel Avancé" },
-        { name: "MongoDB", icon: "ri-leaf-line", usage: "NoSQL Document" },
-        { name: "Elasticsearch", icon: "ri-search-eye-line", usage: "Moteur de recherche" },
-        { name: "Redis", icon: "ri-stack-line", usage: "Cache & Performance" }
+        { name: "PHPMyAdmin", icon: "ri-leaf-line", usage: "NoSQL Document" },
+        { name: "MySQL", icon: "ri-stack-line", usage: "SGBDR" }
       ]
     },
     {
-      id: "bi-viz",
-      title: "BI & Visualisation",
+      id: "basic-tools",
+      title: "Outils de Base",
       items: [
-        { name: "Power BI", icon: "ri-bar-chart-fill", usage: "Dashboards Business" },
-        { name: "Tableau", icon: "ri-bar-chart-box-fill", usage: "Visualisation de données" },
-        { name: "Grafana", icon: "ri-dashboard-line", usage: "Monitoring Temps-réel" }
+        { name: "Git / GitHub", icon: "ri-git-branch-line", usage: "Version Control" },
+        { name: "VS Code", icon: "ri-code-s-slash-line", usage: "IDE Principal" },
+        { name: "Linux / Ubuntu", icon: "ri-ubuntu-line", usage: "Système d'exploitation" },
       ]
-    }
+    },
   ],
   interests: [
     { id: 1, name: "Gaming", icon: "ri-gamepad-line" },
     { id: 2, name: "Voyage", icon: "ri-plane-line" },
     { id: 3, name: "Musique", icon: "ri-headphone-line" },
     { id: 4, name: "Lecture", icon: "ri-book-open-line" },
-    { id: 5, name: "Sport", icon: "ri-sport-line" },
+    { id: 5, name: "Football", icon: "ri-football-line" },
+    { id: 6, name: "Cinéma", icon: "ri-movie-line" },
   ],
   certifications: [
-    { id: 1, type: "certification", name: "AWS Cloud Practitioner", date: "2023", image: "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Cloud-Practitioner_badge.634f8a21af2e0e956ed8905a72366146ba22b74c.png", link: "https://aws.amazon.com/certification/" },
-    { id: 2, type: "certification", name: "TensorFlow Developer", date: "2022", image: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg", link: "" },
-    { id: 3, type: "attestation", name: "Google Data Analytics", date: "2021", image: "https://images.credly.com/images/32f225eb-4581-42ab-8e0d-036128678083/logo.png", link: "" },
-    { id: 4, type: "attestation", name: "Google Data Engineering", date: "2026", image: "https://images.credly.com/images/32f225eb-4581-42ab-8e0d-036128678083/logo.png", link: "" },
+    { id: 1, type: "attestation", name: "Networking Essentials CISCO", date: "2024", pdfUri: "/Networking_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_377680c8-b6ef-4768-ad6b-af42d2daf212.pdf", link: "" },
+    { id: 2, type: "attestation", name: "Alumni Cybersecurity Essentials", date: "2024", pdfUri: "/Alumni_Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_9e3d9e2b-3049-4fa2-96b8-8bc6c56afcc4.pdf", link: "" },
+    { id: 3, type: "attestation", name: "Cybersecurity Essentials", date: "2024", pdfUri: "/Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_264d6df7-b0c8-4bfa-929d-b76bbe13d134.pdf", link: "" },
+    { id: 4, type: "attestation", name: "Get Connected", date: "2024", pdfUri: "/Get_Connected_certificate_lidao-abiyi-ipnetinstitute-com_6ba40525-6f4e-4555-98eb-9154ffd6441b.pdf", link: "" },
+    { id: 5, type: "attestation", name: "NDG Linux Essentials", date: "2024", pdfUri: "/Partner-_NDG_Linux_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_4d00fb94-3d30-416f-98a5-d85420f9dfc9.pdf", link: "" },
+    { id: 6, type: "attestation", name: "Présentation de l’engineering données dans Azure", date: "2026", pdfUri: "/Présentation de l'engineering données dans Azure.pdf", link: "" },
   ],
   contact: {
     email: "lidxo.dev@gmail.com",
     location: "Lomé, Togo",
     status: "Open to work",
     socials: {
-      linkedin: "https://www.linkedin.com/in/lidao-a-401799328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      linkedin: "https://www.linkedin.com/in/abiyilidao/",
       github: "https://github.com/LidXo",
       twitter: "https://x.com/abiyilidao6",
       whatsapp: "https://wa.me/22870289212",

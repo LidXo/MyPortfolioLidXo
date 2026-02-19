@@ -57,6 +57,11 @@ const HeroSection: React.FC = () => {
                   className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
                 />
               </div>
+              <div className="absolute bottom-4 right-4 z-20">
+                 <div className="bg-black/60 backdrop-blur-md px-5 py-2 rounded-lg border-l-4 border-primary shadow-xl">
+                    <h2 className="text-lg font-bold text-white tracking-wider uppercase">ABIYI Lidao</h2>
+                 </div>
+              </div>
             </div>
 
             {/* Floating Elements - Positioned clearly for mobile */}
