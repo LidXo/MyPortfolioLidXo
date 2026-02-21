@@ -57,10 +57,13 @@ const HeroSection: React.FC = () => {
                   className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              <div className="absolute bottom-4 right-4 z-20">
-                 <div className="bg-black/60 backdrop-blur-md px-5 py-2 rounded-lg border-l-4 border-primary shadow-xl">
-                    <h2 className="text-lg font-bold text-white tracking-wider uppercase">ABIYI Lidao</h2>
-                 </div>
+              <div className="absolute bottom-6 right-6 z-20">
+                <div className="bg-white/5 backdrop-blur-xl px-6 py-3 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-3 group/name ring-1 ring-white/20 transition-all duration-500 hover:bg-white/10 hover:ring-primary/40">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <h2 className="text-base md:text-lg font-semibold text-white tracking-[0.2em] uppercase leading-none">
+                    ABIYI <span className="text-primary/90 font-light">Lidao</span>
+                  </h2>
+                </div>
               </div>
             </div>
 
