@@ -95,7 +95,7 @@ const defaultData: PortfolioData = {
   hero: {
     title: "Code. Données. Intelligence.",
     subtitle: "Étudiant en 2eme Année IA & BigData.",
-    available: "",
+    available: "V.Lasted",
     yearsExp: "0",
     cvLink: "/cv_lidao.pdf",
   },
@@ -164,8 +164,6 @@ const defaultData: PortfolioData = {
     { id: 2, name: "Voyage", icon: "ri-plane-line" },
     { id: 3, name: "Musique", icon: "ri-headphone-line" },
     { id: 4, name: "Lecture", icon: "ri-book-open-line" },
-    { id: 5, name: "Football", icon: "ri-football-line" },
-    { id: 6, name: "Cinéma", icon: "ri-movie-line" },
   ],
   certifications: [
     { id: 1, type: "attestation", name: "Networking Essentials CISCO", date: "2024", pdfUri: "/Networking_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_377680c8-b6ef-4768-ad6b-af42d2daf212.pdf", link: "" },
