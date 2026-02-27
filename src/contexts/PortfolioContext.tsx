@@ -97,7 +97,7 @@ const defaultData: PortfolioData = {
     subtitle: "Étudiant en 2eme Année IA & BigData.",
     available: "V.Lasted",
     yearsExp: "0",
-    cvLink: "/cv_lidao.pdf",
+    cvLink: "/cv-Lidao.pdf",
   },
   about: {
     text: "Étudiant en informatique spécialisé en IA et Big Data,  passionné par les données et le développement, je suis actuellement en phase d’apprentissage avancé pour devenir Data Engineer. Je m’intéresse à l’exploration de nouvelles technologies et à la réalisation de projets concrets qui renforcent mes compétences techniques et analytiques.",
