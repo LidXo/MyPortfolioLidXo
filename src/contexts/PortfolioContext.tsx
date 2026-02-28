@@ -103,7 +103,7 @@ const defaultData: PortfolioData = {
     text: "Étudiant en informatique spécialisé en IA et Big Data,  passionné par les données et le développement, je suis actuellement en phase d’apprentissage avancé pour devenir Data Engineer. Je m’intéresse à l’exploration de nouvelles technologies et à la réalisation de projets concrets qui renforcent mes compétences techniques et analytiques.",
     stats: [
       { label: "Années d'Expérience", value: "0" },
-      { label: "Projets Réalisés", value: "En cours" },
+      { label: "Projets Réalisés", value: "1" },
       { label: "Certifications", value: "En cours" },
       { label: "Passion", value: "∞" },
     ],
@@ -136,7 +136,10 @@ const defaultData: PortfolioData = {
         { name: "Python", icon: "ri-code-s-slash-line", usage: "Backend" },
         { name: "SQL", icon: "ri-database-2-line", usage: "Analyses & Requêtes complexes" },
         { name: "Java", icon: "ri-java-line", usage: "Données" },
-        { name: "C", icon: "ri-code-s-slash-fill", usage: "Bases" }
+        { name: "JavaScript", icon: "ri-javascript-line", usage: "Les bases" },
+        { name: "C", icon: "ri-code-s-slash-fill", usage: "Les bases" },
+        { name: "HTML", icon: "ri-html5-line", usage: "Les bases" },
+        { name: "CSS", icon: "ri-css3-line", usage: "Les bases" }
       ]
     },
     
@@ -144,7 +147,6 @@ const defaultData: PortfolioData = {
       id: "databases",
       title: "Bases de Données",
       items: [
-        { name: "PostgreSQL", icon: "ri-database-line", usage: "Relationnel Avancé" },
         { name: "PHPMyAdmin", icon: "ri-leaf-line", usage: "NoSQL Document" },
         { name: "MySQL", icon: "ri-stack-line", usage: "SGBDR" }
       ]
@@ -155,7 +157,10 @@ const defaultData: PortfolioData = {
       items: [
         { name: "Git / GitHub", icon: "ri-git-branch-line", usage: "Version Control" },
         { name: "VS Code", icon: "ri-code-s-slash-line", usage: "IDE Principal" },
-        { name: "Linux / Ubuntu", icon: "ri-ubuntu-line", usage: "Système d'exploitation" },
+        { name: "PyCharm", icon: "ri-code-s-slash-line", usage: "IDE Python" },
+        { name: "Intellij IDEA", icon: "ri-code-s-slash-line", usage: "IDE Java Principale" },
+        { name: "Eclipse", icon: "ri-code-s-slash-line", usage: "IDE Java Secondaire" },
+        { name: "Linux / Ubuntu", icon: "ri-ubuntu-line", usage: "Système d'exploitation Secondaire" },
       ]
     },
   ],
