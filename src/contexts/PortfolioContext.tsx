@@ -48,6 +48,7 @@ export interface TechItem {
   name: string;
   icon: string;
   usage: string;
+  level?: number;
 }
 
 export interface TechCategory {
@@ -133,13 +134,13 @@ const defaultData: PortfolioData = {
       id: "languages",
       title: "Langages",
       items: [
-        { name: "Python", icon: "ri-code-s-slash-line", usage: "Backend" },
-        { name: "SQL", icon: "ri-database-2-line", usage: "Analyses & Requêtes complexes" },
-        { name: "Java", icon: "ri-java-line", usage: "Données" },
-        { name: "JavaScript", icon: "ri-javascript-line", usage: "Les bases" },
-        { name: "C", icon: "ri-code-s-slash-fill", usage: "Les bases" },
-        { name: "HTML", icon: "ri-html5-line", usage: "Les bases" },
-        { name: "CSS", icon: "ri-css3-line", usage: "Les bases" }
+        { name: "Python", icon: "ri-code-s-slash-line", usage: "Backend", level: 85 },
+        { name: "SQL", icon: "ri-database-2-line", usage: "Analyses & Requêtes ", level: 90 },
+        { name: "Java", icon: "ri-java-line", usage: "Données", level: 60 },
+        { name: "JavaScript", icon: "ri-javascript-line", usage: "Les bases", level: 60 },
+        { name: "C", icon: "ri-code-s-slash-fill", usage: "Les bases", level: 20 },
+        { name: "HTML", icon: "ri-html5-line", usage: "Les bases", level: 85 },
+        { name: "CSS", icon: "ri-css3-line", usage: "Les bases", level: 45 }
       ]
     },
     
@@ -147,20 +148,20 @@ const defaultData: PortfolioData = {
       id: "databases",
       title: "Bases de Données",
       items: [
-        { name: "PHPMyAdmin", icon: "ri-leaf-line", usage: "NoSQL Document" },
-        { name: "MySQL", icon: "ri-stack-line", usage: "SGBDR" }
+        { name: "PHPMyAdmin", icon: "ri-leaf-line", usage: "NoSQL Document", level: 70 },
+        { name: "MySQL", icon: "ri-stack-line", usage: "SGBDR", level: 80 }
       ]
     },
     {
       id: "basic-tools",
       title: "Outils de Base",
       items: [
-        { name: "Git / GitHub", icon: "ri-git-branch-line", usage: "Version Control" },
-        { name: "VS Code", icon: "ri-code-s-slash-line", usage: "IDE Principal" },
-        { name: "PyCharm", icon: "ri-code-s-slash-line", usage: "IDE Python" },
-        { name: "Intellij IDEA", icon: "ri-code-s-slash-line", usage: "IDE Java Principale" },
-        { name: "Eclipse", icon: "ri-code-s-slash-line", usage: "IDE Java Secondaire" },
-        { name: "Linux / Ubuntu", icon: "ri-ubuntu-line", usage: "Système d'exploitation Secondaire" },
+        { name: "Git / GitHub", icon: "ri-git-branch-line", usage: "Version Control", level: 80 },
+        { name: "VS Code", icon: "ri-code-s-slash-line", usage: "IDE Principal", level: 90 },
+        { name: "PyCharm", icon: "ri-code-s-slash-line", usage: "IDE Python", level: 85 },
+        { name: "Intellij IDEA", icon: "ri-code-s-slash-line", usage: "IDE Java Principale", level: 80 },
+        { name: "Eclipse", icon: "ri-code-s-slash-line", usage: "IDE Java Secondaire", level: 70 },
+        { name: "Linux / Ubuntu", icon: "ri-ubuntu-line", usage: "Système d'exploitation Secondaire", level: 75 },
       ]
     },
   ],

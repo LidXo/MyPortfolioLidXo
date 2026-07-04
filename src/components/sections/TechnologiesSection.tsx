@@ -176,13 +176,18 @@ const TechnologiesSection: React.FC = () => {
                            {tech.usage}
                          </p>
 
-                         {/* Tech Specs Decoration */}
-                         <div className="mt-auto pt-6 flex items-center gap-2">
-                            <div className="h-[2px] w-full bg-white/5 overflow-hidden rounded-full">
-                                <div className="h-full w-2/3 bg-primary/50 group-hover:w-full transition-all duration-700 ease-out" />
-                            </div>
-                            <span className="text-[10px] font-mono text-primary/50 uppercase">V.Latest</span>
-                         </div>
+                          {/* Tech Specs Decoration */}
+                          <div className="mt-auto pt-6 flex items-center gap-3">
+                             <div className="h-[3px] w-full bg-white/5 overflow-hidden rounded-full">
+                                 <div 
+                                   className="h-full bg-primary/60 group-hover:bg-primary transition-all duration-500 ease-out" 
+                                   style={{ width: `${tech.level || 70}%` }}
+                                 />
+                             </div>
+                             <span className="text-[11px] font-mono text-primary/70 font-semibold shrink-0">
+                               {tech.level || 70}%
+                             </span>
+                          </div>
                       </div>
                     </SpotlightCard>
                   </motion.div>
