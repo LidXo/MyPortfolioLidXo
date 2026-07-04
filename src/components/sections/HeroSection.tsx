@@ -92,9 +92,23 @@ const HeroSection: React.FC = () => {
             <span className="text-primary text-xs font-bold tracking-widest uppercase">{hero.available}</span>
           </div>
           
-          {/* Split the title to style the last part with a gradient on a new line */}
+          {/* Split the title: first two parts on first line, rest on the second line with gradient */}
           {(() => {
-            const parts = hero.title.split('. ').filter(Boolean);
+            const parts = hero.title.split('. ').map(p => p.trim()).filter(Boolean);
+            if (parts.length >= 3) {
+              const first = parts.slice(0, 2).join('. ') + '.';
+              // Reconstruct the rest. Ensure we keep the trailing period if the original title had one.
+              let last = parts.slice(2).join('. ');
+              if (hero.title.endsWith('.') && !last.endsWith('.')) {
+                last += '.';
+              }
+              return (
+                <h1 className="text-4xl xs:text-5xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
+                  {first} <br />
+                  <span className="gradient-text drop-shadow-sm">{last}</span>
+                </h1>
+              );
+            }
             if (parts.length > 1) {
               const last = parts.pop() || '';
               const first = parts.join('. ') + '.';
