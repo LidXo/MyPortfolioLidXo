@@ -93,7 +93,7 @@ export interface PortfolioData {
 
 const defaultData: PortfolioData = {
   hero: {
-    title: "Apprendre. Construire. Démontrer. En données & IA.",
+    title: "Apprendre. Construire. Démontrer.",
     subtitle: "Étudiant en 3eme Année IA & BigData.",
     available: "V.Lasted",
     yearsExp: "0",
