@@ -93,8 +93,8 @@ export interface PortfolioData {
 
 const defaultData: PortfolioData = {
   hero: {
-    title: "Code. Données. Intelligence.",
-    subtitle: "Étudiant en 2eme Année IA & BigData.",
+    title: "Apprendre. Construire. Démontrer. En données & IA.",
+    subtitle: "Étudiant en 3eme Année IA & BigData.",
     available: "V.Lasted",
     yearsExp: "0",
     cvLink: "/cv-Lidao.pdf",
@@ -112,7 +112,7 @@ const defaultData: PortfolioData = {
     { 
       id: 1, 
       year: "2025", 
-      title: "Licence 2 En cours", 
+      title: "Licence 3 En cours", 
       desc: "Spécialité : IA & Big Data", 
       icon: "ri-graduation-cap-fill" 
     },
@@ -131,7 +131,7 @@ const defaultData: PortfolioData = {
   technologies: [
     {
       id: "languages",
-      title: "Langages & Scripting",
+      title: "Langages",
       items: [
         { name: "Python", icon: "ri-code-s-slash-line", usage: "Backend" },
         { name: "SQL", icon: "ri-database-2-line", usage: "Analyses & Requêtes complexes" },
