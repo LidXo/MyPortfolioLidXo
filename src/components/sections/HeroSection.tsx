@@ -92,10 +92,25 @@ const HeroSection: React.FC = () => {
             <span className="text-primary text-xs font-bold tracking-widest uppercase">{hero.available}</span>
           </div>
           
-          <h1 className="text-4xl xs:text-5xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
-            Code. Données. <br />
-            <span className="gradient-text drop-shadow-sm">Intelligence.</span>
-          </h1>
+          {/* Split the title to style the last part with a gradient on a new line */}
+          {(() => {
+            const parts = hero.title.split('. ').filter(Boolean);
+            if (parts.length > 1) {
+              const last = parts.pop() || '';
+              const first = parts.join('. ') + '.';
+              return (
+                <h1 className="text-4xl xs:text-5xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
+                  {first} <br />
+                  <span className="gradient-text drop-shadow-sm">{last}</span>
+                </h1>
+              );
+            }
+            return (
+              <h1 className="text-4xl xs:text-5xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
+                {hero.title}
+              </h1>
+            );
+          })()}
           
           <p className="text-muted-foreground text-base md:text-xl mb-8 max-w-lg leading-relaxed min-h-[50px] mx-auto md:mx-0">
             {displayText}<span className="animate-pulse text-primary">|</span>
