@@ -111,7 +111,7 @@ const defaultData: PortfolioData = {
   journey: [
     { 
       id: 1, 
-      year: "2025", 
+      year: "2026", 
       title: "Licence 3 En cours", 
       desc: "Spécialité : IA & Big Data", 
       icon: "ri-graduation-cap-fill" 

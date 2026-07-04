@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePortfolio } from '@/contexts/PortfolioContext';
 import 'remixicon/fonts/remixicon.css';
-import profileImg from '@/assets/avatar.jpg';
+import profileImg from '@/assets/avatar.jpeg';
 
 const HeroSection: React.FC = () => {
   const { data } = usePortfolio();
