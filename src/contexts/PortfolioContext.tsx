@@ -128,7 +128,8 @@ const defaultData: PortfolioData = {
   projects: [
     { id: 1, title: "Système de Location de Cassette", desc: "Application Java de gestion d’un club de location de cassettes vidéo. Le système permet l’administration des abonnés, titres, catégories, cassettes et locations.", tags: "Java", img: "https://plus.unsplash.com/premium_photo-1729777215342-c1758de6dee5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bG9jYXRpb24lMjBkZSUyMGNhc3NldHRlfGVufDB8fDB8fHww", link: "https://github.com/LidXo/Syst-me-de-Gestion-de-Location-de-Cassettes" },
     { id: 2, title: "Application de Gestion de Stock", desc: "Application Java (Maven) de gestion de stock d'entreprise. Sécurisée avec BCrypt et connectée à une base de données MySQL. Interface intuitive pour suivre les produits, fournisseurs, commandes et niveaux de stock en temps réel.", tags: "Java", img: "https://plus.unsplash.com/premium_photo-1681426710520-7c56c9f563d2?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", link: "https://github.com/LidXo/Gestion_Stock" },
-    
+    { id: 3, title: "Bibliothèque", desc: "Système informatisé de gestion des ressources documentaires et des opérations de prêt/retour. Fonctionnalités : catalogage, gestion adhérents, suivi emprunts/retours, calcul pénalités retard, réservations, recherche multicritère, statistiques. Architecture MVC, transactions ACID.", tags: "Java", img: "https://unsplash.com/fr/photos/interieur-chaleureux-de-la-bibliotheque-avec-etageres-et-espace-salon-XrMGC8ZWin4", link: "https://github.com/LidXo/bibliotheque" },
+        
 ],
   technologies: [
     {
