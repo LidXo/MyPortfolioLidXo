@@ -2,10 +2,12 @@ import React, { createContext, useContext, ReactNode } from 'react';
 
 // Types
 export interface HeroData {
-  title: string;
-  subtitle: string;
-  available: string;
-  yearsExp: string;
+  firstName: string;
+  lastName: string;
+  rolePrefix: string;
+  roleSuffix: string;
+  badges: string[];
+  techStack: string[];
   cvLink: string;
 }
 
@@ -94,17 +96,19 @@ export interface PortfolioData {
 
 const defaultData: PortfolioData = {
   hero: {
-    title: "Apprendre. Construire. Démontrer.",
-    subtitle: "Étudiant en 3eme Année IA & BigData.",
-    available: "V.Lasted",
-    yearsExp: "0",
+    firstName: "Lidao",
+    lastName: "ABIYI",
+    rolePrefix: "Etudiant en 3ème année",
+    roleSuffix: "IA & Big Data.",
+    badges: ["DEV", "CODE", "DATA", "IA"],
+    techStack: ["A ESGIS - TOGO"],
     cvLink: "/cv-Lidao.pdf",
   },
   about: {
-    text: "Étudiant en informatique spécialisé en IA et Big Data,  passionné par les données et le développement, je suis actuellement en phase d’apprentissage avancé pour devenir Data Engineer. Je m’intéresse à l’exploration de nouvelles technologies et à la réalisation de projets concrets qui renforcent mes compétences techniques et analytiques.",
+    text: "Étudiant en IA & Big Data, passionné par la transformation de données en solutions intelligentes. J'apprends rapidement et je construis des projets concrets pour consolider mes compétences. Curieux par nature, je m'intéresse aux architectures modernes et aux systèmes IA. À la recherche de stages et opportunités pour accélérer ma progression vers Data Engineer.",
     stats: [
       { label: "Années d'Expérience", value: "0" },
-      { label: "Projets Réalisés", value: "1" },
+      { label: "Projets Réalisés", value: "5" },
       { label: "Certifications", value: "En cours" },
       { label: "Passion", value: "∞" },
     ],
@@ -139,34 +143,33 @@ const defaultData: PortfolioData = {
       id: "languages",
       title: "Langages",
       items: [
-        { name: "Python", icon: "ri-code-s-slash-line", usage: "Backend", level: 85 },
-        { name: "SQL", icon: "ri-database-2-line", usage: "Analyses & Requêtes ", level: 90 },
-        { name: "Java", icon: "ri-java-line", usage: "Données", level: 60 },
-        { name: "JavaScript", icon: "ri-javascript-line", usage: "Les bases", level: 60 },
-        { name: "C", icon: "ri-code-s-slash-fill", usage: "Les bases", level: 20 },
-        { name: "HTML", icon: "ri-html5-line", usage: "Les bases", level: 85 },
-        { name: "CSS", icon: "ri-css3-line", usage: "Les bases", level: 45 }
+        { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", usage: "Backend & Data", level: 85 },
+        { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg", usage: "Backend & Logic", level: 60 },
+        { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", usage: "Frontend Logic", level: 60 },
+        { name: "C", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg", usage: "Bases & Algorithmes", level: 20 },
+        { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", usage: "Structure Web", level: 85 },
+        { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", usage: "Design Web", level: 45 }
       ]
     },
-    
     {
       id: "databases",
       title: "Bases de Données",
       items: [
-        { name: "PHPMyAdmin", icon: "ri-leaf-line", usage: "NoSQL Document", level: 70 },
-        { name: "MySQL", icon: "ri-stack-line", usage: "SGBDR", level: 80 }
+        { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", usage: "SGBDR", level: 80 },
+        { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", usage: "SGBDR Avancé", level: 60 },
+        { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", usage: "NoSQL", level: 50 },
       ]
     },
+
     {
       id: "basic-tools",
-      title: "Outils de Base",
+      title: "Outils & DevOps",
       items: [
-        { name: "Git / GitHub", icon: "ri-git-branch-line", usage: "Version Control", level: 80 },
-        { name: "VS Code", icon: "ri-code-s-slash-line", usage: "IDE Principal", level: 90 },
-        { name: "PyCharm", icon: "ri-code-s-slash-line", usage: "IDE Python", level: 85 },
-        { name: "Intellij IDEA", icon: "ri-code-s-slash-line", usage: "IDE Java Principale", level: 80 },
-        { name: "Eclipse", icon: "ri-code-s-slash-line", usage: "IDE Java Secondaire", level: 70 },
-        { name: "Linux / Ubuntu", icon: "ri-ubuntu-line", usage: "Système d'exploitation Secondaire", level: 75 },
+        { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg", usage: "Version Control", level: 80 },
+        { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", usage: "Collaboration", level: 80 },
+        { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", usage: "IDE Principal", level: 90 },
+        { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg", usage: "OS", level: 75 },
+        { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg", usage: "API Testing", level: 65 },
       ]
     },
   ],

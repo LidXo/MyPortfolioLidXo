@@ -54,7 +54,7 @@ const CertificationsSection: React.FC = () => {
               className={`px-6 py-2 rounded-full font-medium transition-all ${
                 filter === type
                   ? 'border-2 border-primary text-primary bg-primary/10'
-                  : 'border border-border text-muted-foreground hover:bg-secondary hover:text-foreground'
+                  : 'border border-border text-muted-foreground hover:bg-secondary hover:text-secondary-foreground hover:border-secondary'
               }`}
             >
               {label} ({counts[type]})
@@ -63,88 +63,105 @@ const CertificationsSection: React.FC = () => {
         </motion.div>
 
         {/* Grid */}
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-6 min-h-[200px]">
           <AnimatePresence mode="popLayout">
-            {filteredCerts.map((cert) => (
-              <motion.div
-                key={cert.id}
-                layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => {
-                  if (cert.image) {
-                     setSelectedImage(cert.image);
-                  } else if (cert.pdfUri) {
-                     window.open(cert.pdfUri, '_blank');
-                  } else if (cert.link) {
-                     window.open(cert.link, '_blank');
-                  }
-                }}
-                className={`p-6 glass-card rounded-xl border border-primary/20 flex flex-col items-center justify-center gap-4 hover:bg-primary/10 transition-all group w-full sm:w-64 relative overflow-hidden cursor-pointer`}
-              >
-                {/* Type Badge */}
-                <div className="absolute top-2 right-2 text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-secondary text-muted-foreground">
-                  {cert.type === 'certification' ? 'Certif.' : 'Attest.'}
-                </div>
-                
-                {/* Image or Placeholder or PDF Icon */}
-                <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center overflow-hidden border border-border group-hover:scale-110 transition-transform relative z-0">
-                  {cert.image ? (
-                    <img 
-                      src={cert.image} 
-                      alt={cert.name} 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : cert.pdfUri ? (
-                    <i className="ri-file-pdf-2-line text-4xl text-red-500" />
-                  ) : cert.link ? (
-                    <i className="ri-link text-3xl text-blue-400" />
-                  ) : (
-                    <i className={`${cert.type === 'certification' ? 'ri-award-line' : 'ri-profile-line'} text-3xl text-muted-foreground`} />
-                  )}
-                </div>
-
-                <div className="text-center z-10 w-full">
-                  <div className="font-bold text-lg text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
-                    {cert.name}
+            {filteredCerts.length > 0 ? (
+              filteredCerts.map((cert) => (
+                <motion.div
+                  key={cert.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  whileHover={{ scale: 1.02 }}
+                  onClick={() => {
+                    if (cert.image) {
+                       setSelectedImage(cert.image);
+                    } else if (cert.pdfUri) {
+                       window.open(cert.pdfUri, '_blank');
+                    } else if (cert.link) {
+                       window.open(cert.link, '_blank');
+                    }
+                  }}
+                  className={`p-6 glass-card rounded-xl border border-primary/20 flex flex-col items-center justify-center gap-4 hover:bg-primary/10 transition-all group w-full sm:w-64 relative overflow-hidden cursor-pointer`}
+                >
+                  {/* Type Badge */}
+                  <div className="absolute top-2 right-2 text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-secondary text-secondary-foreground shadow-sm">
+                    {cert.type === 'certification' ? 'Certif.' : 'Attest.'}
                   </div>
-                  <div className="text-sm text-muted-foreground mb-3">{cert.date}</div>
                   
-                  {/* Action Button */}
-                  <div className="flex justify-center gap-2">
-                    {cert.pdfUri && (
-                        <a
-                          href={cert.pdfUri}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-colors"
-                        >
-                          <i className="ri-file-pdf-line" /> PDF
-                        </a>
-                    )}
-                    {cert.link && (
-                        <a
-                          href={cert.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                        >
-                          <i className="ri-external-link-line" /> Lien
-                        </a>
-                    )}
-                    {cert.image && !cert.link && !cert.pdfUri && (
-                        <span className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
-                            <i className="ri-eye-line" /> Voir
-                        </span>
+                  {/* Image or Placeholder or PDF Icon */}
+                  <div className="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center overflow-hidden border border-secondary/20 group-hover:scale-110 transition-transform relative z-0">
+                    {cert.image ? (
+                      <img 
+                        src={cert.image} 
+                        alt={cert.name} 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : cert.pdfUri ? (
+                      <i className="ri-file-pdf-2-line text-4xl text-red-500" />
+                    ) : cert.link ? (
+                      <i className="ri-link text-3xl text-blue-500" />
+                    ) : (
+                      <i className={`${cert.type === 'certification' ? 'ri-award-line' : 'ri-profile-line'} text-3xl text-secondary`} />
                     )}
                   </div>
+
+                  <div className="text-center z-10 w-full">
+                    <div className="font-bold text-lg text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
+                      {cert.name}
+                    </div>
+                    <div className="text-sm text-muted-foreground mb-3">{cert.date}</div>
+                    
+                    {/* Action Button */}
+                    <div className="flex justify-center gap-2">
+                      {cert.pdfUri && (
+                          <a
+                            href={cert.pdfUri}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-colors"
+                          >
+                            <i className="ri-file-pdf-line" /> PDF
+                          </a>
+                      )}
+                      {cert.link && (
+                          <a
+                            href={cert.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                          >
+                            <i className="ri-external-link-line" /> Lien
+                          </a>
+                      )}
+                      {cert.image && !cert.link && !cert.pdfUri && (
+                          <span className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+                              <i className="ri-eye-line" /> Voir
+                          </span>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="flex flex-col items-center justify-center text-center p-8 w-full max-w-md mt-10"
+              >
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary shadow-sm border border-primary/20">
+                  <i className="ri-folder-info-line text-3xl" />
                 </div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">Oups ! Rien à voir ici.</h3>
+                <p className="text-muted-foreground text-lg">
+                  Il n'y a pas encore de {filter === 'certification' ? 'certifications' : filter === 'attestation' ? 'attestations' : 'documents'} dans cette catégorie. Repassez plus tard !
+                </p>
               </motion.div>
-            ))}
+            )}
           </AnimatePresence>
         </div>
       </div>

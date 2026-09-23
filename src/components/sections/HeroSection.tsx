@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { usePortfolio } from '@/contexts/PortfolioContext';
 import 'remixicon/fonts/remixicon.css';
@@ -7,181 +7,194 @@ import profileImg from '@/assets/avatar.jpeg';
 const HeroSection: React.FC = () => {
   const { data } = usePortfolio();
   const { hero, contact } = data;
-  
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  
-  const phrases = hero.subtitle.split('. ').filter(Boolean);
-  
-  useEffect(() => {
-    const currentPhrase = phrases[loopNum % phrases.length];
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayText(currentPhrase.slice(0, displayText.length + 1));
-        if (displayText === currentPhrase) {
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        setDisplayText(currentPhrase.slice(0, displayText.length - 1));
-        if (displayText === '') {
-          setIsDeleting(false);
-          setLoopNum(loopNum + 1);
-        }
-      }
-    }, isDeleting ? 30 : 50);
-    
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, loopNum, phrases]);
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        {/* HACK: Order change for mobile - Visual first, then Text */}
+    <section id="home" className="min-h-screen flex items-center justify-center pt-24 pb-12 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
         
-        {/* Hero Visual */}
+        {/* Left Column: Image & Floating Icons */}
         <motion.div 
-          className="order-1 md:order-2 flex justify-center relative mt-4 md:mt-0"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          className="relative flex justify-center lg:justify-end order-2 lg:order-1"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="absolute w-[80%] h-[80%] bg-primary/20 rounded-full blur-[60px] md:blur-[100px] animate-pulse top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10" />
-
+          {/* Tight wrapper for accurate absolute positioning */}
           <div className="relative">
-            <div className="relative w-64 h-64 md:w-[400px] md:h-[400px] glass-card rounded-full md:rounded-2xl overflow-hidden border-2 border-primary/20 p-1 md:p-2 shadow-2xl shadow-primary/10">
-              <div className="w-full h-full bg-card rounded-full md:rounded-xl overflow-hidden relative group">
-                <img 
-                  src={profileImg}
-                  alt="Lidao ABIYI" 
-                  className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="absolute bottom-6 right-6 z-20">
-                <div className="bg-white/5 backdrop-blur-xl px-6 py-3 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-3 group/name ring-1 ring-white/20 transition-all duration-500 hover:bg-white/10 hover:ring-primary/40">
-                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  <h2 className="text-base md:text-lg font-semibold text-white tracking-[0.2em] uppercase leading-none">
-                    ABIYI <span className="text-primary/90 font-light">Lidao</span>
-                  </h2>
-                </div>
-              </div>
+            {/* Main Image Card */}
+            <div className="relative w-[300px] sm:w-[350px] lg:w-[420px] h-[400px] sm:h-[480px] lg:h-[580px] rounded-3xl overflow-hidden shadow-2xl border-4 border-card bg-card/50">
+              <img 
+                src={profileImg}
+                alt="Lidao ABIYI" 
+                className="w-full h-full object-cover object-top scale-105 transform origin-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent mix-blend-overlay"></div>
             </div>
 
-            {/* Floating Elements - Positioned clearly for mobile */}
-            <div className="absolute -right-4 top-10 md:-right-12 md:top-20 glass-card p-3 md:p-4 rounded-xl animate-float border border-border bg-black/40 backdrop-blur-md">
-              <i className="ri-code-s-slash-line text-2xl md:text-3xl text-primary" />
-            </div>
-            <div className="absolute -left-4 bottom-10 md:-left-12 md:bottom-32 glass-card p-3 md:p-4 rounded-xl animate-float-delayed border border-border bg-black/40 backdrop-blur-md">
-              <i className="ri-brain-line text-2xl md:text-3xl text-blue-400" />
-            </div>
+            {/* Floating Icons */}
+            <motion.div 
+              animate={{ y: [-10, 10, -10] }} 
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="absolute top-10 -left-8 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl border border-border z-10"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" className="w-10 h-10" alt="Python" />
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [10, -10, 10] }} 
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              className="absolute top-1/2 -left-10 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl text-[#336791] border border-border z-10"
+            >
+              <i className="ri-database-2-fill" />
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [-8, 8, -8] }} 
+              transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
+              className="absolute bottom-16 -left-6 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl text-[#61DAFB] border border-border z-10"
+            >
+              <i className="ri-reactjs-fill" />
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [8, -8, 8] }} 
+              transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
+              className="absolute top-24 -right-8 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl text-[#f89820] border border-border z-10"
+            >
+              <i className="ri-java-fill" />
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [-10, 10, -10] }} 
+              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+              className="absolute bottom-32 -right-10 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl text-[#F05032] border border-border z-10"
+            >
+              <i className="ri-git-branch-fill" />
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Hero Content */}
+        {/* Right Column: Content */}
         <motion.div 
-          className="order-2 md:order-1 text-center md:text-left"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="order-1 lg:order-2 flex flex-col justify-center"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-primary/30 rounded-full bg-primary/10 backdrop-blur-sm mx-auto md:mx-0">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-            </span>
-            <span className="text-primary text-xs font-bold tracking-widest uppercase">{hero.available}</span>
+          {/* Top Badges */}
+          <div className="flex flex-wrap gap-3 mb-6">
+            {hero.badges.map((badge, index) => {
+              if (index === 0) return (
+                <span key={badge} className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-bold tracking-widest uppercase shadow-sm">
+                  {badge}
+                </span>
+              );
+              if (index === 1) return (
+                <span key={badge} className="px-4 py-1.5 rounded-full border-2 border-primary text-primary bg-background text-xs font-bold tracking-widest uppercase shadow-sm">
+                  {badge}
+                </span>
+              );
+              if (index === 2) return (
+                <span key={badge} className="px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-bold tracking-widest uppercase shadow-sm">
+                  {badge}
+                </span>
+              );
+              return (
+                <span key={badge} className="px-4 py-1.5 rounded-full bg-foreground text-background text-xs font-bold tracking-widest uppercase shadow-sm">
+                  {badge}
+                </span>
+              );
+            })}
           </div>
-          
-          {/* Split the title: first two parts on first line, rest on the second line with gradient */}
-          {(() => {
-            const parts = hero.title.split('. ').map(p => p.trim()).filter(Boolean);
-            if (parts.length >= 3) {
-              const first = parts.slice(0, 2).join('. ') + '.';
-              // Reconstruct the rest. Ensure we keep the trailing period if the original title had one.
-              let last = parts.slice(2).join('. ');
-              if (hero.title.endsWith('.') && !last.endsWith('.')) {
-                last += '.';
-              }
-              return (
-                <h1 className="text-4xl xs:text-5xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
-                  {first} <br />
-                  <span className="gradient-text drop-shadow-sm">{last}</span>
-                </h1>
-              );
-            }
-            if (parts.length > 1) {
-              const last = parts.pop() || '';
-              const first = parts.join('. ') + '.';
-              return (
-                <h1 className="text-4xl xs:text-5xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
-                  {first} <br />
-                  <span className="gradient-text drop-shadow-sm">{last}</span>
-                </h1>
-              );
-            }
-            return (
-              <h1 className="text-4xl xs:text-5xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
-                {hero.title}
-              </h1>
-            );
-          })()}
-          
-          <p className="text-muted-foreground text-base md:text-xl mb-8 max-w-lg leading-relaxed min-h-[50px] mx-auto md:mx-0">
-            {displayText}<span className="animate-pulse text-primary">|</span>
-          </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start">
-            <motion.a
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative px-8 py-3 bg-primary text-primary-foreground font-bold rounded-full overflow-hidden transition-all glow-accent shadow-lg shadow-primary/20 cursor-pointer"
+          {/* Name & Title */}
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground leading-tight tracking-tighter mb-4">
+            {hero.firstName} {hero.lastName}
+          </h1>
+          
+          <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-8 leading-snug">
+            <span className="text-primary/80 italic font-medium mr-3" style={{ fontFamily: 'Georgia, serif' }}>
+              {hero.rolePrefix}
+            </span>
+            <span className="tracking-tight">{hero.roleSuffix}</span>
+          </div>
+
+          {/* Subtitle */}
+          <div className="text-muted-foreground text-sm font-bold tracking-[0.2em] uppercase mb-8 flex items-center gap-4">
+            {hero.techStack.map((tech, index) => (
+              <React.Fragment key={tech}>
+                <span>{tech}</span>
+                {index < hero.techStack.length - 1 && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50"></span>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+
+          {/* Contact Info */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mb-10 text-sm font-medium">
+            <a href={`mailto:${contact.email}`} className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
+              <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center">
+                <i className="ri-mail-fill" />
+              </div>
+              {contact.email}
+            </a>
+            <a href={contact.socials.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
+              <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center">
+                <i className="ri-phone-fill" />
+              </div>
+              +228 70 28 92 12
+            </a>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center gap-4 mb-10">
+            <button 
+              onClick={() => scrollToSection('projects')}
+              className="px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-lg shadow-primary/20 hover:-translate-y-1"
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Voir mes projets
-                <i className="ri-arrow-right-line transition-transform group-hover:translate-x-1" />
-              </span>
-            </motion.a>
-
-            <motion.a
+              Voir mes projets
+              <i className="ri-arrow-right-line" />
+            </button>
+            <a 
               href={hero.cvLink}
               download
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 border-2 border-white/10 text-foreground font-semibold rounded-full hover:bg-white/5 hover:border-primary/50 transition-all flex items-center justify-center gap-2"
+              className="px-8 py-3.5 rounded-full border-2 border-foreground text-foreground font-bold hover:bg-foreground hover:text-background transition-all flex items-center gap-2"
             >
-              Mon CV <i className="ri-download-line text-primary" />
-            </motion.a>
+              Mon CV
+              <i className="ri-download-line" />
+            </a>
           </div>
 
-          {/* Socials */}
-          <div className="mt-10 flex items-center justify-center md:justify-start gap-6 text-muted-foreground">
+          {/* Social Icons */}
+          <div className="flex items-center gap-4">
             {contact.socials.github && (
-              <a href={contact.socials.github} className="hover:text-white hover:scale-110 transition-all text-2xl" aria-label="GitHub">
-                <i className="ri-github-fill" />
+              <a href={contact.socials.github} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center text-foreground hover:bg-foreground hover:text-background transition-all shadow-sm">
+                <i className="ri-github-fill text-lg" />
               </a>
             )}
             {contact.socials.linkedin && (
-              <a href={contact.socials.linkedin} className="hover:text-[#0077b5] hover:scale-110 transition-all text-2xl" aria-label="LinkedIn">
-                <i className="ri-linkedin-fill" />
+              <a href={contact.socials.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center text-foreground hover:bg-[#0077b5] hover:text-white transition-all shadow-sm hover:border-[#0077b5]">
+                <i className="ri-linkedin-fill text-lg" />
               </a>
             )}
             {contact.socials.twitter && (
-              <a href={contact.socials.twitter} className="hover:text-white hover:scale-110 transition-all text-2xl" aria-label="Twitter">
-                <i className="ri-twitter-x-fill" />
+              <a href={contact.socials.twitter} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center text-foreground hover:bg-black hover:text-white transition-all shadow-sm">
+                <i className="ri-twitter-x-fill text-lg" />
               </a>
             )}
-            <div className="h-8 w-px bg-white/10 mx-2" />
-            <div className="text-left leading-tight">
-              <span className="block text-foreground font-bold text-lg">{hero.yearsExp}</span>
-              <span className="text-xs uppercase tracking-wider">Expérience</span>
-            </div>
+            {contact.socials.instagram && (
+              <a href={contact.socials.instagram} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center text-foreground hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-500 hover:text-white hover:border-transparent transition-all shadow-sm">
+                <i className="ri-instagram-line text-lg" />
+              </a>
+            )}
           </div>
         </motion.div>
+
       </div>
     </section>
   );
