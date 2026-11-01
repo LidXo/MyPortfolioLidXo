@@ -108,7 +108,7 @@ const defaultData: PortfolioData = {
     text: "Étudiant en IA & Big Data, passionné par la transformation de données en solutions intelligentes. J'apprends rapidement et je construis des projets concrets pour consolider mes compétences. Curieux par nature, je m'intéresse aux architectures modernes et aux systèmes IA. À la recherche de stages et opportunités pour accélérer ma progression vers Data Engineer.",
     stats: [
       { label: "Années d'Expérience", value: "0" },
-      { label: "Projets Réalisés", value: "5" },
+      { label: "Projets Réalisés", value: "6" },
       { label: "Certifications", value: "En cours" },
       { label: "Passion", value: "∞" },
     ],
@@ -116,7 +116,7 @@ const defaultData: PortfolioData = {
   journey: [
     { 
       id: 1, 
-      year: "2026", 
+      year: "2027", 
       title: "Licence 3 En cours", 
       desc: "Spécialité : IA & Big Data", 
       icon: "ri-graduation-cap-fill" 
@@ -124,17 +124,18 @@ const defaultData: PortfolioData = {
     { 
       id: 2, 
       year: "2023", 
-      title: "Baccalauréat 2", 
+      title: "Baccalauréat 2 Série D", 
       desc: "Mention Assez-Bien", 
       icon: "ri-book-2-fill" 
     },
   ],
   projects: [
-    { id: 1, title: "Système de Location de Cassette", desc: "Application Java de gestion d’un club de location de cassettes vidéo. Le système permet l’administration des abonnés, titres, catégories, cassettes et locations.", tags: "Java", img: "https://plus.unsplash.com/premium_photo-1729777215342-c1758de6dee5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bG9jYXRpb24lMjBkZSUyMGNhc3NldHRlfGVufDB8fDB8fHww", link: "https://github.com/LidXo/Syst-me-de-Gestion-de-Location-de-Cassettes" },
-    { id: 2, title: "Application de Gestion de Stock", desc: "Application Java (Maven) de gestion de stock d'entreprise. Sécurisée avec BCrypt et connectée à une base de données MySQL. Interface intuitive pour suivre les produits, fournisseurs, commandes et niveaux de stock en temps réel.", tags: "Java", img: "https://plus.unsplash.com/premium_photo-1681426710520-7c56c9f563d2?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", link: "https://github.com/LidXo/Gestion_Stock" },
-    { id: 3, title: "Bibliothèque", desc: "Système informatisé de gestion des ressources documentaires et des opérations de prêt/retour. Fonctionnalités : catalogage, gestion adhérents, suivi emprunts/retours, calcul pénalités retard, réservations, recherche multicritère, statistiques. Architecture MVC, transactions ACID.", tags: "Java", img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=800&auto=format&fit=crop", link: "https://github.com/LidXo/bibliotheque" },
-    { id: 4, title: "Site E-Commerce", desc: "Site e-commerce statique mono-fichier — HTML5 / CSS3 / Vanilla JS. Catalogue filtrable, panier persistant (localStorage), gestion des favoris, panel admin intégré (ajout/suppression/activation produits), checkout multi-étapes, code promo, notifications toast, responsive design, accessibilité ARIA, zéro dépendance externe. Site complet, packagé et prêt à être hébergé.", tags: "HTML, CSS, JS", img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=800&auto=format&fit=crop", link: "https://github.com/LidXo/Site_E-Commerce" },
-    { id: 5, title: "Face ID", desc: "Système de reconnaissance faciale en Python capturant les visages en temps réel via webcam et les envoyant automatiquement à un bot Telegram pour traitement et notification. Intègre OpenCV pour la détection, face_recognition pour l'identification faciale, et l'API python-telegram-bot pour les notifications asynchrones instantanées.", tags: "Python", img: "https://media.istockphoto.com/id/1491338253/photo/female-scans-face-using-facial-recognition-system-on-smartphone-for-biometric-identification.webp?s=1024x1024&w=is&k=20&c=ow1tpfoaYSh7zpjiDGGOs5UuWpBE6ZpE1k2MOPi4Vl0=", link: "https://github.com/LidXo/faceid " },
+    { id: 1, title: "Analyse et Nettoyage d'un Jeu de Données de Ventes", desc: "Projet de Data Analysis réalisé avec Python, Pandas et Matplotlib à partir du jeu de données UCI Online Retail. Il porte sur l'audit de qualité, le nettoyage et la préparation des données, suivis d'une analyse exploratoire des ventes : évolution du chiffre d'affaires, performance des produits, comportement des clients et répartition géographique du revenu. Les résultats sont présentés à travers des visualisations et des indicateurs clés.", tags: "Python, Pandas, Matplotlib, NumPy, Jupyter", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D", link: "https://github.com/LidXo/Analyse-et-Nettoyage-d-un-Jeu-de-Donn-es-de-Ventes " },
+    { id: 2, title: "Système de Location de Cassette", desc: "Application Java de gestion d’un club de location de cassettes vidéo. Le système permet l’administration des abonnés, titres, catégories, cassettes et locations.", tags: "Java", img: "https://plus.unsplash.com/premium_photo-1729777215342-c1758de6dee5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bG9jYXRpb24lMjBkZSUyMGNhc3NldHRlfGVufDB8fDB8fHww", link: "https://github.com/LidXo/Syst-me-de-Gestion-de-Location-de-Cassettes" },
+    { id: 3, title: "Application de Gestion de Stock", desc: "Application Java (Maven) de gestion de stock d'entreprise. Sécurisée avec BCrypt et connectée à une base de données MySQL. Interface intuitive pour suivre les produits, fournisseurs, commandes et niveaux de stock en temps réel.", tags: "Java", img: "https://plus.unsplash.com/premium_photo-1681426710520-7c56c9f563d2?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", link: "https://github.com/LidXo/Gestion_Stock" },
+    { id: 4, title: "Bibliothèque", desc: "Système informatisé de gestion des ressources documentaires et des opérations de prêt/retour. Fonctionnalités : catalogage, gestion adhérents, suivi emprunts/retours, calcul pénalités retard, réservations, recherche multicritère, statistiques. Architecture MVC, transactions ACID.", tags: "Java", img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=800&auto=format&fit=crop", link: "https://github.com/LidXo/bibliotheque" },
+    { id: 5, title: "Site E-Commerce", desc: "Site e-commerce statique mono-fichier — HTML5 / CSS3 / Vanilla JS. Catalogue filtrable, panier persistant (localStorage), gestion des favoris, panel admin intégré (ajout/suppression/activation produits), checkout multi-étapes, code promo, notifications toast, responsive design, accessibilité ARIA, zéro dépendance externe. Site complet, packagé et prêt à être hébergé.", tags: "HTML, CSS, JS", img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=800&auto=format&fit=crop", link: "https://github.com/LidXo/Site_E-Commerce" },
+    { id: 6, title: "Face ID", desc: "Système de reconnaissance faciale en Python capturant les visages en temps réel via webcam et les envoyant automatiquement à un bot Telegram pour traitement et notification. Intègre OpenCV pour la détection, face_recognition pour l'identification faciale, et l'API python-telegram-bot pour les notifications asynchrones instantanées.", tags: "Python", img: "https://media.istockphoto.com/id/1491338253/photo/female-scans-face-using-facial-recognition-system-on-smartphone-for-biometric-identification.webp?s=1024x1024&w=is&k=20&c=ow1tpfoaYSh7zpjiDGGOs5UuWpBE6ZpE1k2MOPi4Vl0=", link: "https://github.com/LidXo/faceid " },
       
         
 ],
@@ -144,9 +145,8 @@ const defaultData: PortfolioData = {
       title: "Langages",
       items: [
         { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", usage: "Backend & Data", level: 85 },
-        { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg", usage: "Backend & Logic", level: 60 },
+        { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg", usage: "Backend & Logic", level: 40 },
         { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", usage: "Frontend Logic", level: 60 },
-        { name: "C", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg", usage: "Bases & Algorithmes", level: 20 },
         { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", usage: "Structure Web", level: 85 },
         { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", usage: "Design Web", level: 45 }
       ]
@@ -158,6 +158,8 @@ const defaultData: PortfolioData = {
         { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", usage: "SGBDR", level: 80 },
         { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", usage: "SGBDR Avancé", level: 60 },
         { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", usage: "NoSQL", level: 50 },
+        { name: "SQLite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg", usage: "SGBDR", level: 50 },
+      
       ]
     },
 
@@ -169,37 +171,35 @@ const defaultData: PortfolioData = {
         { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", usage: "Collaboration", level: 80 },
         { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", usage: "IDE Principal", level: 90 },
         { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg", usage: "OS", level: 75 },
-        { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg", usage: "API Testing", level: 65 },
+        { name: "Jupyter Notebook", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg", usage: "Data Analysis", level: 65 },
+        
       ]
     },
-  ],
-  interests: [
-    { id: 1, name: "Gaming", icon: "ri-gamepad-line" },
-    { id: 2, name: "Voyage", icon: "ri-plane-line" },
-    { id: 3, name: "Musique", icon: "ri-headphone-line" },
-    { id: 4, name: "Lecture", icon: "ri-book-open-line" },
-  ],
-  certifications: [
-    { id: 1, type: "attestation", name: "Networking Essentials CISCO", date: "2024", pdfUri: "/Networking_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_377680c8-b6ef-4768-ad6b-af42d2daf212.pdf", link: "" },
-    { id: 2, type: "attestation", name: "Alumni Cybersecurity Essentials", date: "2024", pdfUri: "/Alumni_Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_9e3d9e2b-3049-4fa2-96b8-8bc6c56afcc4.pdf", link: "" },
-    { id: 3, type: "attestation", name: "Cybersecurity Essentials", date: "2024", pdfUri: "/Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_264d6df7-b0c8-4bfa-929d-b76bbe13d134.pdf", link: "" },
-    { id: 4, type: "attestation", name: "Get Connected", date: "2024", pdfUri: "/Get_Connected_certificate_lidao-abiyi-ipnetinstitute-com_6ba40525-6f4e-4555-98eb-9154ffd6441b.pdf", link: "" },
-    { id: 5, type: "attestation", name: "NDG Linux Essentials", date: "2024", pdfUri: "/Partner-_NDG_Linux_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_4d00fb94-3d30-416f-98a5-d85420f9dfc9.pdf", link: "" },
-    { id: 6, type: "attestation", name: "Présentation de l’engineering données dans Azure", date: "2026", pdfUri: "/Présentation de l'engineering données dans Azure.pdf", link: "" },
-  ],
-  contact: {
-    email: "lidxo.dev@gmail.com",
-    location: "Lomé, Togo",
-    status: "Open to work",
-    socials: {
-      linkedin: "https://www.linkedin.com/in/abiyilidao/",
-      github: "https://github.com/LidXo",
-      twitter: "https://x.com/abiyilidao6",
-      whatsapp: "https://wa.me/22870289212",
-      instagram: "https://www.instagram.com/lid_xo5?igsh=MW43d2ltbzk2Ym80Yg==",
-    },
-  },
-};
+
+    
+
+      ],
+      
+      certifications: [
+        { id: 1, type: "attestation", name: "Networking Essentials CISCO", date: "2024", pdfUri: "/Networking_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_377680c8-b6ef-4768-ad6b-af42d2daf212.pdf", link: "" },
+        { id: 2, type: "attestation", name: "Alumni Cybersecurity Essentials", date: "2024", pdfUri: "/Alumni_Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_9e3d9e2b-3049-4fa2-96b8-8bc6c56afcc4.pdf", link: "" },
+        { id: 3, type: "attestation", name: "Cybersecurity Essentials", date: "2024", pdfUri: "/Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_264d6df7-b0c8-4bfa-929d-b76bbe13d134.pdf", link: "" },
+        { id: 4, type: "attestation", name: "Get Connected", date: "2024", pdfUri: "/Get_Connected_certificate_lidao-abiyi-ipnetinstitute-com_6ba40525-6f4e-4555-98eb-9154ffd6441b.pdf", link: "" },
+        { id: 5, type: "attestation", name: "NDG Linux Essentials", date: "2024", pdfUri: "/Partner-_NDG_Linux_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_4d00fb94-3d30-416f-98a5-d85420f9dfc9.pdf", link: "" },
+        { id: 6, type: "attestation", name: "Présentation de l’engineering données dans Azure", date: "2026", pdfUri: "/Présentation de l'engineering données dans Azure.pdf", link: "" },
+      ],
+      contact: {
+        email: "lidxo.dev@gmail.com",
+        location: "Lomé, Togo",
+        status: "Open to work",
+        socials: {
+          linkedin: "https://www.linkedin.com/in/abiyilidao/",
+          github: "https://github.com/LidXo",
+          twitter: "https://x.com/abiyilidao6",
+          whatsapp: "https://wa.me/22870289212",
+        },
+      },
+    };
 
 interface PortfolioContextType {
   data: PortfolioData;
