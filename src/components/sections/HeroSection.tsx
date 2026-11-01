@@ -111,7 +111,7 @@ const HeroSection: React.FC = () => {
               <img 
                 src={profileImg}
                 alt="Portrait professionnel de Lidao ABIYI" 
-                className="w-full h-full object-cover object-top scale-125 translate-y-3 origin-top"
+                className="w-full h-full object-cover object-[center_15%]"
                 loading="eager"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent pointer-events-none" />
