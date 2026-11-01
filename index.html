@@ -3,38 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Cache control headers to prevent persistent caching issues on mobile -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    
-    <title>Lidao | IA & BigData Student</title>
+
+    <!-- SEO -->
+    <title>ABIYI Lidao | Étudiant en IA & Big Data — Portfolio</title>
     <meta
       name="description"
-      content="Portfolio de Lidao ABIYI - Étudiant en IA & Big Data. Développeur passionné créant des solutions innovantes."
+      content="Découvrez le portfolio d'ABIYI Lidao, étudiant en informatique spécialisé en IA et Big Data. Projets en Python, Data Analysis, développement logiciel et bases de données."
     />
-    <meta property="og:title" content="Lidao | IA & BigData Student" />
-    <meta
-      property="og:description"
-      content="Portfolio de Lidao ABIYI - Développeur IA & Big Data"
-    />
+    <meta name="author" content="ABIYI Lidao" />
+    <meta name="keywords" content="ABIYI Lidao, portfolio, IA, Big Data, Data Engineer, Python, Data Analysis, étudiant informatique, Lomé, Togo" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ABIYI Lidao | Étudiant en IA & Big Data — Portfolio" />
+    <meta property="og:description" content="Découvrez le portfolio d'ABIYI Lidao, étudiant en informatique spécialisé en IA et Big Data. Projets en Python, Data Analysis, développement logiciel et bases de données." />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ABIYI Lidao | Portfolio IA & Big Data" />
+    <meta name="twitter:description" content="Portfolio d'ABIYI Lidao — Étudiant en informatique, spécialisé IA & Big Data. Projets Data Analysis, Python, Java." />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- Safety script to unregister any existing service workers -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-          for(let registration of registrations) {
-            registration.unregister();
-          }
-        });
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "ABIYI Lidao",
+      "url": "https://lidxo.netlify.app",
+      "jobTitle": "Étudiant en Informatique — IA & Big Data",
+      "knowsAbout": ["Python", "Data Analysis", "Java", "SQL", "Machine Learning"],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "ESGIS"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lomé",
+        "addressCountry": "TG"
       }
+    }
     </script>
   </head>
   <body>

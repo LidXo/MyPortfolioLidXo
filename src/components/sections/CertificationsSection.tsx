@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolio } from '@/contexts/PortfolioContext';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
 import 'remixicon/fonts/remixicon.css';
 
 type FilterType = 'all' | 'certification' | 'attestation';
@@ -10,7 +9,6 @@ const CertificationsSection: React.FC = () => {
   const { data } = usePortfolio();
   const { certifications } = data;
   const [filter, setFilter] = useState<FilterType>('all');
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const counts = {
     all: certifications.length,
@@ -23,161 +21,136 @@ const CertificationsSection: React.FC = () => {
     : certifications.filter(c => c.type === filter);
 
   const filters: { type: FilterType; label: string }[] = [
-    { type: 'all', label: 'Tout' },
-    { type: 'certification', label: 'Certifications' },
+    { type: 'all', label: 'Toutes' },
     { type: 'attestation', label: 'Attestations' },
+    { type: 'certification', label: 'Certifications' },
   ];
 
   return (
-    <section id="certifications" className="py-20 relative">
+    <section id="certifications" className="py-24 relative overflow-hidden bg-background border-t border-border/40">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold mb-8 text-center"
-        >
-          Certifications & Attestations <span className="text-primary">internationales</span>
-        </motion.h2>
         
-        {/* Filters */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center gap-4 mb-12 flex-wrap"
-        >
+        {/* En-tête */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-3">
+            Validations académiques &amp; industrielles
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight text-foreground">
+            Certifications &amp; <span className="gradient-text">Attestations</span>
+          </h2>
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+            Certificats et attestations de formation validés auprès d'organismes de référence (Cisco Networking Academy, Microsoft).
+          </p>
+        </div>
+        
+        {/* Boutons de filtrage */}
+        <div className="flex justify-center gap-3 mb-12 flex-wrap">
           {filters.map(({ type, label }) => (
             <button
               key={type}
               onClick={() => setFilter(type)}
-              className={`px-6 py-2 rounded-full font-medium transition-all ${
+              className={`px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 filter === type
-                  ? 'border-2 border-primary text-primary bg-primary/10'
-                  : 'border border-border text-muted-foreground hover:bg-secondary hover:text-secondary-foreground hover:border-secondary'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'bg-card border border-border text-muted-foreground hover:bg-muted/60 hover:text-foreground'
               }`}
             >
               {label} ({counts[type]})
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Grid */}
-        <div className="flex flex-wrap justify-center gap-6 min-h-[200px]">
+        {/* Grille des certifications */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {filteredCerts.length > 0 ? (
               filteredCerts.map((cert) => (
                 <motion.div
                   key={cert.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  whileHover={{ scale: 1.02 }}
-                  onClick={() => {
-                    if (cert.image) {
-                       setSelectedImage(cert.image);
-                    } else if (cert.pdfUri) {
-                       window.open(cert.pdfUri, '_blank');
-                    } else if (cert.link) {
-                       window.open(cert.link, '_blank');
-                    }
-                  }}
-                  className={`p-6 glass-card rounded-xl border border-primary/20 flex flex-col items-center justify-center gap-4 hover:bg-primary/10 transition-all group w-full sm:w-64 relative overflow-hidden cursor-pointer`}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.25 }}
+                  className="p-6 rounded-2xl bg-card border border-border shadow-sm hover:shadow-lg hover:border-primary/40 transition-all flex flex-col justify-between group"
                 >
-                  {/* Type Badge */}
-                  <div className="absolute top-2 right-2 text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-secondary text-secondary-foreground shadow-sm">
-                    {cert.type === 'certification' ? 'Certif.' : 'Attest.'}
-                  </div>
-                  
-                  {/* Image or Placeholder or PDF Icon */}
-                  <div className="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center overflow-hidden border border-secondary/20 group-hover:scale-110 transition-transform relative z-0">
-                    {cert.image ? (
-                      <img 
-                        src={cert.image} 
-                        alt={cert.name} 
-                        className="w-full h-full object-cover"
-                      />
-                    ) : cert.pdfUri ? (
-                      <i className="ri-file-pdf-2-line text-4xl text-red-500" />
-                    ) : cert.link ? (
-                      <i className="ri-link text-3xl text-blue-500" />
-                    ) : (
-                      <i className={`${cert.type === 'certification' ? 'ri-award-line' : 'ri-profile-line'} text-3xl text-secondary`} />
-                    )}
+                  <div>
+                    {/* Badge type et date */}
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className="px-2.5 py-1 text-[11px] font-bold rounded-md bg-primary/10 text-primary border border-primary/20 uppercase tracking-wide">
+                        {cert.type === 'certification' ? 'Certification' : 'Attestation'}
+                      </span>
+                      <span className="text-xs font-semibold text-muted-foreground">
+                        {cert.date}
+                      </span>
+                    </div>
+
+                    {/* Titre */}
+                    <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors leading-snug mb-1.5">
+                      {cert.name}
+                    </h3>
+
+                    {/* Émetteur officiel */}
+                    <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-4 flex items-center gap-1.5">
+                      <i className="ri-building-line text-primary" aria-hidden="true" />
+                      <span>{cert.issuer}</span>
+                    </p>
+
+                    {/* Compétences associées */}
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {cert.skills.map((skill) => (
+                        <span 
+                          key={skill}
+                          className="px-2 py-0.5 text-[10px] sm:text-[11px] font-medium rounded bg-background border border-border/80 text-muted-foreground"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
-                  <div className="text-center z-10 w-full">
-                    <div className="font-bold text-lg text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
-                      {cert.name}
-                    </div>
-                    <div className="text-sm text-muted-foreground mb-3">{cert.date}</div>
-                    
-                    {/* Action Button */}
-                    <div className="flex justify-center gap-2">
-                      {cert.pdfUri && (
-                          <a
-                            href={cert.pdfUri}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-colors"
-                          >
-                            <i className="ri-file-pdf-line" /> PDF
-                          </a>
-                      )}
-                      {cert.link && (
-                          <a
-                            href={cert.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                          >
-                            <i className="ri-external-link-line" /> Lien
-                          </a>
-                      )}
-                      {cert.image && !cert.link && !cert.pdfUri && (
-                          <span className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
-                              <i className="ri-eye-line" /> Voir
-                          </span>
-                      )}
-                    </div>
+                  {/* Bouton consultation du justificatif PDF */}
+                  <div className="pt-4 border-t border-border/60">
+                    {cert.pdfUri ? (
+                      <a
+                        href={cert.pdfUri}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl bg-background border border-border hover:border-primary/40 text-foreground group-hover:text-primary transition-colors shadow-sm"
+                      >
+                        <i className="ri-file-pdf-2-line text-red-500 text-base" aria-hidden="true" />
+                        <span>Consulter l'attestation PDF</span>
+                        <i className="ri-external-link-line text-xs opacity-60 ml-auto" aria-hidden="true" />
+                      </a>
+                    ) : cert.link ? (
+                      <a
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl bg-background border border-border hover:border-primary/40 text-foreground group-hover:text-primary transition-colors shadow-sm"
+                      >
+                        <i className="ri-link text-blue-500 text-base" aria-hidden="true" />
+                        <span>Vérifier en ligne</span>
+                        <i className="ri-external-link-line text-xs opacity-60 ml-auto" aria-hidden="true" />
+                      </a>
+                    ) : (
+                      <span className="text-xs text-muted-foreground italic">
+                        Document disponible sur demande
+                      </span>
+                    )}
                   </div>
                 </motion.div>
               ))
             ) : (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="flex flex-col items-center justify-center text-center p-8 w-full max-w-md mt-10"
-              >
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary shadow-sm border border-primary/20">
-                  <i className="ri-folder-info-line text-3xl" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">Oups ! Rien à voir ici.</h3>
-                <p className="text-muted-foreground text-lg">
-                  Il n'y a pas encore de {filter === 'certification' ? 'certifications' : filter === 'attestation' ? 'attestations' : 'documents'} dans cette catégorie. Repassez plus tard !
-                </p>
-              </motion.div>
+              <div className="col-span-full py-12 text-center text-muted-foreground">
+                <i className="ri-folder-info-line text-4xl mb-2 inline-block opacity-40" aria-hidden="true" />
+                <p>Aucune certification enregistrée pour ce filtre.</p>
+              </div>
             )}
           </AnimatePresence>
         </div>
-      </div>
 
-      {/* Image Modal */}
-      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-3xl bg-background/95 backdrop-blur-lg border-border">
-          {selectedImage && (
-            <img 
-              src={selectedImage} 
-              alt="Certificate" 
-              className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-            />
-          )}
-        </DialogContent>
-      </Dialog>
+      </div>
     </section>
   );
 };

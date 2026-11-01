@@ -5,27 +5,24 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import JourneySection from '@/components/sections/JourneySection';
+import TechnologiesSection from '@/components/sections/TechnologiesSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
-import SkillsSection from '@/components/sections/SkillsSection';
 import CertificationsSection from '@/components/sections/CertificationsSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/Footer';
 import 'remixicon/fonts/remixicon.css';
-import TechnologiesSection from '@/components/sections/TechnologiesSection';
 
 const Index = () => {
-
   return (
     <PortfolioProvider>
-      <div className="relative">
+      <div className="relative min-h-screen bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
         <BackgroundBlobs />
         <Navbar />
         
-        <main>
+        <main id="main-content">
           <HeroSection />
           <AboutSection />
           <JourneySection />
-
           <TechnologiesSection />
           <ProjectsSection />
           <CertificationsSection />

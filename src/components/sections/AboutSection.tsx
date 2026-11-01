@@ -8,51 +8,103 @@ const AboutSection: React.FC = () => {
   const { about } = data;
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
-      
+    <section id="about" className="py-24 relative overflow-hidden bg-background/50 border-t border-border/40">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.h2 
+        
+        {/* Titre de section */}
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold mb-12 text-center"
+          className="text-center mb-16"
         >
-          À Propos <span className="text-primary">de moi</span>
-        </motion.h2>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-3">
+            Présentation &amp; Démarche
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight">
+            À Propos <span className="gradient-text">de Moi</span>
+          </h2>
+        </motion.div>
         
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Colonne gauche : Parcours & Texte de présentation */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass-card p-8 rounded-2xl relative"
+            className="lg:col-span-7 space-y-6"
           >
-            <i className="ri-double-quotes-l text-4xl text-primary/50 absolute top-4 left-4" />
-            <p className="text-muted-foreground text-lg leading-relaxed relative z-10 pl-4">
-              {about.text}
-            </p>
+            <div className="glass-card p-8 rounded-2xl border border-border/70 space-y-5">
+              <div className="flex items-center gap-3 text-primary mb-2">
+                <i className="ri-user-search-line text-2xl" aria-hidden="true" />
+                <h3 className="text-xl font-bold text-foreground">Mon profil académique &amp; technique</h3>
+              </div>
+              
+              {about.paragraphs.map((paragraph, idx) => (
+                <p key={idx} className="text-muted-foreground text-base sm:text-lg leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            {/* Statistiques factuelles et professionnelles */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+              {about.stats.map((stat, index) => (
+                <div 
+                  key={index}
+                  className="bg-card p-4 rounded-xl border border-border text-center shadow-sm"
+                >
+                  <i className={`${stat.icon} text-2xl text-primary mb-1 inline-block`} aria-hidden="true" />
+                  <div className="text-xl sm:text-2xl font-black text-foreground">{stat.value}</div>
+                  <div className="text-xs text-muted-foreground font-medium mt-0.5">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </motion.div>
           
+          {/* Colonne droite : Objectifs d'apprentissage concrets */}
           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-6"
+            className="lg:col-span-5"
           >
-            {about.stats.map((stat, index) => (
-              <motion.div 
-                key={index}
-                whileHover={{ scale: 1.02 }}
-                className="glass-card p-6 rounded-2xl text-center hover:border-primary/50 transition-colors group"
-              >
-                <div className="text-4xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </motion.div>
-            ))}
+            <div className="glass-card p-8 rounded-2xl border border-border/70">
+              <div className="flex items-center gap-3 text-primary mb-4">
+                <i className="ri-compass-3-line text-2xl" aria-hidden="true" />
+                <h3 className="text-xl font-bold text-foreground">Mes Objectifs d'Apprentissage</h3>
+              </div>
+
+              <p className="text-xs sm:text-sm text-muted-foreground mb-6 leading-relaxed">
+                Voici les domaines et compétences que j'approfondis actuellement par la pratique et des projets personnels :
+              </p>
+              
+              <ul className="space-y-3.5">
+                {about.objectives.map((objective, idx) => (
+                  <li 
+                    key={idx}
+                    className="flex items-start gap-3 p-3 rounded-xl bg-background/70 border border-border/60 hover:border-primary/40 transition-colors"
+                  >
+                    <div className="w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                      <i className="ri-check-line text-sm font-bold" aria-hidden="true" />
+                    </div>
+                    <span className="text-sm font-medium text-foreground leading-snug">
+                      {objective}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/20 text-xs text-muted-foreground flex items-start gap-2.5">
+                <i className="ri-information-line text-primary text-base shrink-0 mt-0.5" aria-hidden="true" />
+                <span>
+                  Ces axes constituent ma feuille de route vers l'ingénierie des données et le Machine Learning appliqué.
+                </span>
+              </div>
+            </div>
           </motion.div>
+
         </div>
       </div>
     </section>

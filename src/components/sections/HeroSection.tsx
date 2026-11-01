@@ -13,185 +13,137 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-24 pb-12 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+    <section id="home" className="min-h-[92vh] flex items-center justify-center pt-28 pb-16 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
         
-        {/* Left Column: Image & Floating Icons */}
+        {/* Colonne gauche (Texte) sur grand écran, prioritaire sur mobile */}
         <motion.div 
-          className="relative flex justify-center lg:justify-end order-2 lg:order-1"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          className="lg:col-span-7 flex flex-col justify-center order-1"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Tight wrapper for accurate absolute positioning */}
-          <div className="relative">
-            {/* Main Image Card */}
-            <div className="relative w-[300px] sm:w-[350px] lg:w-[420px] h-[400px] sm:h-[480px] lg:h-[580px] rounded-3xl overflow-hidden shadow-2xl border-4 border-card bg-card/50">
-              <img 
-                src={profileImg}
-                alt="Lidao ABIYI" 
-                className="w-full h-full object-cover object-top scale-105 transform origin-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent mix-blend-overlay"></div>
-            </div>
-
-            {/* Floating Icons */}
-            <motion.div 
-              animate={{ y: [-10, 10, -10] }} 
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute top-10 -left-8 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl border border-border z-10"
-            >
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" className="w-10 h-10" alt="Python" />
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [10, -10, 10] }} 
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-              className="absolute top-1/2 -left-10 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl text-[#336791] border border-border z-10"
-            >
-              <i className="ri-database-2-fill" />
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [-8, 8, -8] }} 
-              transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
-              className="absolute bottom-16 -left-6 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl text-[#61DAFB] border border-border z-10"
-            >
-              <i className="ri-reactjs-fill" />
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [8, -8, 8] }} 
-              transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
-              className="absolute top-24 -right-8 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl text-[#f89820] border border-border z-10"
-            >
-              <i className="ri-java-fill" />
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [-10, 10, -10] }} 
-              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-              className="absolute bottom-32 -right-10 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center text-4xl text-[#F05032] border border-border z-10"
-            >
-              <i className="ri-git-branch-fill" />
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Right Column: Content */}
-        <motion.div 
-          className="order-1 lg:order-2 flex flex-col justify-center"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          {/* Top Badges */}
-          <div className="flex flex-wrap gap-3 mb-6">
-            {hero.badges.map((badge, index) => {
-              if (index === 0) return (
-                <span key={badge} className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-bold tracking-widest uppercase shadow-sm">
-                  {badge}
-                </span>
-              );
-              if (index === 1) return (
-                <span key={badge} className="px-4 py-1.5 rounded-full border-2 border-primary text-primary bg-background text-xs font-bold tracking-widest uppercase shadow-sm">
-                  {badge}
-                </span>
-              );
-              if (index === 2) return (
-                <span key={badge} className="px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-bold tracking-widest uppercase shadow-sm">
-                  {badge}
-                </span>
-              );
-              return (
-                <span key={badge} className="px-4 py-1.5 rounded-full bg-foreground text-background text-xs font-bold tracking-widest uppercase shadow-sm">
-                  {badge}
-                </span>
-              );
-            })}
+          {/* Badge statut / positionnement */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary w-fit mb-6 shadow-sm">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600" />
+            </span>
+            <span className="text-xs font-semibold tracking-wide uppercase">
+              {contact.status} &bull; Lomé, Togo
+            </span>
           </div>
 
-          {/* Name & Title */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground leading-tight tracking-tighter mb-4">
-            {hero.firstName} {hero.lastName}
+          {/* Nom */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-foreground tracking-tight leading-[1.1] mb-4">
+            {hero.firstName} <span className="gradient-text">{hero.lastName}</span>
           </h1>
           
-          <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-8 leading-snug">
-            <span className="text-primary/80 italic font-medium mr-3" style={{ fontFamily: 'Georgia, serif' }}>
-              {hero.rolePrefix}
-            </span>
-            <span className="tracking-tight">{hero.roleSuffix}</span>
-          </div>
+          {/* Titre professionnel exact */}
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground/90 mb-6 leading-snug">
+            {hero.title}
+          </h2>
 
-          {/* Subtitle */}
-          <div className="text-muted-foreground text-sm font-bold tracking-[0.2em] uppercase mb-8 flex items-center gap-4">
-            {hero.techStack.map((tech, index) => (
-              <React.Fragment key={tech}>
-                <span>{tech}</span>
-                {index < hero.techStack.length - 1 && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50"></span>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
+          {/* Description claire et honnête */}
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8 max-w-2xl font-normal">
+            {hero.description}
+          </p>
 
-          {/* Contact Info */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mb-10 text-sm font-medium">
-            <a href={`mailto:${contact.email}`} className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
-              <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center">
-                <i className="ri-mail-fill" />
-              </div>
-              {contact.email}
-            </a>
-            <a href={contact.socials.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
-              <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center">
-                <i className="ri-phone-fill" />
-              </div>
-              +228 70 28 92 12
-            </a>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4 mb-10">
+          {/* Boutons d'action principaux */}
+          <div className="flex flex-wrap items-center gap-4 mb-8">
             <button 
               onClick={() => scrollToSection('projects')}
-              className="px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-lg shadow-primary/20 hover:-translate-y-1"
+              aria-label="Découvrir mes projets"
+              className="px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all flex items-center gap-2.5 shadow-lg shadow-primary/25 hover:-translate-y-0.5 active:translate-y-0"
             >
-              Voir mes projets
-              <i className="ri-arrow-right-line" />
+              <span>Découvrir mes projets</span>
+              <i className="ri-arrow-right-line text-lg" aria-hidden="true" />
             </button>
+
             <a 
               href={hero.cvLink}
               download
-              className="px-8 py-3.5 rounded-full border-2 border-foreground text-foreground font-bold hover:bg-foreground hover:text-background transition-all flex items-center gap-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Télécharger mon curriculum vitae"
+              className="px-7 py-3.5 rounded-xl border border-border bg-card/60 backdrop-blur-sm text-foreground font-semibold hover:bg-foreground hover:text-background transition-all flex items-center gap-2.5 shadow-sm hover:-translate-y-0.5 active:translate-y-0"
             >
-              Mon CV
-              <i className="ri-download-line" />
+              <i className="ri-download-2-line text-lg" aria-hidden="true" />
+              <span>Télécharger mon CV</span>
             </a>
-          </div>
 
-          {/* Social Icons */}
-          <div className="flex items-center gap-4">
             {contact.socials.github && (
-              <a href={contact.socials.github} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center text-foreground hover:bg-foreground hover:text-background transition-all shadow-sm">
-                <i className="ri-github-fill text-lg" />
+              <a 
+                href={contact.socials.github} 
+                target="_blank" 
+                rel="noreferrer"
+                aria-label="Profil GitHub d'ABIYI Lidao"
+                className="w-12 h-12 rounded-xl border border-border bg-card/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:text-primary hover:border-primary/50 transition-all shadow-sm"
+              >
+                <i className="ri-github-fill text-2xl" aria-hidden="true" />
               </a>
             )}
+
             {contact.socials.linkedin && (
-              <a href={contact.socials.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center text-foreground hover:bg-[#0077b5] hover:text-white transition-all shadow-sm hover:border-[#0077b5]">
-                <i className="ri-linkedin-fill text-lg" />
+              <a 
+                href={contact.socials.linkedin} 
+                target="_blank" 
+                rel="noreferrer"
+                aria-label="Profil LinkedIn d'ABIYI Lidao"
+                className="w-12 h-12 rounded-xl border border-border bg-card/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:text-[#0077b5] hover:border-[#0077b5]/50 transition-all shadow-sm"
+              >
+                <i className="ri-linkedin-fill text-2xl" aria-hidden="true" />
               </a>
             )}
-            {contact.socials.twitter && (
-              <a href={contact.socials.twitter} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center text-foreground hover:bg-black hover:text-white transition-all shadow-sm">
-                <i className="ri-twitter-x-fill text-lg" />
-              </a>
-            )}
-            {contact.socials.instagram && (
-              <a href={contact.socials.instagram} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-border bg-card flex items-center justify-center text-foreground hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-500 hover:text-white hover:border-transparent transition-all shadow-sm">
-                <i className="ri-instagram-line text-lg" />
-              </a>
-            )}
+          </div>
+        </motion.div>
+
+        {/* Colonne droite (Photo & Icônes flottantes pertinentes) */}
+        <motion.div 
+          className="lg:col-span-5 flex justify-center order-2"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+        >
+          <div className="relative">
+            {/* Cadre de photo principal */}
+            <div className="relative w-[280px] sm:w-[320px] lg:w-[360px] h-[370px] sm:h-[420px] lg:h-[470px] rounded-3xl overflow-hidden shadow-2xl border-2 border-border/80 bg-card/80 backdrop-blur-sm">
+              <img 
+                src={profileImg}
+                alt="Portrait professionnel de Lidao ABIYI" 
+                className="w-full h-full object-cover object-top scale-125 translate-y-3 origin-top"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent pointer-events-none" />
+            </div>
+
+            {/* Floating Tech Badges (pertinents pour Data/IA/Système) */}
+            <motion.div 
+              animate={{ y: [-6, 6, -6] }} 
+              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+              className="absolute -top-4 -left-6 px-3.5 py-2 bg-card/90 backdrop-blur-md rounded-2xl shadow-lg border border-border/80 flex items-center gap-2.5 z-20"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" className="w-6 h-6" alt="Python" />
+              <span className="text-xs font-bold text-foreground">Python &amp; Pandas</span>
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [6, -6, 6] }} 
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              className="absolute top-1/2 -right-8 px-3.5 py-2 bg-card/90 backdrop-blur-md rounded-2xl shadow-lg border border-border/80 flex items-center gap-2.5 z-20"
+            >
+              <i className="ri-database-2-line text-xl text-primary" aria-hidden="true" />
+              <span className="text-xs font-bold text-foreground">SQL &amp; Data</span>
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [-5, 5, -5] }} 
+              transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
+              className="absolute -bottom-4 left-6 px-3.5 py-2 bg-card/90 backdrop-blur-md rounded-2xl shadow-lg border border-border/80 flex items-center gap-2.5 z-20"
+            >
+              <i className="ri-brain-line text-xl text-secondary" aria-hidden="true" />
+              <span className="text-xs font-bold text-foreground">IA &amp; Big Data</span>
+            </motion.div>
           </div>
         </motion.div>
 

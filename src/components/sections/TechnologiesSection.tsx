@@ -1,130 +1,152 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolio } from '@/contexts/PortfolioContext';
+import { SkillLevel } from '@/data/portfolio-data';
 import 'remixicon/fonts/remixicon.css';
+
+const levelConfig: Record<SkillLevel, { label: string; bg: string; text: string; border: string }> = {
+  beginner: {
+    label: 'Débutant',
+    bg: 'bg-slate-100',
+    text: 'text-slate-700',
+    border: 'border-slate-300'
+  },
+  intermediate: {
+    label: 'Intermédiaire',
+    bg: 'bg-blue-50',
+    text: 'text-blue-700',
+    border: 'border-blue-200'
+  },
+  operational: {
+    label: 'Opérationnel',
+    bg: 'bg-emerald-50',
+    text: 'text-emerald-700',
+    border: 'border-emerald-200'
+  },
+  advanced: {
+    label: 'Avancé',
+    bg: 'bg-purple-50',
+    text: 'text-purple-700',
+    border: 'border-purple-200'
+  }
+};
 
 const TechnologiesSection: React.FC = () => {
   const { data } = usePortfolio();
   const { technologies } = data;
-  const [activeTab, setActiveTab] = useState(technologies[0]?.id);
-  const [activeCategory, setActiveCategory] = useState(technologies[0]);
+  const [activeTab, setActiveTab] = useState(technologies[0]?.id || 'languages');
 
-  useEffect(() => {
-    const found = technologies.find(t => t.id === activeTab);
-    if (found) setActiveCategory(found);
-  }, [activeTab, technologies]);
+  const activeCategory = technologies.find(t => t.id === activeTab) || technologies[0];
 
   return (
-    <section id="technologies" className="py-24 relative min-h-[80vh] flex flex-col items-center justify-start overflow-hidden bg-background">
-      
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-background z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] opacity-50" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] opacity-50" />
-      </div>
-
-      <div className="container relative z-10 mx-auto px-4 max-w-6xl">
+    <section id="technologies" className="py-24 relative overflow-hidden bg-background border-t border-border/40">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* Header */}
-        <div className="text-center mb-16">
-           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-           >
-              <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tighter text-foreground">
-                Outils & <span className="text-primary">Technologies</span>
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-medium">
-                Les technologies que je manie au quotidien pour construire des solutions intelligentes.
-              </p>
-           </motion.div>
+        {/* En-tête */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-3">
+            Stack &amp; Compétences techniques
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight text-foreground">
+            Technologies &amp; <span className="gradient-text">Compétences</span>
+          </h2>
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+            Organisation par catégories avec niveaux d'autonomie réels et transparents, sans pourcentages arbitraires.
+          </p>
+
+          {/* Légende des niveaux */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-6 text-xs font-medium">
+            <span className="text-muted-foreground font-semibold">Niveaux :</span>
+            {(['beginner', 'intermediate', 'operational', 'advanced'] as SkillLevel[]).map((lvl) => (
+              <span 
+                key={lvl}
+                className={`px-2.5 py-1 rounded-full border ${levelConfig[lvl].bg} ${levelConfig[lvl].text} ${levelConfig[lvl].border}`}
+              >
+                {levelConfig[lvl].label}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Floating Dock Navigation */}
-        <div className="sticky top-24 z-30 mb-16 flex justify-center">
-          <motion.div 
-            className="flex items-center gap-2 p-2 rounded-full bg-card/80 backdrop-blur-xl border border-border shadow-md overflow-x-auto max-w-full no-scrollbar"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
+        {/* Navigation des catégories */}
+        <div className="flex justify-center mb-12">
+          <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-card border border-border shadow-sm overflow-x-auto max-w-full no-scrollbar">
             {technologies.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveTab(category.id)}
-                className={`relative px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 whitespace-nowrap flex items-center gap-2 ${
                   activeTab === category.id 
                     ? 'bg-primary text-primary-foreground shadow-sm' 
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
                 }`}
               >
-                <i className={`${
-                    category.id.includes('lang') ? 'ri-code-s-slash-line' :
-                    category.id.includes('ai') ? 'ri-brain-line' :
-                    category.id.includes('data') ? 'ri-database-2-line' :
-                    category.id.includes('cloud') ? 'ri-cloud-line' :
-                    category.id.includes('devops') ? 'ri-terminal-box-line' :
-                    'ri-stack-line'
-                } text-lg`} />
+                <i className={`${category.icon} text-base`} aria-hidden="true" />
                 <span>{category.title}</span>
               </button>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        {/* Tech Badges (Pills) */}
-        <div className="min-h-[300px] flex items-center justify-center">
-           <AnimatePresence mode="wait">
-             <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-wrap justify-center gap-5 md:gap-6 max-w-4xl"
-             >
-                {activeCategory?.items.map((tech, idx) => (
-                  <motion.div
+        {/* Grille des compétences de la catégorie sélectionnée */}
+        <div className="min-h-[280px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+              {activeCategory?.items.map((tech) => {
+                const badge = levelConfig[tech.level] || levelConfig.beginner;
+                return (
+                  <div
                     key={tech.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.05, type: 'spring', stiffness: 100 }}
-                    whileHover={{ y: -5, scale: 1.05 }}
-                    className="flex items-center gap-4 bg-card px-6 py-3.5 rounded-full border border-border shadow-sm hover:shadow-lg transition-all group cursor-default"
+                    className="p-5 rounded-2xl bg-card border border-border/80 shadow-sm hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between group"
                   >
-                    {/* Real Logo SVG */}
-                    <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center">
-                      <img 
-                        src={tech.icon} 
-                        alt={tech.name} 
-                        className="w-full h-full object-contain filter group-hover:drop-shadow-[0_0_8px_rgba(0,180,216,0.5)] transition-all duration-300" 
-                        loading="lazy"
-                      />
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-xl bg-background border border-border flex items-center justify-center p-2.5 shrink-0 group-hover:scale-105 transition-transform">
+                          <img 
+                            src={tech.icon} 
+                            alt={tech.name} 
+                            className="w-full h-full object-contain"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div>
+                          <h4 className="text-base font-bold text-foreground group-hover:text-primary transition-colors">
+                            {tech.name}
+                          </h4>
+                          <span className={`inline-block px-2 py-0.5 mt-1 rounded text-[11px] font-semibold border ${badge.bg} ${badge.text} ${badge.border}`}>
+                            {badge.label}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    
-                    {/* Text & Percentage */}
-                    <div className="flex flex-col">
-                       <span className="font-extrabold text-foreground text-sm md:text-base leading-none mb-1">
-                         {tech.name}
-                       </span>
-                       <div className="flex items-center gap-2">
-                         <div className="w-16 h-1.5 bg-muted rounded-full overflow-hidden">
-                           <div 
-                             className="h-full bg-primary transition-all duration-1000 ease-out"
-                             style={{ width: `${tech.level || 0}%` }}
-                           />
-                         </div>
-                         <span className="text-[10px] md:text-xs font-mono font-bold text-muted-foreground group-hover:text-primary transition-colors">
-                           {tech.level || 0}%
-                         </span>
-                       </div>
-                    </div>
-                  </motion.div>
-                ))}
-             </motion.div>
-           </AnimatePresence>
+
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-2 pt-3 border-t border-border/50">
+                      {tech.usage}
+                    </p>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Note d'ouverture Big Data & IA futures */}
+        <div className="mt-14 p-6 rounded-2xl bg-card/50 border border-dashed border-border text-center max-w-3xl mx-auto">
+          <div className="flex items-center justify-center gap-2 text-primary font-bold text-sm mb-1">
+            <i className="ri-road-map-line text-lg" aria-hidden="true" />
+            <span>Perspectives Big Data &amp; IA</span>
+          </div>
+          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+            Technologies cibles en cours d'exploration académique (Apache Spark, Kafka, Airflow, Scikit-learn, PyTorch). 
+            Elles seront ajoutées à ce tableau au fur et à mesure de leur validation dans des projets pratiques.
+          </p>
         </div>
 
       </div>
