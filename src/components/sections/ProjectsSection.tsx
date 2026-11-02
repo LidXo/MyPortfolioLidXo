@@ -11,11 +11,12 @@ import {
 } from '@/components/ui/dialog';
 import 'remixicon/fonts/remixicon.css';
 
-type FilterCategory = 'all' | 'data-analysis' | 'backend' | 'web' | 'ai';
+type FilterCategory = 'all' | 'data-analysis' | 'database' | 'backend' | 'web' | 'ai';
 
 const filterButtons: { id: FilterCategory; label: string; icon: string }[] = [
   { id: 'all', label: 'Tous', icon: 'ri-apps-2-line' },
   { id: 'data-analysis', label: 'Data Analysis', icon: 'ri-bar-chart-2-line' },
+  { id: 'database', label: 'Database & SQL', icon: 'ri-database-2-line' },
   { id: 'backend', label: 'Backend', icon: 'ri-server-line' },
   { id: 'web', label: 'Développement Web', icon: 'ri-layout-line' },
   { id: 'ai', label: 'Intelligence Artificielle', icon: 'ri-brain-line' },
@@ -50,7 +51,7 @@ const ProjectsSection: React.FC = () => {
             Mes <span className="gradient-text">Projets</span>
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
-            Applications logicielles, analyses exploratoires et prototypes d'IA développés avec rigueur méthodologique.
+            Data Engineering, architectures de bases de données relationnelles, analyses exploratoires et prototypes d'IA développés avec rigueur méthodologique.
           </p>
         </div>
 
@@ -78,7 +79,8 @@ const ProjectsSection: React.FC = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
-              const isFeatured = project.id === 1;
+              const isLeadFeatured = project.id === 1;
+              const isDatabaseFeatured = project.id === 2;
               const status = statusConfig[project.status] || statusConfig.completed;
 
               return (
@@ -90,15 +92,21 @@ const ProjectsSection: React.FC = () => {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   className={`bg-card rounded-2xl overflow-hidden border border-border/80 shadow-sm hover:shadow-xl hover:border-primary/40 transition-all flex flex-col group ${
-                    isFeatured && selectedFilter === 'all' ? 'md:col-span-2 lg:col-span-2' : ''
+                    isLeadFeatured && selectedFilter === 'all' ? 'md:col-span-2 lg:col-span-2' : ''
                   }`}
                 >
                   {/* Visuel du projet */}
-                  <div className={`overflow-hidden relative border-b border-border/60 ${isFeatured && selectedFilter === 'all' ? 'h-64 sm:h-72' : 'h-52'}`}>
+                  <div className={`overflow-hidden relative border-b border-border/60 ${
+                    isLeadFeatured && selectedFilter === 'all' 
+                      ? 'h-64 sm:h-72' 
+                      : isDatabaseFeatured 
+                      ? 'h-56 bg-slate-950 flex items-center justify-center p-1' 
+                      : 'h-52'
+                  }`}>
                     <img 
                       src={project.img} 
                       alt={`Illustration du projet ${project.title}`} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className={`w-full h-full ${isDatabaseFeatured ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-500`}
                       loading="lazy"
                     />
                     
@@ -109,12 +117,21 @@ const ProjectsSection: React.FC = () => {
                       </span>
                     </div>
 
-                    {/* Badge Projet Principal */}
-                    {isFeatured && (
+                    {/* Badge Projet Phare */}
+                    {isLeadFeatured && (
                       <div className="absolute top-3 right-3 z-10">
                         <span className="px-3 py-1 rounded-md text-[11px] font-bold bg-primary text-primary-foreground shadow-sm flex items-center gap-1.5">
                           <i className="ri-star-fill text-amber-400" aria-hidden="true" />
-                          Projet Phare Data
+                          Projet Phare Data Analysis
+                        </span>
+                      </div>
+                    )}
+
+                    {isDatabaseFeatured && (
+                      <div className="absolute top-3 right-3 z-10">
+                        <span className="px-3 py-1 rounded-md text-[11px] font-bold bg-sky-900/90 text-sky-200 border border-sky-400/30 shadow-sm flex items-center gap-1.5">
+                          <i className="ri-database-2-fill text-sky-400" aria-hidden="true" />
+                          Database Engineering
                         </span>
                       </div>
                     )}
@@ -198,15 +215,15 @@ const ProjectsSection: React.FC = () => {
                   <span className="px-2.5 py-0.5 rounded text-xs font-bold bg-primary/10 text-primary border border-primary/20">
                     Étude de cas technique
                   </span>
-                  <span className="text-xs text-muted-foreground">
-                    Dataset UCI Online Retail
+                  <span className="text-xs text-muted-foreground font-semibold">
+                    {selectedProject.id === 1 ? 'Dataset UCI Online Retail' : 'Projet 02 — Database Engineering & SQL'}
                   </span>
                 </div>
                 <DialogTitle className="text-2xl sm:text-3xl font-black text-foreground">
                   {selectedProject.title}
                 </DialogTitle>
                 <DialogDescription className="text-muted-foreground text-sm pt-1">
-                  Documentation complète de la méthodologie, des résultats consolidés et des limites d'analyse.
+                  Documentation complète de la conception, de la méthodologie, des résultats vérifiables et des limites d'implémentation.
                 </DialogDescription>
               </DialogHeader>
 
@@ -216,7 +233,7 @@ const ProjectsSection: React.FC = () => {
                   <div className="p-4 rounded-xl bg-background border border-border">
                     <h4 className="font-bold text-foreground flex items-center gap-2 mb-2">
                       <i className="ri-compass-line text-primary text-base" aria-hidden="true" />
-                      1. Contexte
+                      1. Contexte du projet
                     </h4>
                     <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                       {selectedProject.details.context}
@@ -225,7 +242,7 @@ const ProjectsSection: React.FC = () => {
                   <div className="p-4 rounded-xl bg-background border border-border">
                     <h4 className="font-bold text-foreground flex items-center gap-2 mb-2">
                       <i className="ri-alert-line text-amber-500 text-base" aria-hidden="true" />
-                      2. Problématique des données brutes
+                      2. Problématique &amp; Enjeux
                     </h4>
                     <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                       {selectedProject.details.problem}
@@ -253,7 +270,7 @@ const ProjectsSection: React.FC = () => {
                 <div className="p-5 rounded-xl bg-background border border-border">
                   <h4 className="font-bold text-foreground flex items-center gap-2 mb-2">
                     <i className="ri-node-tree text-primary text-base" aria-hidden="true" />
-                    4. Méthodologie &amp; Étapes réalisées
+                    4. Méthodologie &amp; Démarche de réalisation
                   </h4>
                   <p className="text-xs sm:text-sm text-muted-foreground mb-4">
                     {selectedProject.details.methodology}
@@ -272,7 +289,7 @@ const ProjectsSection: React.FC = () => {
                 <div className="p-5 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
                   <h4 className="font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2 mb-3">
                     <i className="ri-checkbox-circle-line text-emerald-600 text-base" aria-hidden="true" />
-                    5. Résultats quantifiés vérifiables
+                    5. Résultats quantifiés &amp; Fonctionnalités validées
                   </h4>
                   <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
                     {selectedProject.details.results.map((res, i) => (
@@ -303,7 +320,7 @@ const ProjectsSection: React.FC = () => {
                   <div className="p-4 rounded-xl bg-background border border-border">
                     <h4 className="font-bold text-foreground flex items-center gap-2 mb-2">
                       <i className="ri-lightbulb-line text-amber-500 text-base" aria-hidden="true" />
-                      7. Enseignements acquis
+                      7. Enseignements &amp; Compétences acquises
                     </h4>
                     <ul className="space-y-1.5 text-xs text-muted-foreground">
                       {selectedProject.details.learnings.map((lrn, i) => (
@@ -320,7 +337,7 @@ const ProjectsSection: React.FC = () => {
                 <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 text-xs">
                   <h4 className="font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-2">
                     <i className="ri-shield-check-line text-amber-600 text-base" aria-hidden="true" />
-                    8. Limites méthodologiques &amp; Transparence
+                    8. Limites actuelles &amp; Perspectives d'amélioration
                   </h4>
                   <ul className="space-y-1 text-muted-foreground">
                     {selectedProject.details.limitations.map((lim, i) => (
@@ -341,7 +358,7 @@ const ProjectsSection: React.FC = () => {
                     className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs sm:text-sm hover:bg-primary/90 transition-all flex items-center gap-2 shadow-sm"
                   >
                     <i className="ri-github-fill text-base" aria-hidden="true" />
-                    <span>Consulter le code &amp; notebooks sur GitHub</span>
+                    <span>Voir le code source sur GitHub</span>
                   </a>
                 </div>
               </div>

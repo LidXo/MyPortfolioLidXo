@@ -12,8 +12,7 @@ export interface HeroData {
 
 export interface AboutData {
   paragraphs: string[];
-  objectives: string[];
-  stats: { label: string; value: string; icon: string }[];
+  stats: { label: string; value: string; icon: string; description?: string }[];
 }
 
 export interface JourneyItem {
@@ -29,7 +28,7 @@ export interface ProjectItem {
   title: string;
   shortDesc: string;
   fullDesc: string;
-  category: 'data-analysis' | 'backend' | 'web' | 'ai';
+  category: 'data-analysis' | 'database' | 'backend' | 'web' | 'ai';
   status: 'completed' | 'in-progress' | 'experimental';
   tags: string[];
   img: string;
@@ -110,22 +109,35 @@ export const portfolioData: PortfolioData = {
 
   about: {
     paragraphs: [
-      "Étudiant en troisième année d'informatique à l'ESGIS (Togo), je me spécialise en Intelligence Artificielle et Big Data. Mon parcours m'a permis de développer des bases solides en programmation, en algorithmique et en gestion de données.",
-      "Je m'intéresse particulièrement à l'ingénierie des données et aux systèmes d'intelligence artificielle. J'apprends Python et SQL de manière approfondie pour le traitement, la transformation et l'analyse de données. Mes projets pratiques me permettent de consolider progressivement ces compétences.",
-      "Mon objectif est de devenir Data Engineer et d'évoluer vers l'AI Engineering. Je recherche activement des stages et des opportunités pour accélérer ma progression et contribuer à des projets concrets dans le domaine de la Data."
-    ],
-    objectives: [
-      "Approfondir Python et SQL pour le traitement de données",
-      "Développer des pipelines ETL",
-      "Maîtriser les bases de données relationnelles",
-      "Apprendre les architectures Big Data",
-      "Construire des solutions basées sur le Machine Learning"
+      "Étudiant en troisième année d'informatique à l'ESGIS (Lomé, Togo), je me spécialise en Intelligence Artificielle et Big Data. Mon parcours académique m'a permis d'acquérir une compréhension solide des structures de données, des algorithmes et de la modélisation informatique.",
+      "Orienté vers la pratique, je concentre mes compétences techniques sur Python et SQL pour concevoir des architectures relationnelles robustes, manipuler et nettoyer des données complexes, et développer des requêtes analytiques précises.",
+      "Mon ambition professionnelle est de devenir un Data Engineer accompli, capable de concevoir, développer et optimiser des architectures de données robustes et évolutives, en garantissant la fiabilité, l'intégrité, la qualité et la disponibilité des données au service de la prise de décision et des besoins métiers."
     ],
     stats: [
-      { label: "Année d'études", value: "3ème", icon: "ri-graduation-cap-line" },
-      { label: "Projets réalisés", value: "6", icon: "ri-folder-line" },
-      { label: "Spécialisation", value: "IA & Big Data", icon: "ri-brain-line" },
-      { label: "Disponibilité", value: "Stage", icon: "ri-briefcase-line" },
+      { 
+        label: "Formation en cours", 
+        value: "Licence 3", 
+        icon: "ri-graduation-cap-line",
+        description: "ESGIS Lomé &bull; IA & Big Data"
+      },
+      { 
+        label: "Réalisations concrètes", 
+        value: "7 Projets", 
+        icon: "ri-folder-check-line",
+        description: "Data, SQL, Backend & IA"
+      },
+      { 
+        label: "Domaine de prédilection", 
+        value: "Data & IA", 
+        icon: "ri-database-2-line",
+        description: "Engineering & Analytics"
+      },
+      { 
+        label: "Disponibilité actuelle", 
+        value: "Stage", 
+        icon: "ri-briefcase-line",
+        description: "Prêt pour de nouveaux défis"
+      },
     ],
   },
 
@@ -213,6 +225,67 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 2,
+      title: "Base de Données de Gestion Commerciale",
+      shortDesc: "Conception et développement d'une base relationnelle complète (7 tables) pour les opérations d'une entreprise : modélisation MLD, contraintes d'intégrité, requêtes SQL d'analyse de vente et automatisation Python avec suite de tests pytest.",
+      fullDesc: "Conception et développement d'une base de données relationnelle destinée à gérer les principales opérations commerciales d'une entreprise (TechStore). Le projet met en pratique la modélisation relationnelle rigoureuse, la création de 7 tables interdépendantes, les contraintes d'intégrité (PK, FK, CHECK, UNIQUE), les requêtes SQL analytiques (CA, montants de commande, jointures) et l'intégration programmatique avec Python et SQLite.",
+      category: "database",
+      status: "completed",
+      tags: ["Python", "SQL", "SQLite", "Database Design", "Pytest", "Git"],
+      img: "https://plus.unsplash.com/premium_photo-1661454577337-7738fd3dd478?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      githubLink: "https://github.com/LidXo/gestion-commerciale",
+      details: {
+        context: "Projet technique de Database Engineering & Backend centré sur la gestion commerciale d'une entreprise de vente d'équipements informatiques et électroniques (TechStore). Il s'agissait de remplacer un suivi manuel dispersé par un système relationnel structuré, garantissant la fiabilité transactionnelle des commandes, des produits, des clients et des paiements.",
+        problem: "Une activité commerciale nécessite la traçabilité sans faille des ventes : éviter les ruptures d'intégrité (commandes rattachées à des clients inexistants, stocks négatifs, paiements orphelins), gérer les relations n-n entre commandes et articles, et permettre un calcul instantané et exact du chiffre d'affaires sans divergence comptable.",
+        objectives: [
+          "Analyser le domaine métier et formaliser les règles de gestion commerciale",
+          "Concevoir les modèles conceptuel et logique de données (MCD / MLD)",
+          "Implémenter le schéma SQL DDL avec contraintes d'intégrité strictes",
+          "Structurer la persistance avec 7 tables interconnectées",
+          "Développer des requêtes SQL d'analyse métier (CA, paniers, états)",
+          "Créer des scripts Python modulaires pour l'interaction avec la base",
+          "Valider la robustesse du système avec une suite de tests unitaires automatisés (pytest)"
+        ],
+        methodology: "Démarche d'ingénierie en 5 phases : 1. Analyse fonctionnelle & règles de gestion (validation des cardinalités) → 2. Conception relationnelle (MLD avec résolution des relations plusieurs-à-plusieurs via table de liaison) → 3. Implémentation SQL DDL/DML avec activation stricte des clés étrangères (`PRAGMA foreign_keys = ON`) → 4. Scripting applicatif Python modulaire → 5. Automatisation des tests et vérification de l'intégrité référentielle (`PRAGMA foreign_key_check`).",
+        steps: [
+          "Définition des règles de gestion métier (clients, commandes, produits, paiements)",
+          "Modélisation conceptuelle et logique (7 entités relationnelles)",
+          "Écriture du schéma DDL (schema.sql) avec clés primaires et contraintes CHECK",
+          "Résolution de la relation n-n avec la table de liaison DETAIL_COMMANDE (PK composite)",
+          "Génération et insertion des jeux de données de référence et de tests",
+          "Développement de requêtes d'analyse SQL (queries.sql : calcul de CA par état, montants totaux)",
+          "Développement de modules Python indépendants (clients.py, commandes.py, produits.py, paiements.py)",
+          "Gestion des migrations et évolutions de structure (migration_v2.sql)",
+          "Mise en place de tests automatisés pytest validant 100% de la structure et des calculs"
+        ],
+        results: [
+          "7 tables relationnelles créées et optimisées (CLIENT, FOURNISSEUR, CATEGORIE, PRODUIT, COMMANDE, DETAIL_COMMANDE, PAIEMENT)",
+          "Zéro anomalie d'intégrité référentielle (validé par PRAGMA foreign_key_check)",
+          "Contraintes CHECK et UNIQUE actives garantissant la cohérence des prix, stocks et emails",
+          "Calcul exact du chiffre d'affaires et des totaux via requêtes SQL optimisées avec GROUP BY et agrégats",
+          "Suite de tests automatisés pytest réussie à 100% (connexion, schéma, intégrité, données, montants)"
+        ],
+        difficulties: [
+          "Gestion de la cardinalité n-n entre COMMANDE et PRODUIT résolue via la table d'association DETAIL_COMMANDE avec clé primaire composite",
+          "Cohérence des états de commande et synchronisation des dates de paiement avec SQLite",
+          "Maintien de l'intégrité référentielle dans SQLite (obligation d'activer explicitement le support des clés étrangères via pragma)",
+          "Conception d'une structure de migration SQL propre pour faire évoluer la base sans perte de données"
+        ],
+        learnings: [
+          "Maîtrise de la modélisation relationnelle avancée et normalisation de données (1FN, 2FN, 3FN)",
+          "Écriture de DDL rigoureux avec contraintes d'intégrité complètes (CHECK, NOT NULL, UNIQUE, FOREIGN KEY ON UPDATE/DELETE)",
+          "Pratique approfondie des requêtes SQL complexes avec jointures multiples (INNER JOIN, LEFT JOIN) et fonctions d'agrégation (SUM, COALESCE)",
+          "Intégration robuste de SQLite avec le pilote Python standard sqlite3",
+          "Culture du test logiciel appliqué aux bases de données avec pytest"
+        ],
+        limitations: [
+          "Base de données mono-nœud locale SQLite (adaptée pour des opérations embarquées ou PME, à migrer vers PostgreSQL pour de la très haute concurrence)",
+          "Mise à jour des stocks non encore automatisée par triggers SQL (déclencheurs)",
+          "Interface utilisateur graphique non développée : interaction actuelle via CLI Python et requêtes SQL"
+        ]
+      }
+    },
+    {
+      id: 3,
       title: "Système de Location de Cassettes",
       shortDesc: "Application Java de gestion d'un club de location de cassettes vidéo. Administration des abonnés, titres, catégories, cassettes et locations.",
       fullDesc: "Application Java de gestion d'un club de location de cassettes vidéo. Le système permet l'administration des abonnés, titres, catégories, cassettes et locations.",
@@ -223,7 +296,7 @@ export const portfolioData: PortfolioData = {
       githubLink: "https://github.com/LidXo/Syst-me-de-Gestion-de-Location-de-Cassettes",
     },
     {
-      id: 3,
+      id: 4,
       title: "Application de Gestion de Stock",
       shortDesc: "Application Java (Maven) de gestion de stock d'entreprise, sécurisée avec BCrypt et connectée à une base MySQL. Interface pour suivre produits, fournisseurs et commandes.",
       fullDesc: "Application Java (Maven) de gestion de stock d'entreprise. Sécurisée avec BCrypt et connectée à une base de données MySQL. Interface intuitive pour suivre les produits, fournisseurs, commandes et niveaux de stock en temps réel.",
@@ -234,7 +307,7 @@ export const portfolioData: PortfolioData = {
       githubLink: "https://github.com/LidXo/Gestion_Stock",
     },
     {
-      id: 4,
+      id: 5,
       title: "Système de Gestion de Bibliothèque",
       shortDesc: "Système informatisé de gestion de ressources documentaires : catalogage, gestion adhérents, suivi emprunts/retours, pénalités, réservations et statistiques. Architecture MVC.",
       fullDesc: "Système informatisé de gestion des ressources documentaires et des opérations de prêt/retour. Fonctionnalités : catalogage, gestion adhérents, suivi emprunts/retours, calcul pénalités retard, réservations, recherche multicritère, statistiques. Architecture MVC, transactions ACID.",
@@ -245,7 +318,7 @@ export const portfolioData: PortfolioData = {
       githubLink: "https://github.com/LidXo/bibliotheque",
     },
     {
-      id: 5,
+      id: 6,
       title: "Site E-Commerce",
       shortDesc: "Site e-commerce statique mono-fichier : catalogue filtrable, panier persistant (localStorage), gestion favoris, panel admin, checkout multi-étapes, responsive design.",
       fullDesc: "Site e-commerce statique mono-fichier — HTML5 / CSS3 / Vanilla JS. Catalogue filtrable, panier persistant (localStorage), gestion des favoris, panel admin intégré (ajout/suppression/activation produits), checkout multi-étapes, code promo, notifications toast, responsive design, accessibilité ARIA, zéro dépendance externe.",
@@ -256,7 +329,7 @@ export const portfolioData: PortfolioData = {
       githubLink: "https://github.com/LidXo/Site_E-Commerce",
     },
     {
-      id: 6,
+      id: 7,
       title: "Face ID — Reconnaissance Faciale",
       shortDesc: "Système de reconnaissance faciale en Python capturant les visages en temps réel via webcam et envoyant les résultats à un bot Telegram pour notification.",
       fullDesc: "Système de reconnaissance faciale en Python capturant les visages en temps réel via webcam et les envoyant automatiquement à un bot Telegram pour traitement et notification. Intègre OpenCV pour la détection, face_recognition pour l'identification faciale, et l'API python-telegram-bot pour les notifications asynchrones instantanées.",
@@ -279,6 +352,8 @@ export const portfolioData: PortfolioData = {
         { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", usage: "Frontend, Logique Web", level: "beginner" },
         { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", usage: "Structure Web", level: "operational" },
         { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", usage: "Design Web", level: "beginner" },
+        { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", usage: "Base de données", level: "intermediate" },
+      
       ]
     },
     {

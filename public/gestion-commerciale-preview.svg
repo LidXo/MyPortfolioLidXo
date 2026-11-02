@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1727" />
+      <stop offset="50%" stop-color="#0f2845" />
+      <stop offset="100%" stop-color="#08101a" />
+    </linearGradient>
+    <linearGradient id="tableHeadGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0ea5e9" />
+    </linearGradient>
+    <linearGradient id="tableHeadGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="tableHeadGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+    <linearGradient id="pythonPill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" />
+
+  <!-- Subtle grid lines -->
+  <g opacity="0.08" stroke="#38bdf8" stroke-width="1">
+    <line x1="0" y1="45" x2="800" y2="45" />
+    <line x1="0" y1="90" x2="800" y2="90" />
+    <line x1="0" y1="135" x2="800" y2="135" />
+    <line x1="0" y1="180" x2="800" y2="180" />
+    <line x1="0" y1="225" x2="800" y2="225" />
+    <line x1="0" y1="270" x2="800" y2="270" />
+    <line x1="0" y1="315" x2="800" y2="315" />
+    <line x1="0" y1="360" x2="800" y2="360" />
+    <line x1="0" y1="405" x2="800" y2="405" />
+    <line x1="80" y1="0" x2="80" y2="450" />
+    <line x1="160" y1="0" x2="160" y2="450" />
+    <line x1="240" y1="0" x2="240" y2="450" />
+    <line x1="320" y1="0" x2="320" y2="450" />
+    <line x1="400" y1="0" x2="400" y2="450" />
+    <line x1="480" y1="0" x2="480" y2="450" />
+    <line x1="560" y1="0" x2="560" y2="450" />
+    <line x1="640" y1="0" x2="640" y2="450" />
+    <line x1="720" y1="0" x2="720" y2="450" />
+  </g>
+
+  <!-- Connecting Relation Lines (ERD Links) -->
+  <g stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4" opacity="0.65" fill="none">
+    <!-- CLIENT -> COMMANDE -->
+    <path d="M 230 150 C 265 150, 265 210, 300 210" />
+    <!-- COMMANDE -> DETAIL_COMMANDE -->
+    <path d="M 480 210 C 515 210, 515 210, 550 210" />
+    <!-- PRODUIT -> DETAIL_COMMANDE -->
+    <path d="M 640 120 L 640 160" />
+  </g>
+  <circle cx="300" cy="210" r="4" fill="#38bdf8" />
+  <circle cx="550" cy="210" r="4" fill="#38bdf8" />
+  <circle cx="640" cy="160" r="4" fill="#38bdf8" />
+
+  <!-- Top Title Banner -->
+  <g transform="translate(40, 36)">
+    <!-- TechStore badge -->
+    <rect width="130" height="24" rx="12" fill="#0284c7" opacity="0.25" stroke="#38bdf8" stroke-width="1" />
+    <text x="65" y="16" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">DATABASE MLD</text>
+    
+    <text x="0" y="52" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="20" font-weight="800">SCHEMA RELATIONNEL COMMERCIAL &bull; 7 TABLES</text>
+  </g>
+
+  <!-- Top Right Badges (Python, SQLite, SQL) -->
+  <g transform="translate(540, 36)">
+    <rect x="0" y="0" width="70" height="26" rx="6" fill="#1e293b" stroke="#334155" />
+    <text x="35" y="17" fill="#94a3b8" font-family="system-ui, monospace" font-size="11" font-weight="700" text-anchor="middle">SQLite</text>
+
+    <rect x="78" y="0" width="66" height="26" rx="6" fill="#1e293b" stroke="#334155" />
+    <text x="111" y="17" fill="#38bdf8" font-family="system-ui, monospace" font-size="11" font-weight="700" text-anchor="middle">SQL:2023</text>
+
+    <rect x="152" y="0" width="68" height="26" rx="6" fill="#1e293b" stroke="#334155" />
+    <text x="186" y="17" fill="#fbbf24" font-family="system-ui, monospace" font-size="11" font-weight="700" text-anchor="middle">Python</text>
+  </g>
+
+  <!-- TABLE 1: CLIENT -->
+  <g transform="translate(50, 110)" filter="url(#shadow)">
+    <rect width="180" height="155" rx="8" fill="#132238" stroke="#1e3a5f" stroke-width="1.5" />
+    <!-- Header -->
+    <rect width="180" height="32" rx="8" fill="url(#tableHeadGrad1)" />
+    <rect y="24" width="180" height="8" fill="url(#tableHeadGrad1)" />
+    <text x="12" y="21" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="0.5">&#128100; CLIENT</text>
+    <text x="168" y="21" fill="#bae6fd" font-family="system-ui, monospace" font-size="10" text-anchor="end">PK</text>
+    
+    <!-- Fields -->
+    <text x="14" y="52" fill="#38bdf8" font-family="system-ui, monospace" font-size="11" font-weight="700">&#128273; id_client</text>
+    <text x="166" y="52" fill="#64748b" font-family="system-ui, monospace" font-size="10" text-anchor="end">INT</text>
+
+    <text x="14" y="74" fill="#e2e8f0" font-family="system-ui, monospace" font-size="11">nom_client</text>
+    <text x="166" y="74" fill="#64748b" font-family="system-ui, monospace" font-size="10" text-anchor="end">TEXT</text>
+
+    <text x="14" y="96" fill="#e2e8f0" font-family="system-ui, monospace" font-size="11">telephone</text>
+    <text x="166" y="96" fill="#64748b" font-family="system-ui, monospace" font-size="10" text-anchor="end">TEXT</text>
+
+    <text x="14" y="118" fill="#e2e8f0" font-family="system-ui, monospace" font-size="11">email</text>
+    <text x="166" y="118" fill="#a7f3d0" font-family="system-ui, monospace" font-size="9" text-anchor="end">UQ</text>
+
+    <text x="14" y="140" fill="#e2e8f0" font-family="system-ui, monospace" font-size="11">adresse</text>
+    <text x="166" y="140" fill="#64748b" font-family="system-ui, monospace" font-size="10" text-anchor="end">TEXT</text>
+  </g>
+
+  <!-- TABLE 2: COMMANDE -->
+  <g transform="translate(300, 130)" filter="url(#shadow)">
+    <rect width="180" height="140" rx="8" fill="#132238" stroke="#0284c7" stroke-width="1.8" />
+    <!-- Header -->
+    <rect width="180" height="32" rx="8" fill="url(#tableHeadGrad1)" />
+    <rect y="24" width="180" height="8" fill="url(#tableHeadGrad1)" />
+    <text x="12" y="21" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="0.5">&#128221; COMMANDE</text>
+    
+    <!-- Fields -->
+    <text x="14" y="52" fill="#38bdf8" font-family="system-ui, monospace" font-size="11" font-weight="700">&#128273; id_commande</text>
+    <text x="166" y="52" fill="#64748b" font-family="system-ui, monospace" font-size="10" text-anchor="end">INT</text>
+
+    <text x="14" y="74" fill="#e2e8f0" font-family="system-ui, monospace" font-size="11">date_commande</text>
+    <text x="166" y="74" fill="#64748b" font-family="system-ui, monospace" font-size="10" text-anchor="end">DATE</text>
+
+    <text x="14" y="96" fill="#e2e8f0" font-family="system-ui, monospace" font-size="11">etat</text>
+    <text x="166" y="96" fill="#fde68a" font-family="system-ui, monospace" font-size="9" text-anchor="end">CHECK</text>
+
+    <text x="14" y="120" fill="#34d399" font-family="system-ui, monospace" font-size="11">&#128279; id_client</text>
+    <text x="166" y="120" fill="#34d399" font-family="system-ui, monospace" font-size="10" text-anchor="end">FK</text>
+  </g>
+
+  <!-- TABLE 3: DETAIL_COMMANDE -->
+  <g transform="translate(550, 160)" filter="url(#shadow)">
+    <rect width="200" height="140" rx="8" fill="#132238" stroke="#1e3a5f" stroke-width="1.5" />
+    <!-- Header -->
+    <rect width="200" height="32" rx="8" fill="url(#tableHeadGrad2)" />
+    <rect y="24" width="200" height="8" fill="url(#tableHeadGrad2)" />
+    <text x="12" y="21" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="0.5">&#128722; DETAIL_COMMANDE</text>
+    
+    <!-- Fields -->
+    <text x="14" y="52" fill="#38bdf8" font-family="system-ui, monospace" font-size="11" font-weight="700">&#128273;&#128279; id_commande</text>
+    <text x="186" y="52" fill="#38bdf8" font-family="system-ui, monospace" font-size="9" text-anchor="end">PK, FK</text>
+
+    <text x="14" y="74" fill="#38bdf8" font-family="system-ui, monospace" font-size="11" font-weight="700">&#128273;&#128279; id_produit</text>
+    <text x="186" y="74" fill="#38bdf8" font-family="system-ui, monospace" font-size="9" text-anchor="end">PK, FK</text>
+
+    <text x="14" y="98" fill="#e2e8f0" font-family="system-ui, monospace" font-size="11">quantite</text>
+    <text x="186" y="98" fill="#64748b" font-family="system-ui, monospace" font-size="10" text-anchor="end">INT &gt; 0</text>
+
+    <text x="14" y="122" fill="#e2e8f0" font-family="system-ui, monospace" font-size="11">prix_unitaire</text>
+    <text x="186" y="122" fill="#64748b" font-family="system-ui, monospace" font-size="10" text-anchor="end">INT &gt;= 0</text>
+  </g>
+
+  <!-- TABLE 4: PRODUIT (mini preview) -->
+  <g transform="translate(560, 315)">
+    <rect width="180" height="80" rx="8" fill="#132238" stroke="#1e3a5f" stroke-width="1.2" />
+    <rect width="180" height="24" rx="8" fill="url(#tableHeadGrad3)" />
+    <rect y="18" width="180" height="6" fill="url(#tableHeadGrad3)" />
+    <text x="10" y="16" fill="#ffffff" font-family="system-ui, sans-serif" font-size="10" font-weight="800">&#128230; PRODUIT</text>
+    <text x="12" y="42" fill="#38bdf8" font-family="system-ui, monospace" font-size="10">&#128273; id_produit</text>
+    <text x="12" y="60" fill="#e2e8f0" font-family="system-ui, monospace" font-size="10">nom_produit, prix, stock</text>
+  </g>
+
+  <!-- TABLE 5: PAIEMENT (mini preview) -->
+  <g transform="translate(300, 315)">
+    <rect width="180" height="80" rx="8" fill="#132238" stroke="#1e3a5f" stroke-width="1.2" />
+    <rect width="180" height="24" rx="8" fill="#0369a1" />
+    <rect y="18" width="180" height="6" fill="#0369a1" />
+    <text x="10" y="16" fill="#ffffff" font-family="system-ui, sans-serif" font-size="10" font-weight="800">&#128179; PAIEMENT</text>
+    <text x="12" y="42" fill="#38bdf8" font-family="system-ui, monospace" font-size="10">&#128273; id_paiement &bull; FK id_commande</text>
+    <text x="12" y="60" fill="#e2e8f0" font-family="system-ui, monospace" font-size="10">montant, mode, date_paiement</text>
+  </g>
+
+  <!-- Code Snippet Box (Bottom Left) -->
+  <g transform="translate(50, 290)">
+    <rect width="220" height="110" rx="8" fill="#091422" stroke="#1e3a5f" stroke-width="1" />
+    <rect width="220" height="20" rx="8" fill="#0f1f33" />
+    <circle cx="12" cy="10" r="3" fill="#ef4444" />
+    <circle cx="22" cy="10" r="3" fill="#f59e0b" />
+    <circle cx="32" cy="10" r="3" fill="#10b981" />
+    <text x="44" y="13" fill="#64748b" font-family="system-ui, monospace" font-size="9">queries.sql &bull; Integrity Check</text>
+
+    <text x="10" y="38" fill="#38bdf8" font-family="system-ui, monospace" font-size="9">SELECT c.id_commande,</text>
+    <text x="18" y="52" fill="#e2e8f0" font-family="system-ui, monospace" font-size="9">SUM(dc.quantite * dc.prix)</text>
+    <text x="10" y="66" fill="#38bdf8" font-family="system-ui, monospace" font-size="9">FROM COMMANDE c</text>
+    <text x="10" y="80" fill="#a7f3d0" font-family="system-ui, monospace" font-size="9">JOIN DETAIL_COMMANDE dc ...</text>
+    <text x="10" y="96" fill="#64748b" font-family="system-ui, monospace" font-size="8">&gt; 100% Tests Passés (pytest)</text>
+  </g>
+
+</svg>
+

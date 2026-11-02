@@ -7,105 +7,132 @@ const AboutSection: React.FC = () => {
   const { data } = usePortfolio();
   const { about } = data;
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="about" className="py-24 relative overflow-hidden bg-background/50 border-t border-border/40">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         
         {/* Titre de section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-3">
-            Présentation &amp; Démarche
+            Profil &amp; Démarche
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight">
             À Propos <span className="gradient-text">de Moi</span>
           </h2>
         </motion.div>
-        
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Colonne gauche : Parcours & Texte de présentation */}
-          <motion.div 
-            initial={{ opacity: 0, x: -25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-7 space-y-6"
-          >
-            <div className="glass-card p-8 rounded-2xl border border-border/70 space-y-5">
-              <div className="flex items-center gap-3 text-primary mb-2">
-                <i className="ri-user-search-line text-2xl" aria-hidden="true" />
-                <h3 className="text-xl font-bold text-foreground">Mon profil académique &amp; technique</h3>
+
+        {/* Bloc principal de présentation - Format unifié, aéré et élégant */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="glass-card p-8 sm:p-12 rounded-3xl border border-border/80 shadow-sm relative overflow-hidden mb-12"
+        >
+          {/* Accent visuel d'arrière-plan */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl -z-10 pointer-events-none" />
+
+          {/* En-tête de la carte */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 mb-8 border-b border-border/60">
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20 shadow-sm">
+                <i className="ri-user-smile-line text-2xl" aria-hidden="true" />
               </div>
-              
-              {about.paragraphs.map((paragraph, idx) => (
-                <p key={idx} className="text-muted-foreground text-base sm:text-lg leading-relaxed">
-                  {paragraph}
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+                  Étudiant en IA &amp; Big Data &bull; Futur Data Engineer
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  ESGIS Lomé &bull; Rigueur académique &amp; réalisations techniques
                 </p>
-              ))}
-            </div>
-
-            {/* Statistiques factuelles et professionnelles */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
-              {about.stats.map((stat, index) => (
-                <div 
-                  key={index}
-                  className="bg-card p-4 rounded-xl border border-border text-center shadow-sm"
-                >
-                  <i className={`${stat.icon} text-2xl text-primary mb-1 inline-block`} aria-hidden="true" />
-                  <div className="text-xl sm:text-2xl font-black text-foreground">{stat.value}</div>
-                  <div className="text-xs text-muted-foreground font-medium mt-0.5">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-          
-          {/* Colonne droite : Objectifs d'apprentissage concrets */}
-          <motion.div 
-            initial={{ opacity: 0, x: 25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-5"
-          >
-            <div className="glass-card p-8 rounded-2xl border border-border/70">
-              <div className="flex items-center gap-3 text-primary mb-4">
-                <i className="ri-compass-3-line text-2xl" aria-hidden="true" />
-                <h3 className="text-xl font-bold text-foreground">Mes Objectifs d'Apprentissage</h3>
               </div>
+            </div>
 
-              <p className="text-xs sm:text-sm text-muted-foreground mb-6 leading-relaxed">
-                Voici les domaines et compétences que j'approfondis actuellement par la pratique et des projets personnels :
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-xs font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                En recherche active de stage
+              </span>
+            </div>
+          </div>
+
+          {/* Paragraphes de présentation - Lisibilité et typographie premium */}
+          <div className="space-y-6 max-w-4xl text-base sm:text-lg leading-relaxed text-muted-foreground">
+            {about.paragraphs.map((paragraph, idx) => (
+              <p key={idx} className="leading-relaxed">
+                {paragraph}
               </p>
-              
-              <ul className="space-y-3.5">
-                {about.objectives.map((objective, idx) => (
-                  <li 
-                    key={idx}
-                    className="flex items-start gap-3 p-3 rounded-xl bg-background/70 border border-border/60 hover:border-primary/40 transition-colors"
-                  >
-                    <div className="w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
-                      <i className="ri-check-line text-sm font-bold" aria-hidden="true" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground leading-snug">
-                      {objective}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+            ))}
+          </div>
 
-              <div className="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/20 text-xs text-muted-foreground flex items-start gap-2.5">
-                <i className="ri-information-line text-primary text-base shrink-0 mt-0.5" aria-hidden="true" />
-                <span>
-                  Ces axes constituent ma feuille de route vers l'ingénierie des données et le Machine Learning appliqué.
+          {/* Ligne d'actions contextuelles discrètes */}
+          <div className="mt-10 pt-6 border-t border-border/60 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-muted-foreground">
+              <span className="text-foreground">Domaines d'action :</span>
+              <span className="px-2.5 py-1 rounded-lg bg-background border border-border/70">Data Engineering</span>
+              <span className="px-2.5 py-1 rounded-lg bg-background border border-border/70">Modélisation SQL</span>
+              <span className="px-2.5 py-1 rounded-lg bg-background border border-border/70">Data Analysis</span>
+              <span className="px-2.5 py-1 rounded-lg bg-background border border-border/70">Machine Learning</span>
+            </div>
+
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-primary hover:text-primary/80 transition-colors"
+            >
+              <span>Échanger ensemble</span>
+              <i className="ri-arrow-right-line" aria-hidden="true" />
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Indicateurs clés et statistiques harmonieuses */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+        >
+          {about.stats.map((stat, index) => (
+            <div
+              key={index}
+              className="p-6 rounded-2xl bg-card border border-border/80 shadow-sm hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between group"
+            >
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <i className={`${stat.icon} text-xl`} aria-hidden="true" />
+                </div>
+                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                  {stat.label}
                 </span>
               </div>
-            </div>
-          </motion.div>
 
-        </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-black text-foreground group-hover:text-primary transition-colors tracking-tight mb-1">
+                  {stat.value}
+                </div>
+                {stat.description && (
+                  <p 
+                    className="text-xs text-muted-foreground leading-snug"
+                    dangerouslySetInnerHTML={{ __html: stat.description }}
+                  />
+                )}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
       </div>
     </section>
   );
