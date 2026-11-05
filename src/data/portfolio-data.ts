@@ -1,6 +1,13 @@
-// === TYPES ===
 
-export type SkillLevel = 'beginner' | 'intermediate' | 'operational' | 'advanced';
+// ============================================================
+// TYPES
+// ============================================================
+
+export type SkillLevel =
+  | 'beginner'
+  | 'intermediate'
+  | 'operational'
+  | 'advanced';
 
 export interface HeroData {
   firstName: string;
@@ -12,7 +19,12 @@ export interface HeroData {
 
 export interface AboutData {
   paragraphs: string[];
-  stats: { label: string; value: string; icon: string; description?: string }[];
+  stats: {
+    label: string;
+    value: string;
+    icon: string;
+    description?: string;
+  }[];
 }
 
 export interface JourneyItem {
@@ -96,321 +108,850 @@ export interface PortfolioData {
   contact: ContactData;
 }
 
-// === DATA ===
+// ============================================================
+// DATA
+// ============================================================
 
 export const portfolioData: PortfolioData = {
+  // ----------------------------------------------------------
+  // HERO
+  // ----------------------------------------------------------
+
   hero: {
     firstName: "Lidao",
     lastName: "ABIYI",
-    title: "Étudiant en Informatique | IA & Big Data | Futur Data Engineer",
-    description: "Étudiant en troisième année d'informatique, spécialisé en Intelligence Artificielle et Big Data. Je développe mes compétences en programmation, traitement de données, bases de données et analyse exploratoire à travers des projets pratiques. Mon ambition est de concevoir des architectures de données fiables et de développer des solutions intelligentes.",
+    title: "Étudiant en Informatique | IA & Big Data | Data Engineering",
+    description:
+      "Étudiant en troisième année d'informatique, spécialisé en Intelligence Artificielle et Big Data. Je développe mes compétences en Python, SQL, bases de données et traitement de données à travers des projets pratiques. Je m'intéresse particulièrement à la conception de bases de données, aux pipelines de données et aux architectures Data Engineering.",
     cvLink: "/cv-Lidao.pdf",
   },
 
+  // ----------------------------------------------------------
+  // ABOUT
+  // ----------------------------------------------------------
+
   about: {
     paragraphs: [
-      "Étudiant en troisième année d'informatique à l'ESGIS (Lomé, Togo), je me spécialise en Intelligence Artificielle et Big Data. Mon parcours académique m'a permis d'acquérir une compréhension solide des structures de données, des algorithmes et de la modélisation informatique.",
-      "Orienté vers la pratique, je concentre mes compétences techniques sur Python et SQL pour concevoir des architectures relationnelles robustes, manipuler et nettoyer des données complexes, et développer des requêtes analytiques précises.",
-      "Mon ambition professionnelle est de devenir un Data Engineer accompli, capable de concevoir, développer et optimiser des architectures de données robustes et évolutives, en garantissant la fiabilité, l'intégrité, la qualité et la disponibilité des données au service de la prise de décision et des besoins métiers."
+      "Étudiant en troisième année d'informatique à l'ESGIS, à Lomé au Togo, je suis spécialisé en Intelligence Artificielle et Big Data. Ma formation me permet d'aborder différents domaines de l'informatique, notamment la programmation, les bases de données, les algorithmes et le traitement des données.",
+
+      "À travers mes projets pratiques, je développe mes compétences en Python, SQL, manipulation de données et conception de bases de données relationnelles. Je m'intéresse également à la qualité des données, à l'automatisation des traitements et à la création d'outils d'analyse.",
+
+      "Mon objectif professionnel est de devenir Data Engineer. Je souhaite approfondir progressivement mes compétences en conception de pipelines ETL/ELT, Data Warehousing, bases de données relationnelles et NoSQL, ainsi qu'en technologies Big Data."
     ],
+
     stats: [
-      { 
-        label: "Formation en cours", 
-        value: "Licence 3", 
+      {
+        label: "Formation en cours",
+        value: "Licence 3",
         icon: "ri-graduation-cap-line",
-        description: "ESGIS Lomé &bull; IA & Big Data"
+        description: "ESGIS Lomé • IA & Big Data"
       },
-      { 
-        label: "Réalisations concrètes", 
-        value: "7 Projets", 
+      {
+        label: "Réalisations concrètes",
+        value: "8 Projets",
         icon: "ri-folder-check-line",
-        description: "Data, SQL, Backend & IA"
+        description: "Data, SQL, Backend, Web & IA"
       },
-      { 
-        label: "Domaine de prédilection", 
-        value: "Data & IA", 
+      {
+        label: "Domaine d'intérêt",
+        value: "Data Engineering",
         icon: "ri-database-2-line",
-        description: "Engineering & Analytics"
+        description: "Data, bases de données & pipelines"
       },
-      { 
-        label: "Disponibilité actuelle", 
-        value: "Stage", 
+      {
+        label: "Disponibilité",
+        value: "Stage",
         icon: "ri-briefcase-line",
-        description: "Prêt pour de nouveaux défis"
-      },
-    ],
+        description: "Ouvert aux opportunités de stage"
+      }
+    ]
   },
+
+  // ----------------------------------------------------------
+  // PARCOURS
+  // ----------------------------------------------------------
 
   journey: [
     {
       id: 1,
       year: "2024 — 2027",
       title: "Licence en Informatique — IA & Big Data",
-      desc: "ESGIS, Lomé — Spécialisation Intelligence Artificielle et Big Data. Formation en algorithmique, bases de données, programmation et Data Science.",
-      icon: "ri-graduation-cap-fill",
+      desc:
+        "ESGIS, Lomé — Formation en Intelligence Artificielle et Big Data : programmation, algorithmique, bases de données, traitement et analyse de données.",
+      icon: "ri-graduation-cap-fill"
     },
     {
       id: 2,
       year: "2023",
       title: "Baccalauréat Série D",
-      desc: "Mention Assez-Bien — Formation scientifique (Mathématiques, Physique-Chimie, SVT).",
-      icon: "ri-book-2-fill",
-    },
+      desc:
+        "Mention Assez-Bien — Formation scientifique en mathématiques, physique-chimie et sciences de la vie et de la terre.",
+      icon: "ri-book-2-fill"
+    }
   ],
 
+  // ----------------------------------------------------------
+  // PROJETS
+  // ----------------------------------------------------------
+
   projects: [
+    // --------------------------------------------------------
+    // PROJET 1
+    // --------------------------------------------------------
+
     {
       id: 1,
       title: "Analyse et Nettoyage d'un Jeu de Données de Ventes",
-      shortDesc: "Projet de Data Analysis complet réalisé sur le dataset UCI Online Retail (541 909 lignes). Audit de qualité, nettoyage, préparation et analyse exploratoire des ventes avec visualisations statistiques.",
-      fullDesc: "Projet de Data Analysis réalisé avec Python, Pandas et Matplotlib à partir du jeu de données UCI Online Retail. Il porte sur l'audit de qualité, le nettoyage et la préparation des données, suivis d'une analyse exploratoire des ventes : évolution du chiffre d'affaires, performance des produits, comportement des clients et répartition géographique du revenu.",
+
+      shortDesc:
+        "Audit de qualité, identification des anomalies et analyse exploratoire du jeu de données UCI Online Retail avec Python, Pandas et Matplotlib.",
+
+      fullDesc:
+        "Projet de Data Analysis réalisé à partir du jeu de données UCI Online Retail. Le travail porte sur l'audit de qualité des données, l'identification des valeurs manquantes, des doublons et des transactions atypiques, ainsi que l'analyse exploratoire des ventes selon plusieurs dimensions : temporelle, produits, clients et géographique.",
+
       category: "data-analysis",
       status: "completed",
-      tags: ["Python", "Pandas", "NumPy", "Matplotlib", "Jupyter", "OpenPyXL", "Git"],
-      img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=60",
-      githubLink: "https://github.com/LidXo/Analyse-et-Nettoyage-d-un-Jeu-de-Donn-es-de-Ventes",
+
+      tags: [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Matplotlib",
+        "Jupyter",
+        "OpenPyXL",
+        "Git"
+      ],
+
+      img:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=60",
+
+      githubLink:
+        "https://github.com/LidXo/Analyse-et-Nettoyage-d-un-Jeu-de-Donn-es-de-Ventes",
+
       details: {
-        context: "Projet académique de Data Analysis visant à mettre en pratique les compétences en nettoyage, transformation et analyse exploratoire de données. Le dataset utilisé est le UCI Online Retail Dataset, un jeu de données de ventes en ligne d'un commerce basé au Royaume-Uni.",
-        problem: "Les données brutes contiennent des valeurs manquantes, des doublons, des transactions atypiques (retours, annulations, ajustements) et des incohérences qui nécessitent un traitement rigoureux avant toute analyse fiable.",
+        context:
+          "Projet d'analyse de données réalisé à partir du jeu de données public UCI Online Retail. Ce jeu contient 541 909 lignes de transactions commerciales et 8 variables décrivant notamment les factures, les produits, les quantités, les dates, les prix unitaires, les clients et les pays.",
+
+        problem:
+          "Les données commerciales brutes peuvent contenir des valeurs manquantes, des doublons, des quantités négatives, des prix nuls et des opérations particulières. Ces éléments peuvent fausser les analyses s'ils ne sont pas identifiés et interprétés avant le calcul des indicateurs commerciaux.",
+
         objectives: [
-          "Auditer la qualité des données brutes",
-          "Nettoyer et préparer le jeu de données pour l'analyse",
-          "Réaliser une analyse exploratoire complète des ventes",
-          "Produire des visualisations statistiques pertinentes",
-          "Exporter les résultats dans un format exploitable"
+          "Découvrir et comprendre la structure du jeu de données UCI Online Retail",
+          "Évaluer la qualité et la cohérence des données",
+          "Identifier et quantifier les valeurs manquantes",
+          "Détecter les doublons exacts et étudier leur impact potentiel",
+          "Analyser les quantités négatives, les prix nuls et les transactions atypiques",
+          "Étudier les annulations commerciales et certaines opérations particulières",
+          "Définir des règles de traitement adaptées aux anomalies observées",
+          "Réaliser une analyse exploratoire des ventes",
+          "Produire des indicateurs, tableaux et visualisations pour faciliter l'interprétation des données"
         ],
-        methodology: "Approche structurée en phases : audit de qualité → identification des anomalies → nettoyage et transformation → analyse exploratoire → visualisation et export. Environnement : Python, Jupyter Notebook, Pandas, NumPy, Matplotlib, OpenPyXL. Gestion de versions avec Git et GitHub.",
+
+        methodology:
+          "La démarche repose sur une analyse exploratoire structurée : chargement des données → inspection de la structure → audit de qualité → identification et classification des anomalies → étude des opérations commerciales particulières → préparation des données pour l'analyse → analyse exploratoire → visualisation et interprétation des résultats. Les anomalies sont étudiées avant toute décision de traitement afin d'éviter la suppression injustifiée d'informations potentiellement utiles.",
+
         steps: [
-          "Audit de qualité des données (valeurs manquantes, types, distributions)",
-          "Analyse et traitement des valeurs manquantes",
-          "Détection et suppression des doublons",
-          "Identification et catégorisation des transactions atypiques",
-          "Analyse des quantités et des prix",
-          "Préparation et standardisation des données",
-          "Analyse temporelle (évolution CA, saisonnalité)",
-          "Analyse des produits (top ventes, répartition)",
-          "Analyse des clients (comportement, segmentation)",
-          "Analyse géographique (répartition par pays)",
-          "Production de visualisations statistiques",
-          "Exportation des résultats consolidés"
+          "Chargement du fichier Excel Online Retail avec Pandas et OpenPyXL",
+          "Inspection du nombre de lignes, des colonnes, des types de données et des premières observations",
+          "Analyse des valeurs manquantes et de leur répartition",
+          "Détection et quantification des doublons exacts",
+          "Analyse des quantités négatives et des prix unitaires nuls",
+          "Identification des factures d'annulation à partir du préfixe C de InvoiceNo",
+          "Étude des factures particulières et des ajustements comptables",
+          "Recherche de correspondances candidates entre certaines ventes et leurs annulations",
+          "Analyse exploratoire des ventes par période, produit, client et pays",
+          "Construction de tableaux récapitulatifs et de visualisations",
+          "Documentation des observations, des règles de traitement et des limites de l'analyse"
         ],
+
         results: [
-          "527 935 lignes de ventes standardisées",
-          "19 778 factures analysées",
-          "Chiffre d'affaires analysé : 10 279 232,92 £",
-          "Quantité totale vendue : 5 577 280 unités",
-          "Jeu de données consolidé : 532 618 lignes",
-          "Données commerciales consolidées : 530 437 lignes"
+          "541 909 lignes et 8 colonnes analysées",
+          "5 268 doublons exacts détectés dans le jeu de données",
+          "1 336 mouvements avec quantité négative hors annulations commerciales identifiés ; ces mouvements présentent un prix unitaire nul et un identifiant client manquant",
+          "43 rapprochements candidats identifiés, correspondant à 35 paires de factures distinctes",
+          "Identification des factures d'annulation, des ajustements comptables et d'autres opérations atypiques",
+          "Analyse de la qualité des données : valeurs manquantes, doublons, transactions atypiques et incohérences",
+          "Analyse exploratoire des ventes selon les dimensions temporelle, produits, clients et géographique",
+          "Production de tableaux et de visualisations pour faciliter l'interprétation des données"
         ],
+
         difficulties: [
-          "Gestion de la volumétrie (541 909 lignes initiales)",
-          "Classification des transactions atypiques (retours, ajustements, corrections)",
-          "Rapprochement heuristique des transactions liées",
-          "Interprétation des valeurs manquantes sans contexte métier complet"
+          "Interprétation des quantités négatives sans les confondre systématiquement avec des erreurs",
+          "Distinction entre les annulations commerciales et les autres mouvements particuliers",
+          "Analyse des doublons exacts sans identifiant unique permettant de confirmer qu'ils représentent des transactions répétées",
+          "Identification des ajustements comptables et des opérations atypiques",
+          "Recherche de correspondances entre factures de vente et factures d'annulation",
+          "Définition de règles de traitement qui préservent autant que possible l'information utile"
         ],
+
         learnings: [
-          "Maîtrise de Pandas pour la manipulation de données volumineuses",
-          "Techniques de nettoyage et de validation de données",
-          "Création de visualisations statistiques avec Matplotlib",
-          "Importance de l'audit de qualité avant toute analyse",
-          "Rigueur méthodologique dans le traitement des données"
+          "Utilisation de Pandas pour charger, inspecter et analyser un jeu de données volumineux",
+          "Application de techniques d'audit de qualité des données",
+          "Identification et analyse des valeurs manquantes et des doublons",
+          "Manipulation des colonnes numériques, textuelles et temporelles",
+          "Compréhension des particularités des données transactionnelles commerciales",
+          "Utilisation de NumPy et Pandas pour les traitements analytiques",
+          "Création de visualisations avec Matplotlib",
+          "Interprétation des indicateurs et communication des résultats d'une analyse exploratoire"
         ],
+
         limitations: [
-          "Les mouvements atypiques sont classifiés selon des critères d'analyse heuristiques",
-          "Les rapprochements de transactions sont heuristiques et ne constituent pas une preuve comptable",
-          "Les données manquantes ne doivent pas être interprétées automatiquement comme des erreurs",
-          "L'analyse est limitée aux données disponibles dans le dataset UCI"
+          "Les 5 268 doublons exacts ont été détectés, mais leur suppression ne peut pas être considérée comme systématiquement justifiée sans validation métier.",
+          "Les 43 rapprochements identifiés sont des correspondances candidates fondées sur des critères d'analyse ; ils ne constituent pas une confirmation automatique de chaque annulation.",
+          "Les identifiants clients manquants limitent certaines analyses au niveau individuel.",
+          "Le jeu de données ne fournit pas les coûts d'achat des produits ni l'ensemble des charges de l'entreprise ; le bénéfice et la marge réelle ne peuvent donc pas être calculés.",
+          "Les résultats dépendent de la qualité et de la période couverte par le jeu de données UCI Online Retail.",
+          "Certaines opérations particulières nécessitent une validation métier avant toute exclusion ou correction."
         ]
       }
     },
+
+    // --------------------------------------------------------
+    // PROJET 2
+    // --------------------------------------------------------
+
     {
       id: 2,
       title: "Base de Données de Gestion Commerciale",
-      shortDesc: "Conception et développement d'une base relationnelle complète (7 tables) pour les opérations d'une entreprise : modélisation MLD, contraintes d'intégrité, requêtes SQL d'analyse de vente et automatisation Python avec suite de tests pytest.",
-      fullDesc: "Conception et développement d'une base de données relationnelle destinée à gérer les principales opérations commerciales d'une entreprise (TechStore). Le projet met en pratique la modélisation relationnelle rigoureuse, la création de 7 tables interdépendantes, les contraintes d'intégrité (PK, FK, CHECK, UNIQUE), les requêtes SQL analytiques (CA, montants de commande, jointures) et l'intégration programmatique avec Python et SQLite.",
+
+      shortDesc:
+        "Conception et développement d'une base de données relationnelle SQLite composée de 7 tables. Le projet couvre la modélisation des données, les contraintes d'intégrité, l'insertion de données et les vérifications avec Python et pytest.",
+
+      fullDesc:
+        "Conception et développement d'une base de données relationnelle pour une entreprise fictive de vente d'équipements informatiques (TechStore). Le projet consiste à structurer les données relatives aux clients, fournisseurs, catégories, produits, commandes et paiements dans une base SQLite de 7 tables. Des contraintes d'intégrité sont mises en place et des tests avec Python et pytest permettent de vérifier la connexion, la structure et l'intégrité référentielle de la base.",
+
       category: "database",
       status: "completed",
-      tags: ["Python", "SQL", "SQLite", "Database Design", "Pytest", "Git"],
-      img: "https://plus.unsplash.com/premium_photo-1661454577337-7738fd3dd478?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+
+      tags: [
+        "Python",
+        "SQL",
+        "SQLite",
+        "Database Design",
+        "Pytest",
+        "Git"
+      ],
+
+      img:
+        "https://plus.unsplash.com/premium_photo-1661454577337-7738fd3dd478?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+
       githubLink: "https://github.com/LidXo/gestion-commerciale",
+
       details: {
-        context: "Projet technique de Database Engineering & Backend centré sur la gestion commerciale d'une entreprise de vente d'équipements informatiques et électroniques (TechStore). Il s'agissait de remplacer un suivi manuel dispersé par un système relationnel structuré, garantissant la fiabilité transactionnelle des commandes, des produits, des clients et des paiements.",
-        problem: "Une activité commerciale nécessite la traçabilité sans faille des ventes : éviter les ruptures d'intégrité (commandes rattachées à des clients inexistants, stocks négatifs, paiements orphelins), gérer les relations n-n entre commandes et articles, et permettre un calcul instantané et exact du chiffre d'affaires sans divergence comptable.",
+        context:
+          "Projet de conception et d'implémentation d'une base de données relationnelle pour une entreprise fictive de vente d'équipements informatiques et électroniques (TechStore). L'objectif est de structurer et de centraliser les informations commerciales dans une base de données cohérente.",
+
+        problem:
+          "La gestion des clients, fournisseurs, produits, commandes et paiements nécessite une organisation structurée des données. Sans modèle relationnel adapté ni contraintes d'intégrité, des incohérences peuvent apparaître dans les enregistrements et les relations entre les différentes entités.",
+
         objectives: [
-          "Analyser le domaine métier et formaliser les règles de gestion commerciale",
-          "Concevoir les modèles conceptuel et logique de données (MCD / MLD)",
-          "Implémenter le schéma SQL DDL avec contraintes d'intégrité strictes",
-          "Structurer la persistance avec 7 tables interconnectées",
-          "Développer des requêtes SQL d'analyse métier (CA, paniers, états)",
-          "Créer des scripts Python modulaires pour l'interaction avec la base",
-          "Valider la robustesse du système avec une suite de tests unitaires automatisés (pytest)"
+          "Analyser les besoins d'une activité de gestion commerciale",
+          "Identifier les entités et leurs relations",
+          "Concevoir une structure relationnelle adaptée",
+          "Créer les tables et leurs contraintes SQL",
+          "Garantir la cohérence des relations entre les tables",
+          "Insérer des données de test",
+          "Connecter la base SQLite à Python",
+          "Vérifier le fonctionnement et l'intégrité de la base avec pytest"
         ],
-        methodology: "Démarche d'ingénierie en 5 phases : 1. Analyse fonctionnelle & règles de gestion (validation des cardinalités) → 2. Conception relationnelle (MLD avec résolution des relations plusieurs-à-plusieurs via table de liaison) → 3. Implémentation SQL DDL/DML avec activation stricte des clés étrangères (`PRAGMA foreign_keys = ON`) → 4. Scripting applicatif Python modulaire → 5. Automatisation des tests et vérification de l'intégrité référentielle (`PRAGMA foreign_key_check`).",
+
+        methodology:
+          "Démarche de conception et d'implémentation en plusieurs phases : analyse des besoins métier → identification des entités et des relations → conception du schéma relationnel → création des tables et des contraintes SQL → insertion des données de test → connexion avec Python et SQLite → vérification de la structure et de l'intégrité référentielle avec pytest et PRAGMA foreign_key_check.",
+
         steps: [
-          "Définition des règles de gestion métier (clients, commandes, produits, paiements)",
-          "Modélisation conceptuelle et logique (7 entités relationnelles)",
-          "Écriture du schéma DDL (schema.sql) avec clés primaires et contraintes CHECK",
-          "Résolution de la relation n-n avec la table de liaison DETAIL_COMMANDE (PK composite)",
-          "Génération et insertion des jeux de données de référence et de tests",
-          "Développement de requêtes d'analyse SQL (queries.sql : calcul de CA par état, montants totaux)",
-          "Développement de modules Python indépendants (clients.py, commandes.py, produits.py, paiements.py)",
-          "Gestion des migrations et évolutions de structure (migration_v2.sql)",
-          "Mise en place de tests automatisés pytest validant 100% de la structure et des calculs"
+          "Analyse des besoins d'une entreprise de gestion commerciale",
+          "Identification des entités : clients, fournisseurs, catégories, produits, commandes et paiements",
+          "Conception du modèle relationnel et définition des relations entre les tables",
+          "Création des 7 tables avec leurs clés primaires et étrangères",
+          "Mise en place des contraintes d'intégrité : NOT NULL, UNIQUE et CHECK",
+          "Création du script SQL de définition de la structure (schema.sql)",
+          "Préparation et insertion des données de test (insert_data.sql)",
+          "Connexion à la base SQLite avec Python et le module sqlite3",
+          "Exécution des tests avec pytest",
+          "Vérification de l'intégrité référentielle avec PRAGMA foreign_key_check"
         ],
+
         results: [
-          "7 tables relationnelles créées et optimisées (CLIENT, FOURNISSEUR, CATEGORIE, PRODUIT, COMMANDE, DETAIL_COMMANDE, PAIEMENT)",
-          "Zéro anomalie d'intégrité référentielle (validé par PRAGMA foreign_key_check)",
-          "Contraintes CHECK et UNIQUE actives garantissant la cohérence des prix, stocks et emails",
-          "Calcul exact du chiffre d'affaires et des totaux via requêtes SQL optimisées avec GROUP BY et agrégats",
-          "Suite de tests automatisés pytest réussie à 100% (connexion, schéma, intégrité, données, montants)"
+          "7 tables relationnelles créées : CLIENT, FOURNISSEUR, CATEGORIE, PRODUIT, COMMANDE, DETAIL_COMMANDE et PAIEMENT",
+          "Contraintes d'intégrité référentielle vérifiées avec PRAGMA foreign_key_check",
+          "Contraintes CHECK et UNIQUE mises en place pour contrôler les données",
+          "Base SQLite créée pour structurer les informations relatives aux clients, produits, commandes et paiements",
+          "Tests automatisés réussis pour vérifier la connexion, la structure et l'intégrité de la base"
         ],
+
         difficulties: [
-          "Gestion de la cardinalité n-n entre COMMANDE et PRODUIT résolue via la table d'association DETAIL_COMMANDE avec clé primaire composite",
-          "Cohérence des états de commande et synchronisation des dates de paiement avec SQLite",
-          "Maintien de l'intégrité référentielle dans SQLite (obligation d'activer explicitement le support des clés étrangères via pragma)",
-          "Conception d'une structure de migration SQL propre pour faire évoluer la base sans perte de données"
+          "Organisation cohérente des entités et de leurs relations",
+          "Gestion des relations entre commandes et produits à travers la table DETAIL_COMMANDE",
+          "Définition des contraintes nécessaires à la cohérence des données",
+          "Activation et vérification des clés étrangères dans SQLite",
+          "Validation de la structure et des relations entre les tables"
         ],
+
         learnings: [
-          "Maîtrise de la modélisation relationnelle avancée et normalisation de données (1FN, 2FN, 3FN)",
-          "Écriture de DDL rigoureux avec contraintes d'intégrité complètes (CHECK, NOT NULL, UNIQUE, FOREIGN KEY ON UPDATE/DELETE)",
-          "Pratique approfondie des requêtes SQL complexes avec jointures multiples (INNER JOIN, LEFT JOIN) et fonctions d'agrégation (SUM, COALESCE)",
-          "Intégration robuste de SQLite avec le pilote Python standard sqlite3",
-          "Culture du test logiciel appliqué aux bases de données avec pytest"
+          "Compréhension de la modélisation des bases de données relationnelles",
+          "Pratique de la création de tables avec SQL DDL",
+          "Utilisation des clés primaires et étrangères",
+          "Mise en place de contraintes d'intégrité avec CHECK et UNIQUE",
+          "Manipulation d'une base SQLite avec Python et sqlite3",
+          "Utilisation de pytest pour tester une base de données",
+          "Vérification de l'intégrité référentielle avec les commandes PRAGMA de SQLite"
         ],
+
         limitations: [
-          "Base de données mono-nœud locale SQLite (adaptée pour des opérations embarquées ou PME, à migrer vers PostgreSQL pour de la très haute concurrence)",
-          "Mise à jour des stocks non encore automatisée par triggers SQL (déclencheurs)",
-          "Interface utilisateur graphique non développée : interaction actuelle via CLI Python et requêtes SQL"
+          "La base utilise SQLite et fonctionne dans un environnement local mono-fichier.",
+          "Aucune interface graphique utilisateur n'a été développée.",
+          "Les opérations de mise à jour et de suppression ne sont pas encore entièrement implémentées.",
+          "L'automatisation de la gestion des stocks n'est pas encore développée.",
+          "Le projet ne constitue pas encore une application commerciale complète."
         ]
       }
     },
+
+    // --------------------------------------------------------
+    // PROJET 3
+    // --------------------------------------------------------
+
     {
       id: 3,
-      title: "Système de Location de Cassettes",
-      shortDesc: "Application Java de gestion d'un club de location de cassettes vidéo. Administration des abonnés, titres, catégories, cassettes et locations.",
-      fullDesc: "Application Java de gestion d'un club de location de cassettes vidéo. Le système permet l'administration des abonnés, titres, catégories, cassettes et locations.",
-      category: "backend",
+      title: "Tableau de bord décisionnel des ventes",
+
+      shortDesc:
+        "Développement d'un tableau de bord interactif avec Python et Streamlit pour analyser les ventes, suivre les indicateurs clés de performance (KPI) et explorer les résultats par période, produit, client et pays.",
+
+      fullDesc:
+        "Conception et déploiement d'une application décisionnelle interactive à partir du jeu de données UCI Online Retail (541 909 lignes). Le projet utilise Python, Pandas et Plotly pour transformer les données commerciales, calculer des indicateurs de performance et présenter les résultats dans une interface Streamlit avec filtres temporels et géographiques.",
+
+      category: "data-analysis",
       status: "completed",
-      tags: ["Java"],
-      img: "https://plus.unsplash.com/premium_photo-1729777215342-c1758de6dee5?w=600&auto=format&fit=crop&q=60",
-      githubLink: "https://github.com/LidXo/Syst-me-de-Gestion-de-Location-de-Cassettes",
+
+      tags: [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Streamlit",
+        "Plotly",
+        "OpenPyXL",
+        "Git",
+        "GitHub"
+      ],
+
+      img:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=60",
+
+      githubLink: "https://github.com/LidXo/tableau-de-bord-ventes",
+
+      demoLink:
+        "https://tableau-de-bord-ventes-lidao.streamlit.app/",
+
+      details: {
+        context:
+          "Projet de Data Analysis et de Business Intelligence réalisé à partir du jeu de données UCI Online Retail. L'objectif est de transformer des données transactionnelles en indicateurs et visualisations facilitant le suivi de l'activité commerciale.",
+
+        problem:
+          "Les données brutes ne fournissent pas directement une vision synthétique de la performance commerciale. Il est nécessaire de préparer les transactions, de distinguer les ventes des annulations et de construire des indicateurs cohérents pour analyser les résultats.",
+
+        objectives: [
+          "Charger et préparer un jeu de données de 541 909 lignes",
+          "Identifier et classifier les différents types de transactions",
+          "Calculer les principaux indicateurs de performance commerciale",
+          "Analyser l'évolution du chiffre d'affaires dans le temps",
+          "Comparer les performances des produits, des clients et des pays",
+          "Développer une interface interactive avec des filtres",
+          "Déployer l'application et rendre le tableau de bord accessible en ligne"
+        ],
+
+        methodology:
+          "Démarche organisée en plusieurs phases : chargement des données → préparation et classification des transactions → calcul des KPI → analyses métier → visualisations interactives → déploiement. Le code est structuré en modules Python distincts pour le chargement, le traitement, le calcul des indicateurs et les analyses.",
+
+        steps: [
+          "Chargement du jeu de données UCI Online Retail",
+          "Préparation et classification des transactions commerciales",
+          "Calcul du chiffre d'affaires brut, des annulations et du chiffre d'affaires net provisoire",
+          "Calcul des indicateurs de ventes, de clients et de quantités",
+          "Analyse mensuelle du chiffre d'affaires",
+          "Analyse des performances par produit",
+          "Analyse des performances par client identifié",
+          "Analyse géographique des ventes par pays",
+          "Développement du tableau de bord avec Streamlit",
+          "Création de graphiques interactifs avec Plotly",
+          "Ajout de filtres par période et par pays",
+          "Publication du code sur GitHub et déploiement sur Streamlit Community Cloud"
+        ],
+
+        results: [
+          "541 909 lignes de données exploitées",
+          "Chiffre d'affaires brut : 10 574 813,18 unités monétaires",
+          "Annulations commerciales : -514 746,44 unités monétaires",
+          "Chiffre d'affaires net provisoire : 10 060 066,74 unités monétaires",
+          "19 866 factures de vente et 3 638 factures d'annulation",
+          "5 581 150 unités vendues",
+          "4 335 clients identifiés",
+          "3 918 références de marchandises identifiées, hors références de frais et services DOT/POST",
+          "Le Royaume-Uni représente environ 84,46 % du chiffre d'affaires net provisoire",
+          "Tableau de bord interactif déployé et accessible en ligne"
+        ],
+
+        difficulties: [
+          "Classification des transactions atypiques, notamment les annulations, les mouvements non commerciaux et les opérations manuelles",
+          "Prise en compte des valeurs manquantes dans l'identification des clients",
+          "Distinction entre chiffre d'affaires brut, annulations et chiffre d'affaires net provisoire",
+          "Organisation du code en modules réutilisables",
+          "Gestion des dépendances et résolution des problèmes d'importation lors du déploiement"
+        ],
+
+        learnings: [
+          "Manipulation et transformation de données avec Pandas et NumPy",
+          "Conception d'indicateurs de performance commerciale",
+          "Structuration d'un projet Python en modules",
+          "Création de visualisations interactives avec Plotly",
+          "Développement d'une application de données avec Streamlit",
+          "Utilisation de Git et GitHub pour le versionnement",
+          "Déploiement d'une application sur Streamlit Community Cloud"
+        ],
+
+        limitations: [
+          "Le jeu de données ne contient pas les coûts d'achat des produits ni les charges de l'entreprise : le bénéfice et la marge ne peuvent donc pas être calculés.",
+          "Le chiffre d'affaires net est un indicateur analytique provisoire, et non un chiffre comptable audité.",
+          "Les données de décembre 2010 et décembre 2011 couvrent des périodes partielles.",
+          "Les transactions sans identifiant client ne peuvent pas être intégrées aux analyses individuelles des clients.",
+          "Les classifications de certaines transactions atypiques reposent sur des règles d'analyse et les informations disponibles dans le jeu de données.",
+          "La devise du jeu de données n'est pas explicitement confirmée dans les résultats présentés ; les montants sont donc exprimés en unités monétaires."
+        ]
+      }
     },
+
+    // --------------------------------------------------------
+    // PROJET 4
+    // --------------------------------------------------------
+
     {
       id: 4,
-      title: "Application de Gestion de Stock",
-      shortDesc: "Application Java (Maven) de gestion de stock d'entreprise, sécurisée avec BCrypt et connectée à une base MySQL. Interface pour suivre produits, fournisseurs et commandes.",
-      fullDesc: "Application Java (Maven) de gestion de stock d'entreprise. Sécurisée avec BCrypt et connectée à une base de données MySQL. Interface intuitive pour suivre les produits, fournisseurs, commandes et niveaux de stock en temps réel.",
+      title: "Système de Location de Cassettes",
+
+      shortDesc:
+        "Application Java de gestion d'un club de location de cassettes vidéo : gestion des abonnés, des titres, des catégories, des cassettes et des locations.",
+
+      fullDesc:
+        "Application Java consacrée à la gestion d'un club de location de cassettes vidéo. Le projet porte sur l'organisation des informations relatives aux abonnés, aux titres disponibles, aux catégories, aux cassettes et aux opérations de location.",
+
       category: "backend",
       status: "completed",
-      tags: ["Java", "MySQL", "Maven"],
-      img: "https://plus.unsplash.com/premium_photo-1681426710520-7c56c9f563d2?q=80&w=1332&auto=format&fit=crop",
-      githubLink: "https://github.com/LidXo/Gestion_Stock",
+
+      tags: ["Java"],
+
+      img:
+        "https://plus.unsplash.com/premium_photo-1729777215342-c1758de6dee5?w=600&auto=format&fit=crop&q=60",
+
+      githubLink:
+        "https://github.com/LidXo/Syst-me-de-Gestion-de-Location-de-Cassettes"
     },
+
+    // --------------------------------------------------------
+    // PROJET 5
+    // --------------------------------------------------------
+
     {
       id: 5,
-      title: "Système de Gestion de Bibliothèque",
-      shortDesc: "Système informatisé de gestion de ressources documentaires : catalogage, gestion adhérents, suivi emprunts/retours, pénalités, réservations et statistiques. Architecture MVC.",
-      fullDesc: "Système informatisé de gestion des ressources documentaires et des opérations de prêt/retour. Fonctionnalités : catalogage, gestion adhérents, suivi emprunts/retours, calcul pénalités retard, réservations, recherche multicritère, statistiques. Architecture MVC, transactions ACID.",
+      title: "Application de Gestion de Stock",
+
+      shortDesc:
+        "Application Java de gestion de stock avec Maven, connexion à une base de données MySQL et gestion des produits, fournisseurs et commandes.",
+
+      fullDesc:
+        "Application de gestion de stock développée en Java avec Maven et connectée à une base de données MySQL. Le projet aborde la gestion des produits, des fournisseurs et des commandes, ainsi que l'authentification avec BCrypt.",
+
       category: "backend",
       status: "completed",
-      tags: ["Java"],
-      img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=800&auto=format&fit=crop",
-      githubLink: "https://github.com/LidXo/bibliotheque",
+
+      tags: [
+        "Java",
+        "MySQL",
+        "Maven",
+        "BCrypt"
+      ],
+
+      img:
+        "https://plus.unsplash.com/premium_photo-1681426710520-7c56c9f563d2?q=80&w=1332&auto=format&fit=crop",
+
+      githubLink: "https://github.com/LidXo/Gestion_Stock"
     },
+
+    // --------------------------------------------------------
+    // PROJET 6
+    // --------------------------------------------------------
+
     {
       id: 6,
-      title: "Site E-Commerce",
-      shortDesc: "Site e-commerce statique mono-fichier : catalogue filtrable, panier persistant (localStorage), gestion favoris, panel admin, checkout multi-étapes, responsive design.",
-      fullDesc: "Site e-commerce statique mono-fichier — HTML5 / CSS3 / Vanilla JS. Catalogue filtrable, panier persistant (localStorage), gestion des favoris, panel admin intégré (ajout/suppression/activation produits), checkout multi-étapes, code promo, notifications toast, responsive design, accessibilité ARIA, zéro dépendance externe.",
-      category: "web",
+      title: "Système de Gestion de Bibliothèque",
+
+      shortDesc:
+        "Application de gestion de bibliothèque pour organiser les ressources documentaires, les adhérents et les opérations d'emprunt et de retour.",
+
+      fullDesc:
+        "Système informatisé de gestion de ressources documentaires. Le projet porte sur le catalogage, la gestion des adhérents, le suivi des emprunts et des retours, les réservations, la recherche multicritère et les pénalités de retard. L'application est présentée avec une architecture MVC.",
+
+      category: "backend",
       status: "completed",
-      tags: ["HTML5", "CSS3", "JavaScript"],
-      img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=800&auto=format&fit=crop",
-      githubLink: "https://github.com/LidXo/Site_E-Commerce",
+
+      tags: [
+        "Java",
+        "Architecture MVC",
+        "Gestion de données"
+      ],
+
+      img:
+        "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=800&auto=format&fit=crop",
+
+      githubLink: "https://github.com/LidXo/bibliotheque"
     },
+
+    // --------------------------------------------------------
+    // PROJET 7
+    // --------------------------------------------------------
+
     {
       id: 7,
+      title: "Site E-Commerce",
+
+      shortDesc:
+        "Site e-commerce statique développé en HTML, CSS et JavaScript, avec catalogue filtrable, panier persistant, favoris et interface d'administration.",
+
+      fullDesc:
+        "Site e-commerce statique développé avec HTML5, CSS3 et JavaScript natif. Le projet comprend un catalogue filtrable, un panier persistant avec localStorage, une gestion des favoris, un espace d'administration, un parcours de commande en plusieurs étapes, des notifications et une interface responsive.",
+
+      category: "web",
+      status: "completed",
+
+      tags: [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "localStorage"
+      ],
+
+      img:
+        "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=800&auto=format&fit=crop",
+
+      githubLink: "https://github.com/LidXo/Site_E-Commerce"
+    },
+
+    // --------------------------------------------------------
+    // PROJET 8
+    // --------------------------------------------------------
+
+    {
+      id: 8,
       title: "Face ID — Reconnaissance Faciale",
-      shortDesc: "Système de reconnaissance faciale en Python capturant les visages en temps réel via webcam et envoyant les résultats à un bot Telegram pour notification.",
-      fullDesc: "Système de reconnaissance faciale en Python capturant les visages en temps réel via webcam et les envoyant automatiquement à un bot Telegram pour traitement et notification. Intègre OpenCV pour la détection, face_recognition pour l'identification faciale, et l'API python-telegram-bot pour les notifications asynchrones instantanées.",
+
+      shortDesc:
+        "Projet Python de reconnaissance faciale utilisant une webcam, OpenCV, face_recognition et des notifications via Telegram.",
+
+      fullDesc:
+        "Système de reconnaissance faciale développé en Python. Le projet utilise une webcam pour capturer des images, OpenCV pour le traitement et la détection des visages, face_recognition pour l'identification faciale et l'API Telegram pour transmettre des notifications.",
+
       category: "ai",
       status: "completed",
-      tags: ["Python", "OpenCV", "Telegram API"],
-      img: "https://media.istockphoto.com/id/1168365129/photo/authentication-by-facial-recognition-concept-biometric-security-system.jpg?s=612x612&w=0&k=20&c=PYcoBVyeVF5CNR4m6BAWbteF3Cvo2DxOURHMYGglTx0=",
-      githubLink: "https://github.com/LidXo/faceid",
-    },
+
+      tags: [
+        "Python",
+        "OpenCV",
+        "face_recognition",
+        "Telegram API"
+      ],
+
+      img:
+        "https://media.istockphoto.com/id/1168365129/photo/authentication-by-facial-recognition-concept-biometric-security-system.jpg?s=612x612&w=0&k=20&c=PYcoBVyeVF5CNR4m6BAWbteF3Cvo2DxOURHMYGglTx0=",
+
+      githubLink: "https://github.com/LidXo/faceid"
+    }
   ],
+
+  // ----------------------------------------------------------
+  // TECHNOLOGIES ET COMPÉTENCES
+  // ----------------------------------------------------------
 
   technologies: [
     {
       id: "languages",
       title: "Langages de Programmation",
       icon: "ri-code-s-slash-line",
+
       items: [
-        { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", usage: "Backend, Data Analysis, Scripts", level: "operational" },
-        { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg", usage: "Applications Backend, POO", level: "beginner" },
-        { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", usage: "Frontend, Logique Web", level: "beginner" },
-        { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", usage: "Structure Web", level: "operational" },
-        { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", usage: "Design Web", level: "beginner" },
-        { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", usage: "Base de données", level: "intermediate" },
-      
+        {
+          name: "Python",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+          usage: "Scripts, manipulation et analyse de données",
+          level: "beginner"
+        },
+        {
+          name: "Java",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+          usage: "Programmation orientée objet et applications",
+          level: "beginner"
+        },
+        {
+          name: "JavaScript",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+          usage: "Développement web et logique côté client",
+          level: "beginner"
+        },
+        {
+          name: "HTML5",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+          usage: "Structure des pages web",
+          level: "intermediate"
+        },
+        {
+          name: "CSS3",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+          usage: "Mise en forme et présentation web",
+          level: "beginner"
+        },
+        {
+          name: "SQL",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+          usage: "Requêtes et manipulation de bases relationnelles",
+          level: "beginner"
+        }
       ]
     },
+
     {
       id: "databases",
       title: "Bases de Données",
       icon: "ri-database-2-line",
+
       items: [
-        { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", usage: "SGBDR, Requêtes SQL", level: "intermediate" },
-        { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", usage: "SGBDR", level: "beginner" },
-        { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", usage: "Base NoSQL", level: "beginner" },
-        { name: "SQLite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", usage: "Base NoSQL", level: "beginner" },
-      
+        {
+          name: "MySQL",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+          usage: "SGBDR et requêtes SQL",
+          level: "beginner"
+        },
+        {
+          name: "PostgreSQL",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+          usage: "Système de gestion de bases de données relationnelles",
+          level: "beginner"
+        },
+        {
+          name: "MongoDB",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+          usage: "Découverte des bases de données NoSQL",
+          level: "beginner"
+        },
+        {
+          name: "SQLite",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg",
+          usage: "Base de données relationnelle embarquée",
+          level: "beginner"
+        }
       ]
     },
+
     {
       id: "data-science",
-      title: "Data Science & Analysis",
+      title: "Data Analysis & Visualisation",
       icon: "ri-bar-chart-2-line",
+
       items: [
-        { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg", usage: "Manipulation et nettoyage de données", level: "intermediate" },
-        { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg", usage: "Calcul numérique, tableaux", level: "beginner" },
-        { name: "Matplotlib", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg", usage: "Visualisation de données", level: "intermediate" },
-        { name: "Jupyter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg", usage: "Analyse interactive, documentation", level: "intermediate" },
+        {
+          name: "Pandas",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg",
+          usage: "Manipulation, exploration et nettoyage de données",
+          level: "intermediate"
+        },
+        {
+          name: "NumPy",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg",
+          usage: "Calcul numérique et manipulation de tableaux",
+          level: "beginner"
+        },
+        {
+          name: "Matplotlib",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg",
+          usage: "Visualisation de données",
+          level: "beginner"
+        },
+        {
+          name: "Jupyter",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg",
+          usage: "Analyse interactive et documentation",
+          level: "intermediate"
+        },
+        {
+          name: "Streamlit",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/streamlit/streamlit-original.svg",
+          usage: "Création de tableaux de bord interactifs",
+          level: "beginner"
+        },
+        {
+          name: "Plotly",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/plotly/plotly-original.svg",
+          usage: "Visualisations interactives",
+          level: "beginner"
+        },
+        {
+          name: "OpenPyXL",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+          usage: "Lecture et manipulation de fichiers Excel avec Python",
+          level: "beginner"
+        }
       ]
     },
+
     {
       id: "devops-tools",
-      title: "Outils & DevOps",
+      title: "Outils & Environnement de Développement",
       icon: "ri-terminal-box-line",
+
       items: [
-        { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg", usage: "Gestion de versions", level: "intermediate" },
-        { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", usage: "Collaboration, Hébergement de code", level: "intermediate" },
-        { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", usage: "IDE Principal", level: "operational" },
-        { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg", usage: "Environnement de développement", level: "beginner" },
-        
+        {
+          name: "Git",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+          usage: "Gestion de versions du code",
+          level: "intermediate"
+        },
+        {
+          name: "GitHub",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+          usage: "Hébergement et gestion de dépôts de code",
+          level: "intermediate"
+        },
+        {
+          name: "VS Code",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
+          usage: "Environnement de développement",
+          level: "operational"
+        },
+        {
+          name: "Linux",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
+          usage: "Découverte de l'environnement Linux et de la ligne de commande",
+          level: "beginner"
+        },
+        {
+          name: "Pytest",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytest/pytest-original.svg",
+          usage: "Tests automatisés en Python",
+          level: "beginner"
+        },
+        {
+          name: "Maven",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/maven/maven-original.svg",
+          usage: "Gestion de projets et dépendances Java",
+          level: "beginner"
+        }
       ]
-    },
+    }
   ],
 
+  // ----------------------------------------------------------
+  // CERTIFICATIONS ET ATTESTATIONS
+  // ----------------------------------------------------------
+
   certifications: [
-    { id: 1, type: "attestation", name: "Networking Essentials", issuer: "Cisco Networking Academy", date: "2024", skills: ["Réseaux", "TCP/IP", "Protocoles"], pdfUri: "/Networking_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_377680c8-b6ef-4768-ad6b-af42d2daf212.pdf" },
-    { id: 2, type: "attestation", name: "Alumni Cybersecurity Essentials", issuer: "Cisco Networking Academy", date: "2024", skills: ["Cybersécurité", "Sécurité réseau"], pdfUri: "/Alumni_Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_9e3d9e2b-3049-4fa2-96b8-8bc6c56afcc4.pdf" },
-    { id: 3, type: "attestation", name: "Cybersecurity Essentials", issuer: "Cisco Networking Academy", date: "2024", skills: ["Cybersécurité", "Menaces", "Protection"], pdfUri: "/Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_264d6df7-b0c8-4bfa-929d-b76bbe13d134.pdf" },
-    { id: 4, type: "attestation", name: "Get Connected", issuer: "Cisco Networking Academy", date: "2024", skills: ["Fondamentaux IT", "Connectivité"], pdfUri: "/Get_Connected_certificate_lidao-abiyi-ipnetinstitute-com_6ba40525-6f4e-4555-98eb-9154ffd6441b.pdf" },
-    { id: 5, type: "attestation", name: "NDG Linux Essentials", issuer: "Cisco Networking Academy / NDG", date: "2024", skills: ["Linux", "Ligne de commande", "Administration"], pdfUri: "/Partner-_NDG_Linux_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_4d00fb94-3d30-416f-98a5-d85420f9dfc9.pdf" },
-    { id: 6, type: "attestation", name: "Présentation de l'engineering données dans Azure", issuer: "Microsoft", date: "2026", skills: ["Azure", "Data Engineering", "Cloud"], pdfUri: "/Presentation-engineering-donnees-Azure.pdf" },
+    {
+      id: 1,
+      type: "attestation",
+      name: "Networking Essentials",
+      issuer: "Cisco Networking Academy",
+      date: "2024",
+      skills: [
+        "Réseaux",
+        "TCP/IP",
+        "Protocoles"
+      ],
+      pdfUri:
+        "/Networking_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_377680c8-b6ef-4768-ad6b-af42d2daf212.pdf"
+    },
+    {
+      id: 2,
+      type: "attestation",
+      name: "Alumni Cybersecurity Essentials",
+      issuer: "Cisco Networking Academy",
+      date: "2024",
+      skills: [
+        "Cybersécurité",
+        "Sécurité réseau"
+      ],
+      pdfUri:
+        "/Alumni_Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_9e3d9e2b-3049-4fa2-96b8-8bc6c56afcc4.pdf"
+    },
+    {
+      id: 3,
+      type: "attestation",
+      name: "Cybersecurity Essentials",
+      issuer: "Cisco Networking Academy",
+      date: "2024",
+      skills: [
+        "Cybersécurité",
+        "Menaces",
+        "Protection"
+      ],
+      pdfUri:
+        "/Cybersecurity_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_264d6df7-b0c8-4bfa-929d-b76bbe13d134.pdf"
+    },
+    {
+      id: 4,
+      type: "attestation",
+      name: "Get Connected",
+      issuer: "Cisco Networking Academy",
+      date: "2024",
+      skills: [
+        "Fondamentaux IT",
+        "Connectivité"
+      ],
+      pdfUri:
+        "/Get_Connected_certificate_lidao-abiyi-ipnetinstitute-com_6ba40525-6f4e-4555-98eb-9154ffd6441b.pdf"
+    },
+    {
+      id: 5,
+      type: "attestation",
+      name: "NDG Linux Essentials",
+      issuer: "Cisco Networking Academy / NDG",
+      date: "2024",
+      skills: [
+        "Linux",
+        "Ligne de commande",
+        "Administration"
+      ],
+      pdfUri:
+        "/Partner-_NDG_Linux_Essentials_certificate_lidao-abiyi-ipnetinstitute-com_4d00fb94-3d30-416f-98a5-d85420f9dfc9.pdf"
+    },
+    {
+      id: 6,
+      type: "attestation",
+      name: "Présentation de l'engineering données dans Azure",
+      issuer: "Microsoft",
+      date: "2026",
+      skills: [
+        "Azure",
+        "Data Engineering",
+        "Cloud"
+      ],
+      pdfUri: "/Presentation-engineering-donnees-Azure.pdf"
+    }
   ],
+
+  // ----------------------------------------------------------
+  // CONTACT
+  // ----------------------------------------------------------
 
   contact: {
     email: "lidxo.dev@gmail.com",
     location: "Lomé, Togo",
     status: "Open to work",
+
     socials: {
       linkedin: "https://www.linkedin.com/in/abiyilidao/",
       github: "https://github.com/LidXo",
       twitter: "https://x.com/abiyilidao6",
-      whatsapp: "https://wa.me/22870289212",
-    },
-  },
+      whatsapp: "https://wa.me/22870289212"
+    }
+  }
 };
+
+
+
+
