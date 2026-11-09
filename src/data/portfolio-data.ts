@@ -199,15 +199,16 @@ export const portfolioData: PortfolioData = {
     // PROJET 1
     // --------------------------------------------------------
 
+    
     {
       id: 1,
       title: "Analyse et Nettoyage d'un Jeu de Données de Ventes",
 
       shortDesc:
-        "Audit de qualité, identification des anomalies et analyse exploratoire du jeu de données UCI Online Retail avec Python, Pandas et Matplotlib.",
+        "Audit de qualité, nettoyage, validation et analyse exploratoire de 9 994 enregistrements commerciaux avec Python, Pandas et Matplotlib.",
 
       fullDesc:
-        "Projet de Data Analysis réalisé à partir du jeu de données UCI Online Retail. Le travail porte sur l'audit de qualité des données, l'identification des valeurs manquantes, des doublons et des transactions atypiques, ainsi que l'analyse exploratoire des ventes selon plusieurs dimensions : temporelle, produits, clients et géographique.",
+        "Projet de Data Analysis réalisé à partir du jeu de données Sample Superstore. Le travail comprend une exploration initiale, un audit approfondi de la qualité des données, la définition et l'application de règles de nettoyage, la validation des données transformées et une analyse exploratoire des performances commerciales. Plusieurs dimensions sont étudiées : temporelle, géographique, produits et clients.",
 
       category: "data-analysis",
       status: "completed",
@@ -217,9 +218,12 @@ export const portfolioData: PortfolioData = {
         "Pandas",
         "NumPy",
         "Matplotlib",
-        "Jupyter",
-        "OpenPyXL",
-        "Git"
+        "Jupyter Notebook",
+        "Data Cleaning",
+        "Data Quality",
+        "EDA",
+        "Git",
+        "GitHub"
       ],
 
       img:
@@ -230,81 +234,104 @@ export const portfolioData: PortfolioData = {
 
       details: {
         context:
-          "Projet d'analyse de données réalisé à partir du jeu de données public UCI Online Retail. Ce jeu contient 541 909 lignes de transactions commerciales et 8 variables décrivant notamment les factures, les produits, les quantités, les dates, les prix unitaires, les clients et les pays.",
+          "Projet d'analyse de données réalisé à partir du jeu de données Sample Superstore, fourni au format CSV. Le jeu contient 9 994 enregistrements et 21 colonnes décrivant les commandes, les clients, les produits, les régions, les ventes, les quantités, les remises et les bénéfices. La provenance exacte du fichier n'a pas été retrouvée.",
 
         problem:
-          "Les données commerciales brutes peuvent contenir des valeurs manquantes, des doublons, des quantités négatives, des prix nuls et des opérations particulières. Ces éléments peuvent fausser les analyses s'ils ne sont pas identifiés et interprétés avant le calcul des indicateurs commerciaux.",
+          "Les données commerciales peuvent présenter des problèmes de qualité tels que des incohérences de format, des doublons, des valeurs extrêmes ou des relations incohérentes entre certaines variables. Une analyse réalisée sans vérification préalable de ces éléments risque de produire des indicateurs peu fiables et des interprétations erronées.",
 
         objectives: [
-          "Découvrir et comprendre la structure du jeu de données UCI Online Retail",
-          "Évaluer la qualité et la cohérence des données",
-          "Identifier et quantifier les valeurs manquantes",
-          "Détecter les doublons exacts et étudier leur impact potentiel",
-          "Analyser les quantités négatives, les prix nuls et les transactions atypiques",
-          "Étudier les annulations commerciales et certaines opérations particulières",
-          "Définir des règles de traitement adaptées aux anomalies observées",
-          "Réaliser une analyse exploratoire des ventes",
-          "Produire des indicateurs, tableaux et visualisations pour faciliter l'interprétation des données"
+          "Explorer et comprendre la structure du jeu de données Sample Superstore",
+          "Évaluer la qualité et la cohérence des données commerciales",
+          "Identifier les valeurs manquantes et les doublons",
+          "Détecter les incohérences dans les identifiants et les noms de produits",
+          "Analyser les valeurs extrêmes des ventes et des bénéfices",
+          "Définir des règles de nettoyage adaptées aux anomalies observées",
+          "Nettoyer les données en préservant les informations potentiellement utiles",
+          "Valider la cohérence des données après transformation",
+          "Réaliser une analyse exploratoire des performances commerciales",
+          "Calculer des indicateurs de ventes, de bénéfices et de rentabilité",
+          "Produire des tableaux et des visualisations pour communiquer les résultats"
         ],
 
         methodology:
-          "La démarche repose sur une analyse exploratoire structurée : chargement des données → inspection de la structure → audit de qualité → identification et classification des anomalies → étude des opérations commerciales particulières → préparation des données pour l'analyse → analyse exploratoire → visualisation et interprétation des résultats. Les anomalies sont étudiées avant toute décision de traitement afin d'éviter la suppression injustifiée d'informations potentiellement utiles.",
+          "La démarche repose sur un processus structuré de préparation et d'analyse des données : chargement → exploration initiale → audit de qualité → définition des règles de nettoyage → transformation des données → validation → analyse exploratoire → visualisation et interprétation. Chaque anomalie est étudiée avant toute décision de traitement afin de distinguer les erreurs avérées des particularités commerciales qui doivent être conservées.",
 
         steps: [
-          "Chargement du fichier Excel Online Retail avec Pandas et OpenPyXL",
-          "Inspection du nombre de lignes, des colonnes, des types de données et des premières observations",
-          "Analyse des valeurs manquantes et de leur répartition",
-          "Détection et quantification des doublons exacts",
-          "Analyse des quantités négatives et des prix unitaires nuls",
-          "Identification des factures d'annulation à partir du préfixe C de InvoiceNo",
-          "Étude des factures particulières et des ajustements comptables",
-          "Recherche de correspondances candidates entre certaines ventes et leurs annulations",
-          "Analyse exploratoire des ventes par période, produit, client et pays",
-          "Construction de tableaux récapitulatifs et de visualisations",
-          "Documentation des observations, des règles de traitement et des limites de l'analyse"
+          "Chargement du fichier CSV avec Pandas",
+          "Inspection des dimensions, des colonnes, des types de données et des premières observations",
+          "Analyse statistique descriptive des variables numériques",
+          "Recherche des valeurs manquantes et des doublons exacts",
+          "Détection des répétitions suspectes au niveau des commandes et des produits",
+          "Analyse des incohérences entre identifiants et noms de produits",
+          "Étude des dates, des quantités, des remises, des ventes et des bénéfices",
+          "Identification et analyse des valeurs extrêmes avec la méthode IQR",
+          "Définition et documentation des règles de nettoyage",
+          "Normalisation des noms de produits et conversion des types de données",
+          "Exportation du jeu de données nettoyé au format CSV",
+          "Validation des dimensions, des types, des valeurs et des relations entre variables",
+          "Analyse des ventes et des bénéfices selon les dimensions temporelle, géographique et commerciale",
+          "Étude de la rentabilité par catégorie, sous-catégorie, segment, client et produit",
+          "Création de 20 visualisations avec Matplotlib",
+          "Documentation des résultats, des décisions de traitement et des limites de l'analyse"
         ],
 
         results: [
-          "541 909 lignes et 8 colonnes analysées",
-          "5 268 doublons exacts détectés dans le jeu de données",
-          "1 336 mouvements avec quantité négative hors annulations commerciales identifiés ; ces mouvements présentent un prix unitaire nul et un identifiant client manquant",
-          "43 rapprochements candidats identifiés, correspondant à 35 paires de factures distinctes",
-          "Identification des factures d'annulation, des ajustements comptables et d'autres opérations atypiques",
-          "Analyse de la qualité des données : valeurs manquantes, doublons, transactions atypiques et incohérences",
-          "Analyse exploratoire des ventes selon les dimensions temporelle, produits, clients et géographique",
-          "Production de tableaux et de visualisations pour faciliter l'interprétation des données"
+          "9 994 lignes et 21 colonnes analysées",
+          "Aucune valeur manquante détectée",
+          "Aucun doublon exact détecté",
+          "16 lignes présentant des espaces périphériques dans les noms de produits corrigées",
+          "32 lignes présentant des espaces multiples dans les noms de produits normalisées",
+          "Deux colonnes de dates converties au format datetime",
+          "Codes postaux convertis en chaînes de caractères pour préserver leur nature catégorielle",
+          "Un doublon métier suspect constitué de deux lignes conservé et documenté faute de preuve suffisante pour le supprimer",
+          "1 167 valeurs extrêmes hautes identifiées dans les ventes et 1 881 valeurs extrêmes dans les bénéfices, conservées après analyse",
+          "Chiffre d'affaires total : 2 297 200,86 $",
+          "Bénéfice total : 286 397,02 $",
+          "Marge bénéficiaire globale : 12,47 %",
+          "5 009 commandes, 793 clients et 1 862 produits identifiés",
+          "Identification de trois sous-catégories présentant un bénéfice agrégé négatif : Tables, Bookcases et Supplies",
+          "Production de 20 graphiques pour analyser les performances commerciales",
+          "Validation réussie du jeu de données nettoyé : 9 994 lignes, 21 colonnes et aucune valeur manquante"
         ],
 
         difficulties: [
-          "Interprétation des quantités négatives sans les confondre systématiquement avec des erreurs",
-          "Distinction entre les annulations commerciales et les autres mouvements particuliers",
-          "Analyse des doublons exacts sans identifiant unique permettant de confirmer qu'ils représentent des transactions répétées",
-          "Identification des ajustements comptables et des opérations atypiques",
-          "Recherche de correspondances entre factures de vente et factures d'annulation",
-          "Définition de règles de traitement qui préservent autant que possible l'information utile"
+          "Distinguer les doublons exacts des répétitions commerciales légitimes",
+          "Identifier les incohérences entre les identifiants et les noms de produits sans référentiel externe fiable",
+          "Déterminer les règles de nettoyage sans supprimer des informations potentiellement utiles",
+          "Interpréter les valeurs extrêmes sans les considérer automatiquement comme des erreurs",
+          "Préserver les bénéfices négatifs qui peuvent représenter des pertes commerciales réelles",
+          "Vérifier la cohérence des dates et des relations entre les différentes variables",
+          "Interpréter les indicateurs de rentabilité sans disposer de toutes les informations sur les coûts opérationnels"
         ],
 
         learnings: [
-          "Utilisation de Pandas pour charger, inspecter et analyser un jeu de données volumineux",
+          "Manipulation et exploration de jeux de données avec Pandas",
+          "Utilisation de NumPy pour les opérations numériques",
           "Application de techniques d'audit de qualité des données",
-          "Identification et analyse des valeurs manquantes et des doublons",
-          "Manipulation des colonnes numériques, textuelles et temporelles",
-          "Compréhension des particularités des données transactionnelles commerciales",
-          "Utilisation de NumPy et Pandas pour les traitements analytiques",
+          "Détection et interprétation des doublons et des anomalies",
+          "Nettoyage et normalisation des données textuelles",
+          "Conversion et manipulation des types de données temporels et catégoriels",
+          "Détection des valeurs extrêmes avec la méthode IQR",
+          "Définition de règles de nettoyage justifiées et documentées",
+          "Mise en place de contrôles de validation après transformation",
+          "Calcul et interprétation des indicateurs commerciaux et financiers",
           "Création de visualisations avec Matplotlib",
-          "Interprétation des indicateurs et communication des résultats d'une analyse exploratoire"
+          "Documentation et gestion d'un projet avec Git et GitHub"
         ],
 
         limitations: [
-          "Les 5 268 doublons exacts ont été détectés, mais leur suppression ne peut pas être considérée comme systématiquement justifiée sans validation métier.",
-          "Les 43 rapprochements identifiés sont des correspondances candidates fondées sur des critères d'analyse ; ils ne constituent pas une confirmation automatique de chaque annulation.",
-          "Les identifiants clients manquants limitent certaines analyses au niveau individuel.",
-          "Le jeu de données ne fournit pas les coûts d'achat des produits ni l'ensemble des charges de l'entreprise ; le bénéfice et la marge réelle ne peuvent donc pas être calculés.",
-          "Les résultats dépendent de la qualité et de la période couverte par le jeu de données UCI Online Retail.",
-          "Certaines opérations particulières nécessitent une validation métier avant toute exclusion ou correction."
+          "La provenance exacte du fichier Sample Superstore utilisé n'a pas été retrouvée.",
+          "Le doublon métier suspect constitué de deux lignes a été conservé, car les informations disponibles ne permettent pas de confirmer qu'il s'agit d'une erreur.",
+          "Certaines incohérences entre les identifiants et les noms de produits nécessiteraient un référentiel externe pour être résolues de manière fiable.",
+          "Les valeurs extrêmes ont été conservées ; leur présence peut influencer certaines statistiques et interprétations.",
+          "Les bénéfices négatifs sont conservés, car ils peuvent représenter des pertes commerciales réelles.",
+          "Les remises élevées sont associées à des marges plus faibles dans certaines observations, mais cette relation ne démontre pas une causalité.",
+          "Les données ne fournissent pas l'ensemble des coûts opérationnels et logistiques nécessaires pour évaluer intégralement la rentabilité de l'entreprise.",
+          "L'analyse repose uniquement sur les variables disponibles dans le jeu de données et ne permet pas de confirmer toutes les causes des performances commerciales observées."
         ]
       }
     },
+
 
     // --------------------------------------------------------
     // PROJET 2
