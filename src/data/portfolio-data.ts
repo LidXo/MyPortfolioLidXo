@@ -463,7 +463,7 @@ export const portfolioData: PortfolioData = {
       ],
 
       img:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
 
       githubLink:
         "https://github.com/LidXo/tableau-de-bord-ventes",

@@ -162,34 +162,37 @@ const ProjectsSection: React.FC = () => {
                     </div>
 
                     {/* Boutons d'action distincts et réels */}
-                    <div className="flex items-center gap-3 pt-4 border-t border-border/60">
+                    <div className="flex flex-wrap items-center gap-2.5 pt-4 border-t border-border/60">
                       {/* Bouton Fiche détaillée (si détails dispos) */}
-                      {project.details ? (
+                      {project.details && (
                         <button
                           onClick={() => setSelectedProject(project)}
-                          className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs sm:text-sm font-semibold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-sm"
+                          className="px-3.5 py-2 rounded-xl bg-primary text-primary-foreground text-xs sm:text-sm font-semibold hover:bg-primary/90 transition-all flex items-center gap-1.5 shadow-sm"
                         >
                           <i className="ri-article-line" aria-hidden="true" />
                           <span>Fiche détaillée</span>
                         </button>
-                      ) : project.demoLink ? (
+                      )}
+
+                      {/* Bouton Démonstration (si lien démo dispo) */}
+                      {project.demoLink && (
                         <a
                           href={project.demoLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs sm:text-sm font-semibold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-sm"
+                          className="px-3.5 py-2 rounded-xl border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 shadow-sm"
                         >
                           <i className="ri-external-link-line" aria-hidden="true" />
                           <span>Démonstration</span>
                         </a>
-                      ) : null}
+                      )}
 
                       {/* Bouton Code source distinct */}
                       <a 
                         href={project.githubLink} 
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-xl border border-border bg-background hover:bg-card hover:border-primary/40 text-foreground transition-all flex items-center gap-2 text-xs sm:text-sm font-semibold ml-auto"
+                        className="px-3.5 py-2 rounded-xl border border-border bg-background hover:bg-card hover:border-primary/40 text-foreground transition-all flex items-center gap-1.5 text-xs sm:text-sm font-semibold ml-auto"
                       >
                         <i className="ri-github-fill text-base" aria-hidden="true" />
                         <span>Code source</span>
@@ -350,7 +353,18 @@ const ProjectsSection: React.FC = () => {
                 </div>
 
                 {/* Liens du projet */}
-                <div className="flex items-center justify-end gap-3 pt-4 border-t border-border">
+                <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-border">
+                  {selectedProject.demoLink && (
+                    <a
+                      href={selectedProject.demoLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-xl border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm mr-auto"
+                    >
+                      <i className="ri-external-link-line text-base" aria-hidden="true" />
+                      <span>Accéder à la démonstration</span>
+                    </a>
+                  )}
                   <a
                     href={selectedProject.githubLink}
                     target="_blank"
