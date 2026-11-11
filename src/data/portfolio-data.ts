@@ -438,15 +438,16 @@ export const portfolioData: PortfolioData = {
     // PROJET 3
     // --------------------------------------------------------
 
+    
     {
       id: 3,
       title: "Tableau de bord décisionnel des ventes",
 
       shortDesc:
-        "Développement d'un tableau de bord interactif avec Python et Streamlit pour analyser les ventes, suivre les indicateurs clés de performance (KPI) et explorer les résultats par période, produit, client et pays.",
+        "Conception et déploiement d'un tableau de bord interactif avec Python, Pandas, Streamlit et Plotly pour analyser les performances commerciales, suivre les KPI et explorer les ventes, les profits et la rentabilité par période, catégorie, région et segment client.",
 
       fullDesc:
-        "Conception et déploiement d'une application décisionnelle interactive à partir du jeu de données UCI Online Retail (541 909 lignes). Le projet utilise Python, Pandas et Plotly pour transformer les données commerciales, calculer des indicateurs de performance et présenter les résultats dans une interface Streamlit avec filtres temporels et géographiques.",
+        "Développement d'une application décisionnelle interactive à partir du jeu de données Sample Superstore (9 994 lignes). Le projet mobilise Python, Pandas et Plotly pour préparer les données commerciales, calculer les indicateurs clés de performance (KPI), analyser les ventes et les profits, puis restituer les résultats dans une interface interactive développée avec Streamlit. L'application propose des analyses temporelles, géographiques et commerciales ainsi que des filtres dynamiques.",
 
       category: "data-analysis",
       status: "completed",
@@ -454,10 +455,9 @@ export const portfolioData: PortfolioData = {
       tags: [
         "Python",
         "Pandas",
-        "NumPy",
         "Streamlit",
         "Plotly",
-        "OpenPyXL",
+        "Pytest",
         "Git",
         "GitHub"
       ],
@@ -465,87 +465,101 @@ export const portfolioData: PortfolioData = {
       img:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=60",
 
-      githubLink: "https://github.com/LidXo/tableau-de-bord-ventes",
+      githubLink:
+        "https://github.com/LidXo/tableau-de-bord-ventes",
 
       demoLink:
         "https://tableau-de-bord-ventes-lidao.streamlit.app/",
 
       details: {
         context:
-          "Projet de Data Analysis et de Business Intelligence réalisé à partir du jeu de données UCI Online Retail. L'objectif est de transformer des données transactionnelles en indicateurs et visualisations facilitant le suivi de l'activité commerciale.",
+          "Projet de Data Analysis et de Business Intelligence réalisé à partir du jeu de données Sample Superstore. L'objectif est de transformer des données commerciales en indicateurs de performance et en visualisations interactives afin de faciliter le suivi et l'analyse de l'activité commerciale.",
 
         problem:
-          "Les données brutes ne fournissent pas directement une vision synthétique de la performance commerciale. Il est nécessaire de préparer les transactions, de distinguer les ventes des annulations et de construire des indicateurs cohérents pour analyser les résultats.",
+          "Les données transactionnelles brutes ne fournissent pas directement une vision synthétique des performances commerciales. Il est nécessaire de préparer les données, de structurer les analyses et de calculer des indicateurs cohérents pour identifier les tendances de ventes, évaluer la rentabilité et comparer les performances selon différentes dimensions commerciales et géographiques.",
 
         objectives: [
-          "Charger et préparer un jeu de données de 541 909 lignes",
-          "Identifier et classifier les différents types de transactions",
+          "Charger et préparer le jeu de données Sample Superstore de 9 994 lignes",
+          "Explorer et contrôler la structure et la qualité des données commerciales",
           "Calculer les principaux indicateurs de performance commerciale",
-          "Analyser l'évolution du chiffre d'affaires dans le temps",
-          "Comparer les performances des produits, des clients et des pays",
-          "Développer une interface interactive avec des filtres",
-          "Déployer l'application et rendre le tableau de bord accessible en ligne"
+          "Analyser l'évolution temporelle du chiffre d'affaires",
+          "Comparer les performances par catégorie et sous-catégorie de produits",
+          "Analyser les ventes et les profits par région et segment client",
+          "Identifier les produits les plus et les moins rentables",
+          "Développer un tableau de bord interactif avec Streamlit",
+          "Créer des visualisations interactives avec Plotly",
+          "Tester les fonctionnalités analytiques et publier l'application en ligne"
         ],
 
         methodology:
-          "Démarche organisée en plusieurs phases : chargement des données → préparation et classification des transactions → calcul des KPI → analyses métier → visualisations interactives → déploiement. Le code est structuré en modules Python distincts pour le chargement, le traitement, le calcul des indicateurs et les analyses.",
+          "Démarche organisée en plusieurs phases : exploration des données → préparation et structuration → calcul des KPI → analyses commerciales et temporelles → création des visualisations → intégration dans une application Streamlit → tests automatisés → versionnement et déploiement. Le code est organisé en modules Python dédiés aux calculs des indicateurs, aux analyses et aux visualisations.",
 
         steps: [
-          "Chargement du jeu de données UCI Online Retail",
-          "Préparation et classification des transactions commerciales",
-          "Calcul du chiffre d'affaires brut, des annulations et du chiffre d'affaires net provisoire",
-          "Calcul des indicateurs de ventes, de clients et de quantités",
-          "Analyse mensuelle du chiffre d'affaires",
-          "Analyse des performances par produit",
-          "Analyse des performances par client identifié",
-          "Analyse géographique des ventes par pays",
-          "Développement du tableau de bord avec Streamlit",
-          "Création de graphiques interactifs avec Plotly",
-          "Ajout de filtres par période et par pays",
+          "Chargement et exploration du jeu de données Sample Superstore",
+          "Inspection des variables, des types de données et de la qualité des données",
+          "Préparation des données et conversion des variables temporelles",
+          "Calcul du chiffre d'affaires, du profit et des quantités vendues",
+          "Calcul du nombre de commandes, de la marge bénéficiaire et du panier moyen",
+          "Analyse de l'évolution mensuelle du chiffre d'affaires",
+          "Analyse des ventes par catégorie et sous-catégorie",
+          "Comparaison des performances commerciales par région",
+          "Analyse des ventes par segment client",
+          "Étude de la rentabilité des produits",
+          "Création de six visualisations interactives avec Plotly",
+          "Développement de l'interface décisionnelle avec Streamlit",
+          "Intégration des KPI et des filtres interactifs",
+          "Organisation du code en modules Python réutilisables",
+          "Création et exécution de tests automatisés avec Pytest",
           "Publication du code sur GitHub et déploiement sur Streamlit Community Cloud"
         ],
 
         results: [
-          "541 909 lignes de données exploitées",
-          "Chiffre d'affaires brut : 10 574 813,18 unités monétaires",
-          "Annulations commerciales : -514 746,44 unités monétaires",
-          "Chiffre d'affaires net provisoire : 10 060 066,74 unités monétaires",
-          "19 866 factures de vente et 3 638 factures d'annulation",
-          "5 581 150 unités vendues",
-          "4 335 clients identifiés",
-          "3 918 références de marchandises identifiées, hors références de frais et services DOT/POST",
-          "Le Royaume-Uni représente environ 84,46 % du chiffre d'affaires net provisoire",
-          "Tableau de bord interactif déployé et accessible en ligne"
+          "9 994 lignes de données commerciales exploitées",
+          "Chiffre d'affaires total : 2 297 200,86 $",
+          "Nombre de commandes : 5 009",
+          "Quantités vendues : 37 873",
+          "Profit total : 286 397,02 $",
+          "Marge bénéficiaire : 12,47 %",
+          "Panier moyen : 458,61 $",
+          "Six visualisations interactives générées avec Plotly",
+          "Analyses disponibles par période, catégorie, sous-catégorie, région et segment client",
+          "Application décisionnelle développée avec Streamlit et accessible publiquement en ligne",
+          "Sept tests automatisés réussis"
         ],
 
         difficulties: [
-          "Classification des transactions atypiques, notamment les annulations, les mouvements non commerciaux et les opérations manuelles",
-          "Prise en compte des valeurs manquantes dans l'identification des clients",
-          "Distinction entre chiffre d'affaires brut, annulations et chiffre d'affaires net provisoire",
-          "Organisation du code en modules réutilisables",
+          "Préparation et structuration des données commerciales pour les analyses",
+          "Gestion des variables temporelles et analyse de l'évolution des ventes",
+          "Cohérence du calcul des indicateurs commerciaux et financiers",
+          "Analyse de la rentabilité des produits à partir des ventes et des profits",
+          "Organisation du code en modules Python réutilisables",
+          "Conception de visualisations interactives adaptées aux analyses métier",
           "Gestion des dépendances et résolution des problèmes d'importation lors du déploiement"
         ],
 
         learnings: [
-          "Manipulation et transformation de données avec Pandas et NumPy",
-          "Conception d'indicateurs de performance commerciale",
-          "Structuration d'un projet Python en modules",
+          "Manipulation, préparation et agrégation de données avec Pandas",
+          "Calcul et interprétation des indicateurs clés de performance commerciale",
+          "Analyse exploratoire et analyse multidimensionnelle des ventes",
+          "Analyse de la rentabilité et des performances des produits",
           "Création de visualisations interactives avec Plotly",
-          "Développement d'une application de données avec Streamlit",
-          "Utilisation de Git et GitHub pour le versionnement",
-          "Déploiement d'une application sur Streamlit Community Cloud"
+          "Développement d'applications de Business Intelligence avec Streamlit",
+          "Structuration d'un projet Python en modules réutilisables",
+          "Écriture et exécution de tests automatisés avec Pytest",
+          "Gestion de versions avec Git et GitHub",
+          "Déploiement d'une application de données sur Streamlit Community Cloud"
         ],
 
         limitations: [
-          "Le jeu de données ne contient pas les coûts d'achat des produits ni les charges de l'entreprise : le bénéfice et la marge ne peuvent donc pas être calculés.",
-          "Le chiffre d'affaires net est un indicateur analytique provisoire, et non un chiffre comptable audité.",
-          "Les données de décembre 2010 et décembre 2011 couvrent des périodes partielles.",
-          "Les transactions sans identifiant client ne peuvent pas être intégrées aux analyses individuelles des clients.",
-          "Les classifications de certaines transactions atypiques reposent sur des règles d'analyse et les informations disponibles dans le jeu de données.",
-          "La devise du jeu de données n'est pas explicitement confirmée dans les résultats présentés ; les montants sont donc exprimés en unités monétaires."
+          "Les résultats sont dépendants du périmètre et de la qualité du jeu de données Sample Superstore.",
+          "Le profit et la marge bénéficiaire sont calculés à partir des champs Sales et Profit fournis dans le jeu de données ; ils ne représentent pas nécessairement une rentabilité comptable complète.",
+          "Le jeu de données ne couvre qu'un périmètre commercial et géographique limité et ne permet pas de généraliser les résultats à toutes les entreprises.",
+          "Les analyses temporelles dépendent des dates de commande et des périodes effectivement présentes dans les données.",
+          "Le panier moyen est calculé à partir du chiffre d'affaires total et du nombre de commandes, sans distinction supplémentaire des conditions commerciales."
         ]
       }
     },
+
 
     // --------------------------------------------------------
     // PROJET 4
