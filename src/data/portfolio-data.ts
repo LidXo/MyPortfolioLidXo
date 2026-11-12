@@ -148,7 +148,7 @@ export const portfolioData: PortfolioData = {
       },
       {
         label: "Réalisations concrètes",
-        value: "8 Projets",
+        value: "9 Projets",
         icon: "ri-folder-check-line",
         description: "Data, SQL, Backend, Web & IA"
       },
@@ -561,12 +561,137 @@ export const portfolioData: PortfolioData = {
     },
 
 
+
     // --------------------------------------------------------
     // PROJET 4
     // --------------------------------------------------------
 
     {
       id: 4,
+      title: "Outil de Contrôle de la Qualité des Données",
+
+      shortDesc:
+        "Développement d'un outil Python de contrôle et de profilage de la qualité des données. Le système analyse des fichiers CSV et Excel, mesure la complétude, détecte les anomalies à travers 11 règles de validation et génère des rapports aux formats JSON et CSV.",
+
+      fullDesc:
+        "Développement d'un outil de contrôle de la qualité des données avec Python, Pandas et NumPy. Le projet vise à automatiser plusieurs vérifications sur des jeux de données tabulaires : profilage, mesure de la complétude, détection des valeurs manquantes, doublons, incohérences et valeurs non valides. L'outil repose sur 11 règles de validation documentées, une architecture modulaire et des tests automatisés avec Pytest. Les résultats sont exportés sous forme de rapports JSON et CSV.",
+
+      category: "data-analysis",
+      status: "completed",
+
+      tags: [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Pytest",
+        "Data Quality",
+        "Data Validation",
+        "Data Profiling",
+        "CSV",
+        "Excel",
+        "Git",
+        "GitHub"
+      ],
+
+      img:
+        "https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+
+      githubLink:
+        "https://github.com/LidXo/outil-controle-qualite-donnees",
+
+      details: {
+        context:
+          "Projet de développement d'un outil Python de contrôle de la qualité des données. Le système est expérimenté sur un jeu de données synthétique de 1 000 transactions commerciales réparties sur 8 colonnes. L'objectif est de mettre en place des contrôles réutilisables permettant d'évaluer la qualité d'un jeu de données avant son exploitation.",
+
+        problem:
+          "Les données issues de différentes sources peuvent contenir des valeurs manquantes, des doublons, des incohérences numériques ou des formats invalides. Sans contrôles systématiques, ces problèmes peuvent affecter la fiabilité des analyses et des traitements de données. Il est donc nécessaire de disposer d'un outil capable de détecter et de documenter ces anomalies.",
+
+        objectives: [
+          "Développer un outil modulaire de contrôle de la qualité des données avec Python",
+          "Charger des fichiers de données aux formats CSV et Excel",
+          "Profiler automatiquement les jeux de données",
+          "Mesurer la complétude des données",
+          "Détecter les valeurs manquantes et les doublons",
+          "Contrôler la validité des données numériques et temporelles",
+          "Vérifier la cohérence entre plusieurs colonnes",
+          "Centraliser les règles de validation dans une structure dédiée",
+          "Générer des rapports d'anomalies aux formats JSON et CSV",
+          "Automatiser les vérifications avec des tests Pytest",
+          "Documenter l'architecture, les règles et les limites de l'outil"
+        ],
+
+        methodology:
+          "La démarche repose sur une architecture modulaire : chargement des données → profilage → calcul des métriques de qualité → application des règles de validation → centralisation des anomalies → génération des rapports. Les contrôles sont indépendants et testés individuellement afin de faciliter leur maintenance et leur évolution.",
+
+        steps: [
+          "Initialisation de l'environnement Python et installation des dépendances",
+          "Création d'un jeu de données synthétique de 1 000 transactions",
+          "Développement du module de chargement des fichiers CSV et Excel",
+          "Développement du module de profilage des données",
+          "Calcul des métriques de qualité, notamment la complétude",
+          "Définition et centralisation des règles de validation",
+          "Développement des contrôles de détection des anomalies",
+          "Gestion des valeurs manquantes, des doublons et des valeurs non finies",
+          "Vérification de la cohérence entre quantité, prix unitaire et montant total",
+          "Génération des rapports JSON et CSV",
+          "Développement des tests unitaires et fonctionnels avec Pytest",
+          "Audit des cas limites, notamment les valeurs infinies",
+          "Documentation de l'architecture et des règles de qualité",
+          "Versionnement du projet avec Git et publication sur GitHub"
+        ],
+
+        results: [
+          "1 000 lignes et 8 colonnes analysées",
+          "11 règles de contrôle de la qualité des données implémentées",
+          "12 anomalies détectées sur le jeu de démonstration",
+          "Taux de complétude calculé : 99,98 %",
+          "Rapport de qualité généré au format JSON",
+          "Rapport détaillé des anomalies généré au format CSV",
+          "Architecture Python organisée en modules réutilisables",
+          "50 tests automatisés réussis sur 50 avec Pytest",
+          "Projet documenté et publié sur GitHub"
+        ],
+
+        difficulties: [
+          "Concevoir des règles de validation suffisamment précises pour limiter les détections incorrectes",
+          "Distinguer les valeurs manquantes des valeurs non numériques et non finies",
+          "Détecter les doublons sans confondre les occurrences avec les anomalies indépendantes",
+          "Vérifier la cohérence entre plusieurs variables numériques",
+          "Gérer les cas limites liés aux valeurs infinies et aux types de données",
+          "Structurer les anomalies dans un format homogène exploitable par plusieurs modules",
+          "Concevoir des tests couvrant les comportements normaux et les situations limites"
+        ],
+
+        learnings: [
+          "Manipulation et validation de données avec Pandas",
+          "Utilisation de NumPy pour les contrôles numériques",
+          "Conception de règles de validation de données",
+          "Détection des valeurs manquantes, doublons et incohérences",
+          "Calcul d'indicateurs de qualité et de complétude",
+          "Conception d'une architecture Python modulaire",
+          "Génération de rapports structurés avec JSON et CSV",
+          "Écriture de tests automatisés avec Pytest",
+          "Gestion des cas limites dans les traitements de données",
+          "Documentation et versionnement d'un projet avec Git et GitHub"
+        ],
+
+        limitations: [
+          "Le projet utilise un jeu de données synthétique de démonstration et n'a pas encore été évalué sur des données métier réelles.",
+          "Les règles actuelles sont adaptées à la structure du jeu de données utilisé et nécessitent une configuration pour d'autres schémas.",
+          "La vérification des identifiants clients repose sur la détection des valeurs manquantes et ne nécessite pas encore de référentiel externe.",
+          "L'outil détecte les anomalies mais ne réalise pas de correction automatique des données.",
+          "Le système fonctionne localement et ne dispose pas encore d'une interface graphique ou d'une API.",
+          "Les contrôles ne couvrent pas encore toutes les dimensions possibles de la qualité des données, notamment l'unicité métier, la fraîcheur et la cohérence avec des référentiels externes."
+        ]
+      }
+    },
+
+    // --------------------------------------------------------
+    // PROJET 5
+    // --------------------------------------------------------
+
+    {
+      id: 5,
       title: "Système de Location de Cassettes",
 
       shortDesc:
@@ -588,11 +713,11 @@ export const portfolioData: PortfolioData = {
     },
 
     // --------------------------------------------------------
-    // PROJET 5
+    // PROJET 6
     // --------------------------------------------------------
 
     {
-      id: 5,
+      id: 6,
       title: "Application de Gestion de Stock",
 
       shortDesc:
@@ -618,11 +743,11 @@ export const portfolioData: PortfolioData = {
     },
 
     // --------------------------------------------------------
-    // PROJET 6
+    // PROJET 7
     // --------------------------------------------------------
 
     {
-      id: 6,
+      id: 7,
       title: "Système de Gestion de Bibliothèque",
 
       shortDesc:
@@ -647,11 +772,11 @@ export const portfolioData: PortfolioData = {
     },
 
     // --------------------------------------------------------
-    // PROJET 7
+    // PROJET 8
     // --------------------------------------------------------
 
     {
-      id: 7,
+      id: 8,
       title: "Site E-Commerce",
 
       shortDesc:
@@ -677,11 +802,11 @@ export const portfolioData: PortfolioData = {
     },
 
     // --------------------------------------------------------
-    // PROJET 8
+    // PROJET 9
     // --------------------------------------------------------
 
     {
-      id: 8,
+      id: 9,
       title: "Face ID — Reconnaissance Faciale",
 
       shortDesc:
