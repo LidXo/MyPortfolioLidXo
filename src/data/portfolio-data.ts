@@ -850,6 +850,18 @@ export const portfolioData: PortfolioData = {
           level: "beginner"
         },
         {
+          name: "R",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-original.svg",
+          usage: "Scripts, manipulation et analyse statistique de données",
+          level: "beginner"
+        },
+        {
+          name: "SQL",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+          usage: "Requêtes et manipulation de bases relationnelles",
+          level: "beginner"
+        },
+        {
           name: "Java",
           icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
           usage: "Programmation orientée objet et applications",
@@ -872,13 +884,8 @@ export const portfolioData: PortfolioData = {
           icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
           usage: "Mise en forme et présentation web",
           level: "beginner"
-        },
-        {
-          name: "SQL",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
-          usage: "Requêtes et manipulation de bases relationnelles",
-          level: "beginner"
         }
+      
       ]
     },
 
